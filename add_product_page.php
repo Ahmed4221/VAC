@@ -16,6 +16,7 @@
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
             $product_category=$_POST['category'];
+            $product_sub_category=$_POST['sub_category'];
             $price_per_ctn = $_POST['price_per_ctn'];
             $barcode = $_POST['barcode'];
             $weight = $_POST['weight'];
@@ -40,8 +41,8 @@
             //means product does not exist
             if (mysqli_num_rows($product_exists)==0){
               //if does not exist now adding the product in our databaswe
-              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`, `Product_Name` , `Brand_Name`) 
-                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."' ,'".$product_name."' , '".$brand_name."' )";
+              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`) 
+                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' )";
               if (mysqli_query($conn,$sql)){
                 $message = "New Product added in Inventory";
               }
@@ -272,6 +273,8 @@ margin-top: -.3rem;
     <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" required  name="product_name">
 
     <input type="text" id="category" class="form-control mb-4" placeholder="Product Category" required  name="category">
+
+    <input type="text" id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required  name="sub_category">
     
     <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required  name="price_per_ctn">
       
