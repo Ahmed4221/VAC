@@ -17,10 +17,15 @@
 
         if (isset($email) and isset($password) and isset($firstname) and isset($lastname) ) {
           
-          //inserting new suer information
+          //inserting new suer information in client table
           $sql = "INSERT INTO `Client`(`FirstName`, `LastName`, `Email`, `Password`) 
                   VALUES ('".$firstname."','".$lastname."','".$email."','".$password."')";
           if (mysqli_query($conn,$sql)) {
+            //inserting new suer information in users table
+            $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) 
+                    VALUES ('".$email."','".$password."','Client')";
+            mysqli_query($conn,$sql) or die(mysqli_error($conn));
+
             echo "<script>
             alert('Congratulations! Your user account is all set to go');
             window.location.href='index.php';
