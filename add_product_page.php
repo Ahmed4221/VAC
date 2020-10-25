@@ -1,3 +1,95 @@
+<?php
+    error_reporting(0);
+    session_start();
+     // check if that session is true, else redirect to the login page  
+    if($_SESSION['loggedIn']){
+        //allow
+        $user = $_SESSION["UserEmail"];
+        //making connection
+        $conn = require 'connection.php';
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        if(isset($_POST["Submit"])){
+
+            $brand_name=$_POST['brand_name'];
+            $product_name=$_POST['product_name'];
+            $product_category=$_POST['product_category'];
+            $price_per_ctn = $_POST['price_per_ctn'];
+            $barcode = $_POST['barcode'];
+            $weight = $_POST['weight'];
+            $per_ctn_quantity = $_POST['per_ctn_quantity'];
+            $length = $_POST['product_length'];
+            $width = $_POST['product_width'];
+            $height = $_POST['product_height'];
+            $quantity = $_POST['product_quantity'];
+            $product_region = $_POST['product_region'];
+            $UAE_ALL = $_POST['uae_export'];
+            $product_pics =$_FILES["product_pic"]["name"];
+            $vendor_product_image_id = $user."_Product_".$barcode."_".$product_pics;
+            $destination_path = getcwd().DIRECTORY_SEPARATOR;
+            $destination_path = $destination_path.="products/";
+            $product_image_target_path = $destination_path . basename($vendor_product_image_id);
+
+
+            $message = "Error";
+            //checking if that kind of product already exists in our Database
+            $sql = "SELECT * FROM `Product` where Barcode='".$barcode."' ";
+            $product_exists = mysqli_query($conn,$sql);
+            //means product does not exist
+            if (mysqli_num_rows($product_exists)==0){
+              //if does not exist now adding the product in our databaswe
+              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`, `Product_Name` , `Brand_Name`) 
+                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."' ,'".$product_name."' , '".$brand_name."' )";
+              if (mysqli_query($conn,$sql)){
+                $message = "New Product added in Inventory";
+              }
+            }
+
+            
+            //checking if product already exists for that vendor
+            $check_product_for_vendor = "SELECT * FROM `Vendors_Products` WHERE Barcode = '".$barcode."' and Vendor_id = '".$user."' ";
+            $product_exists_for_vendor = mysqli_query($conn,$check_product_for_vendor);
+            if (mysqli_num_rows($product_exists_for_vendor)==0){
+
+            //adding that product for that vendor
+            $sql = "INSERT INTO `Vendors_Products`(`Barcode`, `price_per_ctn`, `weight`, `per_ctn_quantity`, `length`, `width`, `height`, `product_region`, `UAE_ALL`, `Vendor_id` , `Approved`) 
+                    VALUES ('".$barcode."','".$price_per_ctn."','".$weight."','".$per_ctn_quantity."','".$length."','".$width."','".$height."',
+                            '".$product_region."','".$UAE_ALL."','".$user."',0)";
+                    
+                    if (mysqli_query($conn,$sql)){
+                      if (strpos($message, 'Error') !== false) {
+                        $message = "The product has been added for you and sent for approval";
+                      }
+                      $message = $message."  . The product has been added for you and sent for approval";
+                      //if product is added now update the picture
+                      move_uploaded_file($_FILES['product_pic']['tmp_name'], $product_image_target_path);
+                    }
+                    else{
+                      echo mysqli_error($conn);
+                      $message = $message."  . The product could not be added for you";
+                    }
+
+            }
+            else{
+              $message = $message."  . A product with same barcode exists for you, to add quantity go to update stock";
+            }
+
+            echo "<script type='text/javascript'>alert('$message');</script>";
+      }
+  }
+  else{
+  //redirect to the login page
+  header('Location: /index.php'); }
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <!-- saved from url=(0111)file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/add_product_vendor_1.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -157,7 +249,7 @@ margin-top: -.3rem;
     <!-- Material input -->
 <div class="row">
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-<form action="#" method="post" enctype="multipart/form-data" style="
+<form action="add_product_page.php" method="post" enctype="multipart/form-data" style="
     width: 100%;  
 ">
 
@@ -242,7 +334,7 @@ margin-top: -.3rem;
   
 
     
-    <button class="btn btn-info btn-block" type="submit">Submit for Approval</button>
+    <button class="btn btn-info btn-block" name="Submit" type="submit">Submit for Approval</button>
 
 
 </form></div></div>

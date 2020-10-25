@@ -1,4 +1,5 @@
 <?php
+
     error_reporting(0);
     //making connection
     $conn = require 'connection.php';
@@ -21,8 +22,10 @@
             
             $row = mysqli_fetch_row($result);
             $usertype =  $row[2]; // the usertype value
+            session_start();
             $_SESSION["UserEmail"] = $email;
             $_SESSION["UserType"] = $usertype;
+            $_SESSION['loggedIn'] = true; 
             header("Location: dashboard.php");
           }
         
