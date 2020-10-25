@@ -15,7 +15,7 @@
 
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
-            $product_category=$_POST['product_category'];
+            $product_category=$_POST['category'];
             $price_per_ctn = $_POST['price_per_ctn'];
             $barcode = $_POST['barcode'];
             $weight = $_POST['weight'];
@@ -199,6 +199,7 @@ margin-top: -.3rem;
 }
 }
 </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -262,31 +263,31 @@ margin-top: -.3rem;
     </div>
 <p>Do you want to upload multiple products through csv. 
         <b> 
-        <a href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/vendor_signup_1.htm" target="_blank">Click here</a></b> 
+        <a href="add_products_bulk_page.htm" target="_blank">Click here</a></b> 
 
 </p>
   
-    <input type="text" id="brand_name" class="form-control mb-4" placeholder="Brand Name" name="brand_name">
+    <input type="text" id="brand_name" class="form-control mb-4" placeholder="Brand Name" required name="brand_name">
 
-    <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" name="product_name">
+    <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" required  name="product_name">
 
-    <input type="text" id="category" class="form-control mb-4" placeholder="Product Category" name="category">
+    <input type="text" id="category" class="form-control mb-4" placeholder="Product Category" required  name="category">
     
-    <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" name="price_per_ctn">
+    <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required  name="price_per_ctn">
       
     <div class="input-group mb-4">
         
         <div class="custom-file">
-            <input type="file" class="custom-file-input" accept="image/*" capture="" id="product_pic" aria-describedby="fileInput" name="product_pic">
+            <input type="file" class="custom-file-input" accept="image/*" capture="" id="product_pic" required  aria-describedby="fileInput" name="product_pic">
             <label class="custom-file-label" for="product_pic">Add picture of Product</label>
         </div>
     </div>
     
-    <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" name="barcode">
+    <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" required  name="barcode">
 
-    <input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" placeholder="Enter Weight ( KGs )" name="weight">
+    <input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" placeholder="Enter Weight ( KGs )" required  name="weight">
 
-     <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" placeholder="Enter per CTN quantity" name="per_ctn_quantity">
+     <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" placeholder="Enter per CTN quantity" required  name="per_ctn_quantity">
 
 
       <label> Packaging Dimensions' Details ( ft e.g 2.3 feet) </label>
@@ -294,25 +295,25 @@ margin-top: -.3rem;
     display: flex;
 ">
 
-      <input type="number" id="length" step="0.1" class="form-control mb-4" min="0" placeholder="Length" style="
+      <input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required  placeholder="Length" style="
     width: 32%;
     margin-right: 15px;
 " name="product_length">
 
 
-      <input type="number" id="width" step="0.1" class="form-control mb-4" min="0" placeholder="Width" style="
+      <input type="number" id="width" step="0.1" class="form-control mb-4" min="0" required  placeholder="Width" style="
     width: 32%;
     margin-right: 15px;
 " name="product_width">
 
 
-      <input type="number" id="height" step="0.1" class="form-control mb-4" min="0" placeholder="Height" style="
+      <input type="number" id="height" step="0.1" class="form-control mb-4" min="0" required  placeholder="Height" style="
     width: 32%;
 " name="product_height">
 
     </div>
- <input type="number" id="quantity" step="1" class="form-control mb-4" min="0" placeholder="Quantity Available" name="product_quantity">
-<select id="product_region" name="product_region" class="form-control mb-4" value="All" placeholder="Select the region where this product sells most">
+ <input type="number" id="quantity" step="1" class="form-control mb-4" min="0" required  placeholder="Quantity Available" name="product_quantity">
+<select id="product_region" name="product_region" class="form-control mb-4" value="All" required  placeholder="Select the region where this product sells most">
     <option value="All">All</option>
     <option value="Africa">Africa</option>
     <option value="Asia">Asia</option>
@@ -322,10 +323,10 @@ margin-top: -.3rem;
   </select>
 
 <label> Product's sale authorization information </label>
-<br><input type="radio" id="uae_export" name="uae_export" value="UAE" style="
+<br><input type="radio" id="uae_export" name="uae_export" required  value="UAE" style="
     margin-right: 30px;
 "><label> Can Sell in UAE also </label> 
-  <input type="radio" id="uae_export" name="uae_export" value="Export" style="
+  <input type="radio" id="uae_export" name="uae_export" required  value="Export" style="
     margin-right: 30px;
     margin-left: 30px;
 "><label> Only Export</label><br><br>
@@ -334,7 +335,7 @@ margin-top: -.3rem;
   
 
     
-    <button class="btn btn-info btn-block" name="Submit" type="submit">Submit for Approval</button>
+    <button class="btn btn-info btn-block" type="submit" name="Submit">Submit for Approval</button>
 
 
 </form></div></div>
@@ -342,4 +343,13 @@ margin-top: -.3rem;
 
 
 
-<div class="hiddendiv common"></div></body></html>
+<div class="hiddendiv common"></div>
+<script>
+  $(document).ready(function(){
+      $('input[type="file"]').change(function(e){
+          var fileName = e.target.files[0].name;
+          alert('The file "' + fileName +  '" has been selected.');
+      });
+  });
+</script>
+</body></html>
