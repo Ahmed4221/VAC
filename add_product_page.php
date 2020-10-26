@@ -13,6 +13,7 @@
         }
         if(isset($_POST["Submit"])){
 
+            $product_description = $_POST["product_description"]
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
             $product_category=$_POST['category'];
@@ -41,8 +42,8 @@
             //means product does not exist
             if (mysqli_num_rows($product_exists)==0){
               //if does not exist now adding the product in our databaswe
-              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`) 
-                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' )";
+              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description` ) 
+                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' )";
               if (mysqli_query($conn,$sql)){
                 $message = "New Product added in Inventory";
               }
@@ -251,94 +252,103 @@ margin-top: -.3rem;
     <!-- Material input -->
 <div class="row">
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-<form action="add_product_page.php" method="post" enctype="multipart/form-data" style="
-    width: 100%;  
-">
+  <form style="
+  width: 100%;  
+" enctype="multipart/form-data" method="post" action="add_product_page.php">
 
-    <div class="text-center">
-        <p class="h4 mb-4">Add Product</p>
+  <div class="text-center">
+      <p class="h4 mb-4">Add Product</p>
 
-        <p>Increase your sales by increasing diversity</p>
+      <p>Increase your sales by increasing diversity</p>
 
-        
-    </div>
+      
+  </div>
 <p>Do you want to upload multiple products through csv. 
-        <b> 
-        <a href="add_products_bulk_page.htm" target="_blank">Click here</a></b> 
+      <b> 
+      <a href="add_products_bulk_page.htm" target="_blank">Click here</a></b> 
 
 </p>
-  
-    <input type="text" id="brand_name" class="form-control mb-4" placeholder="Brand Name" required name="brand_name">
 
-    <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" required  name="product_name">
+  <input type="text" id="brand_name" class="form-control mb-4" placeholder="Brand Name" required="" name="brand_name">
 
-    <input type="text" id="category" class="form-control mb-4" placeholder="Product Category" required  name="category">
+  <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" required="" name="product_name">
+<textarea rows="10" type="text" id="product_description" class="form-control mb-4" placeholder="Enter description" required="" name="product_description" style="
+  height: 145px;
+"></textarea>
+<label> Product's Category </label>
+  <select  id="category" class="form-control mb-4" placeholder="Product Category" required="" name="category">
+  </select>
+  <label> Product's Sub Category </label>
+  <select  id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required="" name="sub_category">
+  </select>
+  <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required="" name="price_per_ctn"><label> Choose value metric </label>
 
-    <input type="text" id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required  name="sub_category">
+<select id="product_value" name="product_value" class="form-control mb-4" value="All" required="">
+ 
+</select>
     
-    <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required  name="price_per_ctn">
+  <div class="input-group mb-4">
       
-    <div class="input-group mb-4">
-        
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" accept="image/*" capture="" id="product_pic" required  aria-describedby="fileInput" name="product_pic">
-            <label class="custom-file-label" for="product_pic">Add picture of Product</label>
-        </div>
-    </div>
-    
-    <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" required  name="barcode">
+      <div class="custom-file">
+          <input type="file" class="custom-file-input" accept="image/*" capture="" id="product_pic" required="" aria-describedby="fileInput" name="product_pic">
+          <label class="custom-file-label" for="product_pic">Add picture of Product</label>
+      </div>
+  </div>
+  
+  <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" required="" name="barcode">
 
-    <input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" placeholder="Enter Weight ( KGs )" required  name="weight">
+  <input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" placeholder="Enter Weight ( KGs )" required="" name="weight">
 
-     <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" placeholder="Enter per CTN quantity" required  name="per_ctn_quantity">
+   <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" placeholder="Enter per CTN quantity" required="" name="per_ctn_quantity">
 
 
-      <label> Packaging Dimensions' Details ( ft e.g 2.3 feet) </label>
-    <div style="
-    display: flex;
+    <label> Packaging Dimensions' Details ( ft e.g 2.3 feet) </label>
+  <div style="
+  display: flex;
 ">
 
-      <input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required  placeholder="Length" style="
-    width: 32%;
-    margin-right: 15px;
+    <input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Length" style="
+  width: 32%;
+  margin-right: 15px;
 " name="product_length">
 
 
-      <input type="number" id="width" step="0.1" class="form-control mb-4" min="0" required  placeholder="Width" style="
-    width: 32%;
-    margin-right: 15px;
+    <input type="number" id="width" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Width" style="
+  width: 32%;
+  margin-right: 15px;
 " name="product_width">
 
 
-      <input type="number" id="height" step="0.1" class="form-control mb-4" min="0" required  placeholder="Height" style="
-    width: 32%;
+    <input type="number" id="height" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Height" style="
+  width: 32%;
 " name="product_height">
 
-    </div>
- <input type="number" id="quantity" step="1" class="form-control mb-4" min="0" required  placeholder="Quantity Available" name="product_quantity">
-<select id="product_region" name="product_region" class="form-control mb-4" value="All" required  placeholder="Select the region where this product sells most">
-    <option value="All">All</option>
-    <option value="Africa">Africa</option>
-    <option value="Asia">Asia</option>
-    <option value="America">America</option>
-    <option value="Europe">Europe</option>
-    <option value="Middle East">Middle East</option>
-  </select>
+  </div>
+<input type="number" id="quantity" step="1" class="form-control mb-4" min="0" required="" placeholder="Quantity Available" name="product_quantity"><label> Enter sugested export region </label>
+
+<select id="product_region" name="product_region" class="form-control mb-4" value="All" required="" placeholder="Select the region where this product sells most">
+  <option value="All">All</option>
+  <option value="Africa">Africa</option>
+  <option value="Asia">Asia</option>
+  <option value="America">America</option>
+  <option value="Europe">Europe</option>
+  <option value="Middle East">Middle East</option>
+</select>
 
 <label> Product's sale authorization information </label>
-<br><input type="radio" id="uae_export" name="uae_export" required  value="UAE" style="
-    margin-right: 30px;
+<br><input type="radio" id="uae_export" name="uae_export" required="" value="UAE" style="
+  margin-right: 30px;
 "><label> Can Sell in UAE also </label> 
-  <input type="radio" id="uae_export" name="uae_export" required  value="Export" style="
-    margin-right: 30px;
-    margin-left: 30px;
+<input type="radio" id="uae_export" name="uae_export" required="" value="Export" style="
+  margin-right: 30px;
+  margin-left: 30px;
 "><label> Only Export</label><br><br>
 
 
-  
 
-    
-    <button class="btn btn-info btn-block" type="submit" name="Submit">Submit for Approval</button>
+
+  
+  <button class="btn btn-info btn-block" type="submit" name="Submit">Submit for Approval</button>
 
 
 </form></div></div>
@@ -353,6 +363,50 @@ margin-top: -.3rem;
           var fileName = e.target.files[0].name;
           alert('The file "' + fileName +  '" has been selected.');
       });
+      var sub_category = [['Water','Soft Drinks','Juices','Ice Tea & Coffee','Energy Drink','Malt Beverages','Sports Drink','Ice','Sparkling','Powdered Beverage'],
+      ['Yoghurt','Laban Drink','Spreads','Shelf Milk','Soya & Others','Desserts','Powdered Milk','Smoothies','Ghee','Spreads'],
+      ['Processed Meat','Fresh Chicken','Fresh Beef','Fresh Mutton','Fresh Sea Food','Sausages','Burger','Deli Meat & Cold Cuts','Dried'],
+      ['Fruits','Vegetables','Fresh Herbs'],
+      ['Family Planning','Female Care','Soaps & Hand Wash','Body Wash & Shower','Oral Care','Male Grooming','Hair Care','Deodorant','Healthcare','Facial & Skin Care','Coloration','Sanitizer','Sanitary Protection','Kids Care','First Aid & General Health','Foot Care','Perfumes & Body Spray'],
+      ['Dishwash','Multi Purpose','Bathroom','Kitchen','Air Freshener','Antiseptic','Odor Remover','Hygiene','Insect Repellant','Pest Control','Plastics, Foils & Bags','Cleaning Tools','Utensils','Disposable & Glass Ware','Batteries','Shoe Care','Tissue & Toilet Paper','barbeque'],
+      ['Stain Remover','Fabric Softner','Detergent','Accessories'],
+      ['Baby Food','Diapers','Bath','Accessories','Baby Care'],
+      ['Ice Cream','Chocolates','Chips','Gum & Candy','Biscuits','Nuts, Dried Fruits & Seeds','Custards','Dips & Salsa','Dessert','Cakes','Popcorn','Sweets, Mints & Gum','dates'],
+      ['Toast','Bread','Buns & Rolls','Healthy Breads','Pastry','Baguette','Snacks','Baking Products','Dessert'],
+      ['Cooking Sauce','Ketchup','Mayonnaise','Salad Dressing','Hot Sauce','Mustard','Syrup','Paste'],
+      ['Cooking Oil','Vinegar','Soups'],
+      ['Chicken','Meat','Ice','Vegetables & Fruits','Seafood','Wraps & Rolls','Pizza & Breads','Ice Cream & Desserts'],
+      ['Cereals','Cereal Bars','Oatmeal','Packet Soup','Home Baking','Tea & Coffee','Flour','ready to cook'],
+      ['Pasta','Noodles','Rice','Pulses & Grains'],
+      ['Spices','Sugar','Salt','Artificial Sweeteners','Food Color & Flavor','Seasoning'],
+      ['Fish','Beef','Chicken','Fruits','Turkey','Beans & Vegetables','Pickles & Olives','Pickles & Olives','Dressing & Mayo','Pasta Sauce','Jam, Honey & Spreads','Home Baking','Savoury'],
+      ['Cold Cuts','Pickles'],
+      ['Sandwich','Salad','Meals'],
+      ['Pet Grooming','Pet Food','Pet Care'],
+      ['Electronic Items','Greeting Cards','Office Supplies','Storage Solutions','Toys'],
+      ['Ciggarettes','Shisha Flavour','Shisha','Coal','Lighter'],
+      ['Pork','Frozen','Canned','Chips']
+    ];
+    var category = ['Beverages','Dairy & Eggs','Meats & Seafood','Fresh Vegetable & Fruits','Personal Care','Home Care','Laundry','Baby','Snacks','Bakery','Sauces & Dressing','Soups & Oil','Frozen Foods','Packet & Cereals','Pasta & Rice','Condiments','Canned & Jars','Deli','Food to Go','Pet Care','Stationary & Misc' ,'Tobbacco & Accessories', 'Non Muslim'];
+    var category_text="";
+    
+    for (var i=0;i<category.length;i++){
+category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
+    }
+    document.getElementById("category").innerHTML = category_text;
+    document.getElementById("category").onchange = function() {
+      var sub_category_text = "";
+      for (var i=0;i<category.length;i++){
+        if(document.getElementById("category").value == category[i]){
+          for(var j=0;j<sub_category[i].length;j++){
+            sub_category_text+='<option value="'+sub_category[i][j]+'">'+sub_category[i][j]+'</option>';
+          }
+          
+        }
+      }
+      document.getElementById("sub_category").innerHTML = sub_category_text;
+    }
+    document.getElementById("category").onchange();
   });
 </script>
 </body></html>

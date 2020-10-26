@@ -1,3 +1,52 @@
+<?php
+
+error_reporting(0);
+session_start();
+require 'functions.php';
+ // check if that session is true, else redirect to the login page  
+if($_SESSION['loggedIn']){
+    //allow
+    $user = $_SESSION["UserEmail"];
+    //making connection
+    $conn = require 'connection.php';
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if(isset($_POST["Submit"])){
+      $csv_mimetypes = array(
+        'text/csv',
+        'application/csv',
+        'text/comma-separated-values',
+        'application/excel',
+        'application/octet-stream',
+        'application/txt',
+    );
+    
+    if (in_array($_FILES['product_file_upload']['type'], $csv_mimetypes)) {
+        // possible CSV file
+        // could also check for file content at this point
+        $the_big_array = csv_to_array($_FILES['product_file_upload']['tmp_name'], $delimiter=',');
+        echo "<pre>";
+        var_dump($the_big_array);
+        echo "</pre>";
+    }
+    else{
+      $message = "The file format is not supported. Please upload a valid file with .csv extension";
+      echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+
+
+
+    }
+  }
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <!-- saved from url=(0068)file:///Users/rafayabbas/Documents/Personal/VAC/add_product_page.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -170,7 +219,7 @@ margin-top: -.3rem;
     </div>
 <p>Do you want to upload products individually. 
         <b> 
-        <a href="add_product_page.htm" target="_blank">Click here</a></b> 
+        <a href="add_product_page.php" >Click here</a></b> 
 
 </p>
 
@@ -184,7 +233,7 @@ margin-top: -.3rem;
   </div>
 </div> 
   <br><br>
-    <button class="btn btn-info btn-block" type="submit">Submit for Approval</button>
+    <button class="btn btn-info btn-block" name="Submit" type="submit">Submit for Approval</button>
 
 
 </form></div></div>
