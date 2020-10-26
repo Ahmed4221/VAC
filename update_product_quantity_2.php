@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0073)file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm -->
+<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/update_product_quantity.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,15 +8,15 @@
   <!-- MDB icon -->
   <link rel="icon" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./update_product_quantity_files/all.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/all.css">
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="./update_product_quantity_files/css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/css">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="./update_product_quantity_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="./update_product_quantity_files/mdb.min.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="./update_product_quantity_files/style.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/style.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
@@ -153,18 +153,33 @@ margin-top: -.3rem;
 </nav>
 <!--/.Navbar -->
 
-
-    <div class="container bootstrap snippets bootdey">
+<form enctype="multipart/form-data" method="post" action="file:///Users/rafayabbas/Documents/Personal/VAC/update_product_quantity2.php" style="
+    border-width: 2px;
+">
+    <div class="container bootstrap snippets bootdey" style="
+    border-width: 1px;
+    border-color: #ffffff;
+    background-color: whitesmoke;
+    /* background: linear-gradient(90deg, rgba(246,246,247,1) 0%, rgba(177,176,186,1) 54%, rgba(106,103,106,1) 97%); */
+    border-style: groove;
+    -webkit-box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    -moz-box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    border-radius: 10px;
+">
     <div class="row">
         <div class="col-lg-12">
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">
                     
 <div class="table-responsive">
-                        <table class="table user-list">
+                        <table class="table user-list" style="margin-top: 32px;margin-bottom: 0;">
                             <thead>
-                                <tr>
-                                <th><span>Product Name</span></th>
+                                <tr style="
+    text-align: center;
+">
+                                <th style="
+"><span style="">Product Name</span></th>
                                 <th><span>Barcode</span></th>
                                 <th><span>Quantity</span></th>
                                 <th><span>New Quantity</span></th>
@@ -172,30 +187,10 @@ margin-top: -.3rem;
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        
-                                        <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
-                                        
-                                    </td>
-                                    <td contenteditable="">2134267389123</td>
-                                    <td>
-                                        <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">200</a>
-                                    </td>
-                                    <td style="
-    padding: 0;
-    padding-top: 8px;
+                                
+                                <tr style="
+    text-align: center;
 ">
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
                                   <td>
                                       
                                       <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
@@ -208,45 +203,27 @@ margin-top: -.3rem;
                                   
                                   
                               <td style="
-    padding: 0;
     padding-top: 8px;
 ">
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
-                                    </td></tr>
-                              <tr>
-                                <td>
-                                    
-                                    <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
-                                    
-                                </td>
-                                <td>2134267389123</td>
-                                <td>
-                                    <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">500</a>
-                                </td>
-                                
-                                
-                            <td style="
-    padding: 0;
-    padding-top: 8px;
+                                        <input type="number" id="new_quantity" step="1" class="form-control mb-4" min="0" required="" placeholder="Change Quantity" name="new_product_quantity" style="
+    width: 40%;
+    margin: auto;
 ">
-                        
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
                                     </td></tr>
+                              
                                 
                                 
                             </tbody>
                         </table>
-                    </div>
+                    <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
+    width: 45%;
+    border-radius: 35px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
+    height: 41px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+">Change</button></div>
     
 
                 </div>
@@ -254,6 +231,8 @@ margin-top: -.3rem;
         </div>
     </div>
 </div>
+</form>
+
 
   
 <script>
