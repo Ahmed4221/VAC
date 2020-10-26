@@ -13,7 +13,7 @@
         }
         if(isset($_POST["Submit"])){
 
-            $product_description = $_POST["product_description"]
+            $product_description = $_POST["product_description"];
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
             $product_category=$_POST['category'];
