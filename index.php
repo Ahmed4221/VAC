@@ -26,7 +26,7 @@
             $_SESSION["UserEmail"] = $email;
             $_SESSION["UserType"] = $usertype;
             $_SESSION['loggedIn'] = true; 
-            header("Location: vendor_dashboard.php");
+            header("Location: vendor_dash.php");
           }
         
         }

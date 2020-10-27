@@ -32,8 +32,9 @@
 
   else{
     //redirect to the login page
-    // header('Location: index.php');
-    echo "Not logged in"; }
+    header('Location: index.php');
+    // echo "Not logged in"; }
+  }
 
 
 ?>

@@ -19,7 +19,7 @@ while($row = mysqli_fetch_assoc($getting_vendor_products))
 }
 else{
     //redirect to the login page
-    header('Location: /index.php'); }
+    header('Location: index.php'); }
 
 ?>
 <!DOCTYPE html>

@@ -19,7 +19,7 @@ if($_SESSION['loggedIn']){
   }
   else{
       //redirect to the login page
-      header('Location: /index.php'); }
+      header('Location: index.php'); }
 
 ?>
 
