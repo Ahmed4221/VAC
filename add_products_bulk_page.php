@@ -28,9 +28,35 @@ if($_SESSION['loggedIn']){
         // possible CSV file
         // could also check for file content at this point
         $the_big_array = csv_to_array($_FILES['product_file_upload']['tmp_name'], $delimiter=',');
-        echo "<pre>";
-        var_dump($the_big_array);
-        echo "</pre>";
+        $temp_array = [];
+        $total_counter = 0;
+        $success_counter = 0;
+
+        foreach($the_big_array as $item) {
+          $temp = bulk_insertion($item['Unit_Value'],
+          $item['Production_Description'],
+          $item["Brand_Name"],
+          $item['Product_Name'],
+          $item['Category'],
+          $item['Sub_Category'],
+          $item['Price_per_Ctn'],
+          $item['Barcode'],
+          $item['Weight'],
+          $item['Per_Ctn_Quantity'],
+          $item['Length'],
+          $item['Weight'],
+          $item['Height'],
+          $item['Quantity'],
+          $item['ProductRegion'],
+          $item['UAE_ALL'],
+          $conn);
+          $total_counter = $total_counter+1;
+          $success_counter = $success_counter+1;
+          
+        
+      }
+      $result_message = "Out of Total :".$total_counter." , ".$success_counter."items have been successfully stored";
+      echo "<script type='text/javascript'>alert('$result_message');</script>";
     }
     else{
       $message = "The file format is not supported. Please upload a valid file with .csv extension";
@@ -41,7 +67,9 @@ if($_SESSION['loggedIn']){
 
     }
   }
-
+  else{
+    //redirect to the login page
+    header('Location: /index.php'); }
 
 
 ?>

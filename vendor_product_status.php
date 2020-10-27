@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+if($_SESSION['loggedIn']){
+$user = $_SESSION["UserEmail"];
+$conn = require 'connection.php';
+$getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' ";
+$barcodes = [];
+$status = [];
+$Qty = [];
+$getting_vendor_products = mysqli_query($conn,$getting_vendor_products_sql);
+while($row = mysqli_fetch_assoc($getting_vendor_products))
+{
+  $barcodes[] = $row['Barcode'];
+  $status[] = $row['Approved'];  
+  $Qty [] = $row['Quantity']; 
+}
+
+}
+else{
+    //redirect to the login page
+    header('Location: /index.php'); }
+
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0111)file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/add_product_vendor_1.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -171,50 +195,77 @@ margin-top: -.3rem;
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                              <?php
+                                $counter = 0;
+                                foreach ($barcodes as $barcode){
+                                  $sql = "Select * from `Product` where Barcode = '".$barcode."'";
+                                  $res = mysqli_query($conn,$sql);
+                                  $followingdata = $res->fetch_assoc();
+                                  if ($status[$counter]=="0"){
+                                    $output = '<tr>
                                     <td>
                                         
-                                        <a href="#" class="user-link">Coca Cola</a>
+                                        <a href="#" class="user-link">'.$followingdata['Product_Name'].'</a>
                                         
                                     </td>
-                                    <td>2134267389123</td>
+                                    <td>'.$barcode.'</td>
                                     <td>
-                                        <a href="#">22 Units</a>
+                                        <a href="#">'.$Qty[$counter].' Units</a>
                                     </td>
                                     <td>
                                         <span class="product_approval_status">Pending</span>
                                     </td>
                                     
-                                </tr>
-                                <tr>
-                                  <td>
-                                      
-                                      <a href="#" class="user-link">Coca Cola</a>
-                                      
-                                  </td>
-                                  <td>2134267389123</td>
-                                  <td>
-                                      <a href="#">22 Units</a>
-                                  </td>
-                                  <td >
-                                      <span class="product_approval_status" >To be Changed</span>
-                                  </td>
+                                    </tr>';
+
+                                  }
+                                  if ($status[$counter]=="1"){
+                                    $output = '<tr>
+                                    <td>
+                                        
+                                        <a href="#" class="user-link">'.$followingdata['Product_Name'].'</a>
+                                        
+                                    </td>
+                                    <td>'.$barcode.'</td>
+                                    <td>
+                                        <a href="#">'.$Qty[$counter].' Units</a>
+                                    </td>
+                                    <td>
+                                        <span class="product_approval_status">Approved</span>
+                                    </td>
+                                    
+                                    </tr>';
                                   
-                              </tr>
-                              <tr>
-                                <td>
+
+                                  }
+                                  if ($status[$counter]=="-1"){
+                                    $output = '<tr>
+                                    <td>
+                                        
+                                        <a href="#" class="user-link">'.$followingdata['Product_Name'].'</a>
+                                        
+                                    </td>
+                                    <td>'.$barcode.'</td>
+                                    <td>
+                                        <a href="#">'.$Qty[$counter].' Units</a>
+                                    </td>
+                                    <td>
+                                        <span class="product_approval_status">To be Changed</span>
+                                    </td>
                                     
-                                    <a href="#" class="user-link">Coca Cola</a>
-                                    
-                                </td>
-                                <td>2134267389123</td>
-                                <td>
-                                    <a href="#">22 Units</a>
-                                </td>
-                                <td>
-                                    <span class="product_approval_status">Approved</span>
-                                </td>
-                                
+                                    </tr>';
+                                  
+                                  
+
+                                  }
+                                  echo $output;
+                                  $counter = $counter + 1;
+                                }
+                              
+
+
+                              ?>
+
                             </tr>
                                 
                                 
@@ -247,7 +298,7 @@ margin-top: -.3rem;
       
     }
     else if (mystatus[i].innerText == "To be Changed"){
-      mystatus[i].parentNode.innerHTML = '<span class="product_approval_status" style="font-weight: bold; color: rgb(255, 118, 1);margin-right: 34px">To be Changed</span><form action="" method="post" style = "display:inline-block;"><button type="submit" name="product_edit_submit" class="btn peach-gradient" style="margin: 0;padding: 6px;width: 80px;border-radius: 30px;position: relative;">Edit</button></form>';
+      mystatus[i].parentNode.innerHTML = '<span class="product_approval_status" style="font-weight: bold; color: rgb(255, 118, 1);margin-right: 34px">To be Changed</span><a href= "edit_added_product_page.php?incoming_barcode='+mystatus[i].parentNode.parentNode.children[1].innerText+'"><button type="submit" name="product_edit_submit" class="btn peach-gradient" style="margin: 0;padding: 6px;width: 80px;border-radius: 30px;position: relative;" >Edit</button></a>';
 mystatus[i].parentNode.style.width = "28%";
     }
 

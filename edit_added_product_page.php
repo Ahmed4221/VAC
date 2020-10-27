@@ -1,19 +1,27 @@
 <?php
-    error_reporting(0);
-    session_start();
-     // check if that session is true, else redirect to the login page  
-    if($_SESSION['loggedIn']){
-        //allow
-        $user = $_SESSION["UserEmail"];
-        //making connection
-        $conn = require 'connection.php';
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        if(isset($_POST["Submit"])){
+session_start();
 
-            // `Unit`
+//case 1:to show all the previously saved data
+if($_SESSION['loggedIn'] and !isset($_POST["Submit"])){
+$user = $_SESSION["UserEmail"];
+$conn = require 'connection.php';
+$barcode = $_GET['incoming_barcode'];
+$sql = "SELECT * FROM  `Vendors_Products` where Barcode = '".$barcode."' and Vendor_id = '".$user."'";
+$res = mysqli_query($conn,$sql);
+$followingdata = $res->fetch_assoc();
+
+$sql = "SELECT * FROM  `Product` where Barcode = '".$barcode."'";
+$res = mysqli_query($conn,$sql);
+$productfollowingdata = $res->fetch_assoc();
+
+
+
+}
+
+//case 2:to submit all the change 
+else if(isset( $_POST["Submit"]) and $_SESSION['loggedIn'] ){
+            $conn = require 'connection.php';
+            $user = $_SESSION["UserEmail"];
             $product_unit = $_POST["product_value"];
             $product_description = $_POST["product_description"];
             $brand_name=$_POST['brand_name'];
@@ -30,73 +38,67 @@
             $quantity = $_POST['product_quantity'];
             $product_region = $_POST['product_region'];
             $UAE_ALL = $_POST['uae_export'];
-            $product_pics =$_FILES["product_pic"]["name"];
-            $vendor_product_image_id = $user."_Product_".$barcode."_".$product_pics;
-            $destination_path = getcwd().DIRECTORY_SEPARATOR;
-            $destination_path = $destination_path.="products/";
-            $product_image_target_path = $destination_path . basename($vendor_product_image_id);
+            // $product_pics =$_FILES["product_pic"]["name"];
+            // $vendor_product_image_id = $user."_Product_".$barcode."_".$product_pics;
+            // $destination_path = getcwd().DIRECTORY_SEPARATOR;
+            // $destination_path = $destination_path.="products/";
+            // $product_image_target_path = $destination_path . basename($vendor_product_image_id);
+            $product_image_target_path = "EditedProduct";
 
 
-            $message = "Error";
-            //checking if that kind of product already exists in our Database
-            $sql = "SELECT * FROM `Product` where Barcode='".$barcode."' ";
-            $product_exists = mysqli_query($conn,$sql);
-            //means product does not exist
-            if (mysqli_num_rows($product_exists)==0){
-              //if does not exist now adding the product in our databaswe
-              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit` ) 
-                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."' )";
-              if (mysqli_query($conn,$sql)){
-                $message = "New Product added in Inventory";
-              }
-            }
-
-            
+            $message = "Error";            
             //checking if product already exists for that vendor
-            $check_product_for_vendor = "SELECT * FROM `Vendors_Products` WHERE Barcode = '".$barcode."' and Vendor_id = '".$user."' ";
-            $product_exists_for_vendor = mysqli_query($conn,$check_product_for_vendor);
-            if (mysqli_num_rows($product_exists_for_vendor)==0){
+            $check_product_for_vendor = "DELETE FROM `Vendors_Products` WHERE Barcode = '".$barcode."' and Vendor_id = '".$user."' ";
+            $product_delete_for_vendor = mysqli_query($conn,$check_product_for_vendor);
+ 
 
             //adding that product for that vendor
             $sql = "INSERT INTO `Vendors_Products`(`Barcode`, `price_per_ctn`, `weight`,`Quantity` ,`per_ctn_quantity`, `length`, `width`, `height`, `product_region`, `UAE_ALL`, `Vendor_id` , `Approved`) 
                     VALUES ('".$barcode."','".$price_per_ctn."','".$weight."','".$quantity."','".$per_ctn_quantity."','".$length."','".$width."','".$height."',
-                            '".$product_region."','".$UAE_ALL."','".$user."',0)";
+                            '".$product_region."','".$UAE_ALL."','".$user."',-1)";
                     
                     if (mysqli_query($conn,$sql)){
                       if (strpos($message, 'Error') !== false) {
-                        $message = "The product has been added for you and sent for approval";
+                        $message = "The product has been edited for you and sent for approval";
                       }
-                      $message = $message."  . The product has been added for you and sent for approval";
-                      //if product is added now update the picture
-                      move_uploaded_file($_FILES['product_pic']['tmp_name'], $product_image_target_path);
+                      $message = "The product has been edited for you and sent for approval";
+
+                      echo "<script>
+                      alert('The product has been edited for you and sent for approval');
+                      window.location.href='vendor_dashboard.php';
+                      </script>";
+
                     }
                     else{
                       echo mysqli_error($conn);
                       $message = $message."  . The product could not be added for you";
+
                     }
 
-            }
-            else{
-              $message = $message."  . A product with same barcode exists for you, to add quantity go to update stock";
-            }
+            
 
-            echo "<script type='text/javascript'>alert('$message');</script>";
-      }
+
+            
+
+
+
+
+
+
   }
-  else{
-  //redirect to the login page
-  header('Location: /index.php'); }
+
+
+
+else{
+    //redirect to the login page
+    header('Location: index.php'); }
 
 ?>
+<!-- saved from url=(0068)file:///Users/rafayabbas/Documents/Personal/VAC/add_product_page.htm -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
-
-
-
-
-
-<!DOCTYPE html>
 <!-- saved from url=(0111)file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/add_product_vendor_1.htm -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -104,15 +106,15 @@
   <!-- MDB icon -->
   <link rel="icon" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./add_product_page_files/all.css">
+  <link rel="stylesheet" href="./edit_added_product_page_files/all.css">
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="./add_product_page_files/css">
+  <link rel="stylesheet" href="./edit_added_product_page_files/css">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="./add_product_page_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./edit_added_product_page_files/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="./add_product_page_files/mdb.min.css">
+  <link rel="stylesheet" href="./edit_added_product_page_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="./add_product_page_files/style.css">
+  <link rel="stylesheet" href="./edit_added_product_page_files/style.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
@@ -203,10 +205,10 @@ margin-top: -.3rem;
 }
 }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="./edit_added_product_page_files/jquery.min.js" type="text/javascript"></script>
 
-</head>
-<body>
+
+
 
   <!-- Start your project here-->  
   <!--Navbar -->
@@ -256,43 +258,48 @@ margin-top: -.3rem;
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
   <form style="
   width: 100%;  
-" enctype="multipart/form-data" method="post" action="add_product_page.php">
+" enctype="multipart/form-data" method="post" action="edit_added_product_page.php">
 
   <div class="text-center">
-      <p class="h4 mb-4">Add Product</p>
+      <p class="h4 mb-4">Edit Product</p>
 
       <p>Increase your sales by increasing diversity</p>
 
       
   </div>
-<p>Do you want to upload multiple products through csv. 
-      <b> 
-      <a href="add_products_bulk_page.php" target="_blank">Click here</a></b> 
 
-</p>
+  <?php
+  echo '<label> Brand Name </label>';
+  $temp = '<input type="text" id="brand_name" readonly class="form-control mb-4" value='.$productfollowingdata['Brand_Name'] .' placeholder='.$productfollowingdata['Brand_Name'] .' required="" name="brand_name">';
+  echo $temp;
 
-  <input type="text" id="brand_name" class="form-control mb-4" placeholder="Brand Name" required="" name="brand_name">
+  echo '<label> Product Name </label>';
+  $temp = '<input type="text" id="product_name" readonly class="form-control mb-4" value='.$productfollowingdata['Product_Name'].' placeholder='.$productfollowingdata['Product_Name'].' required="" name="product_name">';
+  echo $temp;
 
-  <input type="text" id="product_name" class="form-control mb-4" placeholder="Product Name" required="" name="product_name">
-<textarea rows="10" type="text" id="product_description" class="form-control mb-4" placeholder="Enter description" required="" name="product_description" style="
+  echo '<label> Products Description </label>';
+  $temp = '<textarea rows="10" type="text" readonly id="product_description" class="form-control mb-4" value='.$productfollowingdata['Description'].' placeholder='.$productfollowingdata['Description'].' required="" name="product_description" style="
   height: 145px;
-"></textarea>
-<label> Product's Category </label>
-  <select  id="category" class="form-control mb-4" placeholder="Product Category" required="" name="category">
-  </select>
-  <label> Product's Sub Category </label>
-  <select  id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required="" name="sub_category">
-  </select>
-  <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required="" name="price_per_ctn"><label> Choose value metric </label>
-
-<select id="product_value" name="product_value" class="form-control mb-4" value="All" required="">
-
-<?php
+"></textarea>';
+  echo $temp;
+  
+  echo '<label> Products Category </label>';
 
 
-if($_SESSION['loggedIn']){
+  $temp = '<select id="category" readonly class="form-control mb-4" value='.$productfollowingdata['Product_Category'].' placeholder='.$productfollowingdata['Product_Category'].' required="" name="category"><option value="Beverages">Beverages</option><option value="Dairy &amp; Eggs">Dairy &amp; Eggs</option><option value="Meats &amp; Seafood">Meats &amp; Seafood</option><option value="Fresh Vegetable &amp; Fruits">Fresh Vegetable &amp; Fruits</option><option value="Personal Care">Personal Care</option><option value="Home Care">Home Care</option><option value="Laundry">Laundry</option><option value="Baby">Baby</option><option value="Snacks">Snacks</option><option value="Bakery">Bakery</option><option value="Sauces &amp; Dressing">Sauces &amp; Dressing</option><option value="Soups &amp; Oil">Soups &amp; Oil</option><option value="Frozen Foods">Frozen Foods</option><option value="Packet &amp; Cereals">Packet &amp; Cereals</option><option value="Pasta &amp; Rice">Pasta &amp; Rice</option><option value="Condiments">Condiments</option><option value="Canned &amp; Jars">Canned &amp; Jars</option><option value="Deli">Deli</option><option value="Food to Go">Food to Go</option><option value="Pet Care">Pet Care</option><option value="Stationary &amp; Misc">Stationary &amp; Misc</option><option value="Tobbacco &amp; Accessories">Tobbacco &amp; Accessories</option><option value="Non Muslim">Non Muslim</option></select>';
+  echo $temp;
+  
+  echo '<label> Products Sub Category </label>';
+  
+  $temp = '<select id="sub_category" class="form-control mb-4" readonly value='.$productfollowingdata['productSubCategory'].'  placeholder='.$productfollowingdata['productSubCategory'].' required="" name="sub_category"><option value="Water">Water</option><option value="Soft Drinks">Soft Drinks</option><option value="Juices">Juices</option><option value="Ice Tea &amp; Coffee">Ice Tea &amp; Coffee</option><option value="Energy Drink">Energy Drink</option><option value="Malt Beverages">Malt Beverages</option><option value="Sports Drink">Sports Drink</option><option value="Ice">Ice</option><option value="Sparkling">Sparkling</option><option value="Powdered Beverage">Powdered Beverage</option></select>';
+  echo $temp;
+  
+  echo '<label> Price Per Ctn </label>';
+  $temp = '<input type="number" id="price_per_ctn" class="form-control mb-4" min="0" value='.$followingdata['price_per_ctn'].' placeholder='.$followingdata['price_per_ctn'].' required="" name="price_per_ctn"><label> Choose value metric </label>';
+  echo $temp;
 
-  $conn = require 'connection.php';
+  echo '<label> Products Metric Value </label>';
+  echo '<select id="product_value" name="product_value" class="form-control mb-4" value="All" required="">';
   $sql =  "SELECT * FROM `Value_Metrics`";
   $metric_result = mysqli_query($conn,$sql);
   while($row = mysqli_fetch_assoc($metric_result))
@@ -302,53 +309,62 @@ if($_SESSION['loggedIn']){
       $str =  '<option value='.$val.'>'.$val.'</option>';
       echo $str;
   }
-
-
-}
-
-?>
-</select>
+ 
+  echo '</select>';
     
-  <div class="input-group mb-4">
-      
-      <div class="custom-file">
-          <input type="file" class="custom-file-input" accept="image/*" capture="" id="product_pic" required="" aria-describedby="fileInput" name="product_pic">
-          <label class="custom-file-label" for="product_pic">Add picture of Product</label>
-      </div>
-  </div>
-  
-  <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" required="" name="barcode">
-
-  <input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" placeholder="Enter Weight ( KGs )" required="" name="weight">
-
-   <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" placeholder="Enter per CTN quantity" required="" name="per_ctn_quantity">
+  echo '<label> Products Barcode </label>';
+  echo '<input type="number" id="barcode" readonly class="form-control mb-4" value='.$barcode.' placeholder='.$barcode.' required="" name="barcode">';
+  echo '<label> Products Weight </label>';
+  echo '<input type="number" id="weight" step="0.1" class="form-control mb-4" min="0" value='.$followingdata['weight'].' placeholder='.$followingdata['weight'].' required="" name="weight">';
+  echo '<label> Products Per Ctn Quantity </label>';
+  echo' <input type="number" id="per_ctn_quantity" step="1" class="form-control mb-4" min="0" value='.$followingdata['per_ctn_quantity'].' placeholder='.$followingdata['per_ctn_quantity'].' required="" name="per_ctn_quantity">';
 
 
-    <label> Packaging Dimensions' Details ( ft e.g 2.3 feet) </label>
+    echo'<label> Packaging Dimensions Details ( ft e.g 2.3 feet) </label>';
+
+  echo'  
   <div style="
   display: flex;
 ">
 
-    <input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Length" style="
-  width: 32%;
-  margin-right: 15px;
+<span style="
+    display: block;
+">
+    <label> Length </label>
+<input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required="" value='.$followingdata['length'].' placeholder='.$followingdata['length'].' style="
+  width: 90%;
+  /* margin-right: 15px; */
 " name="product_length">
+</span>
 
-
-    <input type="number" id="width" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Width" style="
-  width: 32%;
-  margin-right: 15px;
+<span style="
+    display: block;
+">
+<label> Width </label>
+<input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required="" value='.$followingdata['width'].' placeholder='.$followingdata['width'].' style="
+  width: 90%;
+  /* margin-right: 15px; */
 " name="product_width">
+</span>
 
-
-    <input type="number" id="height" step="0.1" class="form-control mb-4" min="0" required="" placeholder="Height" style="
-  width: 32%;
+<span style="
+    display: block;
+">
+<label> Height </label>
+<input type="number" id="length" step="0.1" class="form-control mb-4" min="0" required="" value='.$followingdata['height'].' placeholder='.$followingdata['height'].' style="
+  width: 90%;
+  /* margin-right: 15px; */
 " name="product_height">
+</span>
+
+
 
   </div>
-<input type="number" id="quantity" step="1" class="form-control mb-4" min="0" required="" placeholder="Quantity Available" name="product_quantity"><label> Enter sugested export region </label>
 
-<select id="product_region" name="product_region" class="form-control mb-4" value="All" required="" placeholder="Select the region where this product sells most">
+  <label> Quantity </label>  
+<input type="number" id="quantity" step="1" class="form-control mb-4" min="0" required="" value='.$followingdata['Quantity'].' placeholder='.$followingdata['Quantity'].' name="product_quantity"><label> Enter sugested export region </label>
+
+<select id="product_region" name="product_region" class="form-control mb-4" value="All" required="" value='.$followingdata['product_region'].' placeholder='.$followingdata['product_region'].'>
   <option value="All">All</option>
   <option value="Africa">Africa</option>
   <option value="Asia">Asia</option>
@@ -357,7 +373,7 @@ if($_SESSION['loggedIn']){
   <option value="Middle East">Middle East</option>
 </select>
 
-<label> Product's sale authorization information </label>
+<label> Products sale authorization information </label>
 <br><input type="radio" id="uae_export" name="uae_export" required="" value="UAE" style="
   margin-right: 30px;
 "><label> Can Sell in UAE also </label> 
@@ -368,11 +384,10 @@ if($_SESSION['loggedIn']){
 
 
 
+';
 
-  
-  <button class="btn btn-info btn-block" type="submit" name="Submit">Submit for Approval</button>
-
-
+?>
+<button class="btn btn-info btn-block" type="submit" name="Submit">Submit Changes for Approval</button>
 </form></div></div>
   
 
