@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+if($_SESSION['loggedIn']){
+  $user = $_SESSION["UserEmail"];
+  $conn = require 'connection.php';
+  $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' ";
+  $barcodes = [];
+  $price = [];
+  $Qty = [];
+  $getting_vendor_products = mysqli_query($conn,$getting_vendor_products_sql);
+  while($row = mysqli_fetch_assoc($getting_vendor_products))
+  {
+    $barcodes[] = $row['Barcode'];
+    $price[] = $row['price_per_ctn'];  
+    $Qty [] = $row['Quantity']; 
+  }
+  
+  }
+  else{
+      //redirect to the login page
+      header('Location: /index.php'); }
+
+?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0073)file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -172,77 +197,45 @@ margin-top: -.3rem;
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        
-                                        <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
-                                        
-                                    </td>
-                                    <td contenteditable="">2134267389123</td>
-                                    <td>
-                                        <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">200</a>
-                                    </td>
-                                    <td style="
-    padding: 0;
-    padding-top: 8px;
-">
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                  <td>
-                                      
-                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
-                                      
-                                  </td>
-                                  <td>2134267389123</td>
-                                  <td>
-                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">100</a>
-                                  </td>
-                                  
-                                  
-                              <td style="
-    padding: 0;
-    padding-top: 8px;
-">
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
-                                    </td></tr>
-                              <tr>
-                                <td>
-                                    
-                                    <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
-                                    
-                                </td>
-                                <td>2134267389123</td>
-                                <td>
-                                    <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">500</a>
-                                </td>
-                                
-                                
-                            <td style="
-    padding: 0;
-    padding-top: 8px;
-">
-                        
-                                        <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.htm';" type="submit" name="Submit" style="
-    width: 45%;
-    border-radius: 35px;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
-    height: 41px;
-">Change</button>
-                                    </td></tr>
-                                
+                            <?php
+                                            $counter = 0;
+                                            foreach ($barcodes as $barcode){
+                                                $sql = "Select * from `Product` where Barcode = '".$barcode."'";
+                                                $res = mysqli_query($conn,$sql);
+                                                $followingdata = $res->fetch_assoc();
+
+                                            $output = '<tr>
+                                            <td>
+                                                
+                                                <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">'.$followingdata['Product_Name'].'</a>
+                                                
+                                            </td>
+                                            <td contenteditable="">'.$barcode.'</td>
+                                            <td>
+                                                <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">'.$Qty[$counter].'</a>
+                                            </td>
+                                            <td style="
+                                                padding: 0;
+                                                padding-top: 8px;">
+                                            <a href = "update_product_quantity_2.php?barcode='.$barcode.'&Product_Name='.$followingdata['Product_Name'].'&Quantity='.$Qty[$counter].'">
+                                            <button class="btn btn-info btn-block"  type="submit" name="Submit" style="
+                                                width: 45%;
+                                                border-radius: 35px;
+                                                background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
+                                                height: 41px;
+                                            ">Change</button>
+                                            </a>
+                                            </td>
+                                            
+                                        </tr>';
+                                                        
+                                                $counter = $counter+1;
+                                                echo $output;
+                                            }
+
+                                        ?>
+
+
                                 
                             </tbody>
                         </table>

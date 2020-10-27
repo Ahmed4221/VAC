@@ -24,7 +24,7 @@ POPO MADARCHOD DASHBOARD KA BASIC STRUCTURE BANA
 </a>
 
 </br></br></br>
-<a href="add_product_bulk_page.php">
+<a href="add_products_bulk_page.php">
    <button>ADD PRODUCT IN BULK</button>
 </a>
 
@@ -38,6 +38,18 @@ POPO MADARCHOD DASHBOARD KA BASIC STRUCTURE BANA
 <a href="see_all_products.php">
    <button>Product List</button>
 </a>
+
+</br></br></br>
+<a href="see_all_orders.html">
+   <button>Orders</button>
+</a>
+
+
+</br></br></br>
+<a href="update_product_quantity.php">
+   <button>Update Product Quantity</button>
+</a>
+
 
 </body>
 

@@ -1,3 +1,42 @@
+<?php
+    error_reporting(0);
+    session_start();
+    
+    //making connection
+    $conn = require 'connection.php';
+    $result_message = "";
+    if ($_SESSION['loggedIn']){
+          if(isset($_POST["Submit"])){
+            $user = $_SESSION["UserEmail"];
+              $quantity=$_POST['new_product_quantity'];
+                //inserting new suer information in client table
+
+                $sql = "UPDATE `Vendors_Products` SET `Quantity`= '".$quantity."' WHERE Barcode ='".$_GET['barcode']."' and Vendor_id = '".$user."' ";
+
+                if (mysqli_query($conn,$sql)) {
+                  echo "<script>
+                  alert('Congratulations! Your Quantity has been updated');
+                  window.location.href='update_product_quantity.php';
+                  </script>";
+
+                } else {
+                  $result_message= 'Sorry there was an error in updating the quantity. Please try again';
+                  echo "<script type='text/javascript'>alert('$result_message');</script>";
+
+                }
+                
+
+        
+        }
+    }
+
+  else{
+    //redirect to the login page
+    // header('Location: index.php');
+    echo "Not logged in"; }
+
+
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/update_product_quantity.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -153,7 +192,7 @@ margin-top: -.3rem;
 </nav>
 <!--/.Navbar -->
 
-<form enctype="multipart/form-data" method="post" action="file:///Users/rafayabbas/Documents/Personal/VAC/update_product_quantity2.php" style="
+<form enctype="multipart/form-data" method="post" action="update_product_quantity_2.php?barcode=<?php echo $_GET['barcode']?>" style="
     border-width: 2px;
 ">
     <div class="container bootstrap snippets bootdey" style="
@@ -181,7 +220,7 @@ margin-top: -.3rem;
                                 <th style="
 "><span style="">Product Name</span></th>
                                 <th><span>Barcode</span></th>
-                                <th><span>Quantity</span></th>
+                                <th><span>Current Quantity</span></th>
                                 <th><span>New Quantity</span></th>
                                 
                                 </tr>
@@ -193,12 +232,12 @@ margin-top: -.3rem;
 ">
                                   <td>
                                       
-                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link">Coca Cola</a>
+                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#" class="user-link"><?php echo $_GET['Product_Name']; ?></a>
                                       
                                   </td>
-                                  <td>2134267389123</td>
+                                  <td><?php echo $_GET['barcode']; ?></td>
                                   <td>
-                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#">100</a>
+                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.htm#"><?php echo $_GET['Quantity']; ?></a>
                                   </td>
                                   
                                   
