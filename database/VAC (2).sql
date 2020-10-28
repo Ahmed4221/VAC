@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 25, 2020 at 02:42 PM
+-- Generation Time: Oct 28, 2020 at 01:39 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -62,17 +62,21 @@ CREATE TABLE `Product` (
   `Barcode` varchar(300) NOT NULL,
   `ImagePath` varchar(300) NOT NULL,
   `Product_Category` varchar(300) NOT NULL,
+  `productSubCategory` varchar(150) NOT NULL,
   `Product_Name` varchar(300) NOT NULL,
-  `Brand_Name` varchar(300) NOT NULL
+  `Brand_Name` varchar(300) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `Unit` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Product`
 --
 
-INSERT INTO `Product` (`Barcode`, `ImagePath`, `Product_Category`, `Product_Name`, `Brand_Name`) VALUES
-('3', '/opt/lampp/htdocs/Freelance/products/ahmedabdullah64221@gmail.com_Product_3_Screenshot from 2020-02-07 16-07-48.png', '3', '3', '3'),
-('5', '/opt/lampp/htdocs/Freelance/products/ahmedabdullah64221@gmail.com_Product_5_Screenshot from 2020-03-06 16-43-13.png', 'cooking oil', 'acha dalda', 'dalda');
+INSERT INTO `Product` (`Barcode`, `ImagePath`, `Product_Category`, `productSubCategory`, `Product_Name`, `Brand_Name`, `Description`, `Unit`) VALUES
+('62', 'BulkImage', 'Bevrages', 'softdrink', 'dada', 'ACHA', 'na leyna ye wala', 'kg'),
+('69', 'BulkImage', 'Bevrages', 'softdrink', 'popo', 'ACHA', 'ye leylo', 'kg'),
+('888', '/opt/lampp/htdocs/Freelance/products/ahmedabdullah64221@gmail.com_Product_888_Screenshot from 2020-01-16 15-24-05.png', 'Condiments', 'Spices', 'acha dalda', 'dalda', 'asasa', 'Lt');
 
 -- --------------------------------------------------------
 
@@ -93,6 +97,25 @@ CREATE TABLE `Users` (
 INSERT INTO `Users` (`Email`, `Password`, `UserType`) VALUES
 ('a@b.c', '111111111', 'Client'),
 ('ahmedabdullah64221@gmail.com', 'admin', 'vendor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Value_Metrics`
+--
+
+CREATE TABLE `Value_Metrics` (
+  `ValueName` varchar(21) NOT NULL,
+  `Symbol` varchar(21) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Value_Metrics`
+--
+
+INSERT INTO `Value_Metrics` (`ValueName`, `Symbol`) VALUES
+('Kilogram', 'Kg'),
+('Litre', 'Lt');
 
 -- --------------------------------------------------------
 
@@ -127,6 +150,7 @@ CREATE TABLE `Vendors_Products` (
   `Barcode` varchar(300) NOT NULL,
   `price_per_ctn` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
   `per_ctn_quantity` int(11) NOT NULL,
   `length` int(11) NOT NULL,
   `width` int(11) NOT NULL,
@@ -141,9 +165,10 @@ CREATE TABLE `Vendors_Products` (
 -- Dumping data for table `Vendors_Products`
 --
 
-INSERT INTO `Vendors_Products` (`Barcode`, `price_per_ctn`, `weight`, `per_ctn_quantity`, `length`, `width`, `height`, `product_region`, `UAE_ALL`, `Vendor_id`, `Approved`) VALUES
-('3', 3, 3, 3, 3, 3, 3, 'Middle East', 'Export', 'ahmedabdullah64221@gmail.com', 0),
-('5', 5, 5, 5, 5, 5, 5, 'Africa', 'UAE', 'ahmedabdullah64221@gmail.com', 0);
+INSERT INTO `Vendors_Products` (`Barcode`, `price_per_ctn`, `weight`, `Quantity`, `per_ctn_quantity`, `length`, `width`, `height`, `product_region`, `UAE_ALL`, `Vendor_id`, `Approved`) VALUES
+('62', 21, 22, 150, 21, 22, 22, 22, 'Africa', 'UAE', 'ahmedabdullah64221@gmail.com', 0),
+('69', 21, 22, 16, 21, 22, 22, 22, 'Africa', 'UAE', 'ahmedabdullah64221@gmail.com', -1),
+('888', 12, 8, 8, 8, 8, 8, 8, 'America', 'UAE', 'ahmedabdullah64221@gmail.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -168,6 +193,12 @@ ALTER TABLE `Users`
   ADD PRIMARY KEY (`Email`);
 
 --
+-- Indexes for table `Value_Metrics`
+--
+ALTER TABLE `Value_Metrics`
+  ADD PRIMARY KEY (`ValueName`);
+
+--
 -- Indexes for table `Vendor`
 --
 ALTER TABLE `Vendor`
@@ -177,7 +208,7 @@ ALTER TABLE `Vendor`
 -- Indexes for table `Vendors_Products`
 --
 ALTER TABLE `Vendors_Products`
-  ADD PRIMARY KEY (`Barcode`);
+  ADD PRIMARY KEY (`Barcode`,`Vendor_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
