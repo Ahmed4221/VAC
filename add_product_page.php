@@ -229,7 +229,7 @@ margin-top: -.3rem;
 <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-  <a class="nav-link waves-effect waves-light" href="vendor_dash.htm">Home
+  <a class="nav-link waves-effect waves-light" href="vendor_dash.php">Home
     <span class="sr-only">(current)</span>
   </a>
 </li>
