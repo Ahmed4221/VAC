@@ -1,122 +1,62 @@
 <?php
-
-error_reporting(0);
-session_start();
-require 'functions.php';
- // check if that session is true, else redirect to the login page  
-if($_SESSION['loggedIn']){
-    //allow
-    $user = $_SESSION["UserEmail"];
+    error_reporting(0);
+    session_start();
+    
     //making connection
     $conn = require 'connection.php';
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $result_message = "";
+    if ($_SESSION['loggedIn']){
+          if(isset($_POST["Submit"])){
+            $user = $_SESSION["UserEmail"];
+              $quantity=$_POST['new_product_quantity'];
+                //inserting new suer information in client table
 
-    if(isset($_POST["Submit"])){
-      $csv_mimetypes = array(
-        'text/csv',
-        'application/csv',
-        'text/comma-separated-values',
-        'application/excel',
-        'application/octet-stream',
-        'application/txt',
-    );
-    
-    if (in_array($_FILES['product_file_upload']['type'], $csv_mimetypes)) {
-        // possible CSV file
-        // could also check for file content at this point
-        $the_big_array = csv_to_array($_FILES['product_file_upload']['tmp_name'], $delimiter=',');
-        $temp_array = [];
-        $total_counter = 0;
-        $success_counter = 0;
+                $sql = "UPDATE `Vendors_Products` SET `Quantity`= '".$quantity."' WHERE Barcode ='".$_GET['barcode']."' and Vendor_id = '".$user."' ";
 
-        foreach($the_big_array as $item) {
-          $temp = bulk_insertion($item['Unit_Value'],
-          $item['Production_Description'],
-          $item["Brand_Name"],
-          $item['Product_Name'],
-          $item['Category'],
-          $item['Sub_Category'],
-          $item['Price_per_Ctn'],
-          $item['Barcode'],
-          $item['Weight'],
-          $item['Per_Ctn_Quantity'],
-          $item['Length'],
-          $item['Weight'],
-          $item['Height'],
-          $item['Quantity'],
-          $item['ProductRegion'],
-          $item['UAE_ALL'],
-          $conn);
-          $total_counter = $total_counter+1;
-          $success_counter = $success_counter+1;
-          
+                if (mysqli_query($conn,$sql)) {
+                  echo "<script>
+                  alert('Congratulations! Your Quantity has been updated');
+                  window.location.href='update_product_quantity.php';
+                  </script>";
+
+                } else {
+                  $result_message= 'Sorry there was an error in updating the quantity. Please try again';
+                  echo "<script type='text/javascript'>alert('$result_message');</script>";
+
+                }
+                
+
         
-      }
-      $result_message = "Out of Total :".$total_counter." , ".$success_counter."items have been successfully stored";
-      echo "<script type='text/javascript'>alert('$result_message');</script>";
-    }
-    else{
-      $message = "The file format is not supported. Please upload a valid file with .csv extension";
-      echo "<script type='text/javascript'>alert('$message');</script>";
+        }
     }
 
-
-
-    }
-  }
   else{
     //redirect to the login page
-    header('Location: index.php'); }
+    header('Location: index.php');
+    // echo "Not logged in"; }
+  }
 
 
 ?>
-
-
 <!DOCTYPE html>
-<!-- saved from url=(0068)file:///Users/rafayabbas/Documents/Personal/VAC/add_product_page.php -->
+<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/update_product_quantity.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design for Bootstrap</title>
+  <title>Update Product Quantity</title>
   <!-- MDB icon -->
   <link rel="icon" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./add_products_bulk_page_files/all.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/all.css">
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="./add_products_bulk_page_files/css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/css">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="./add_products_bulk_page_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="./add_products_bulk_page_files/mdb.min.css">
+  <link rel="stylesheet" href="./update_product_quantity_2_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="./add_products_bulk_page_files/style.css">
-
-
-  <link rel="stylesheet" href="./mydatatable_files/metisMenu.css">
-    <link rel="stylesheet" href="./mydatatable_files/owl.carousel.min.css">
-    <link rel="stylesheet" href="./mydatatable_files/slicknav.min.css">
-    <!-- amcharts css -->
-    <link rel="stylesheet" href="./mydatatable_files/export.css" type="text/css" media="all">
-    <!-- Start datatable css -->
-    <link rel="stylesheet" type="text/css" href="./mydatatable_files/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="./mydatatable_files/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="./mydatatable_files/responsive.bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./mydatatable_files/responsive.jqueryui.min.css">
-    <!-- style css -->
-    <link rel="stylesheet" href="./mydatatable_files/typography.css">
-    <link rel="stylesheet" href="./mydatatable_files/default-css.css">
-    <link rel="stylesheet" href="./mydatatable_files/styles.css">
-    <link rel="stylesheet" href="./mydatatable_files/responsive.css">
-
-    
-    <!-- modernizr css -->
-    <script src="./mydatatable_files/modernizr-2.8.3.min.js"></script>
-
-
+  <link rel="stylesheet" href="./update_product_quantity_2_files/style.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
@@ -207,12 +147,12 @@ margin-top: -.3rem;
 }
 }
 </style>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 </head>
 <body>
 
   <!-- Start your project here-->  
-  <!--Navbar -->
+<!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
        background-color: #33b5e5 !important;
        /* margin-bottom: 70px !important; */
@@ -268,58 +208,113 @@ margin-top: -.3rem;
 
 <!-- nav end -->
 
-
-    <!-- Material input -->
-<div class="row">
-<div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
-<form action="add_products_bulk_page.php" method="post" enctype="multipart/form-data" style="
-    width: 100%;  
+<form enctype="multipart/form-data" method="post" action="update_product_quantity_2.php?barcode=<?php echo $_GET['barcode']?>" style="
+    border-width: 2px;
 ">
+    <div class="container bootstrap snippets bootdey" style="
+    border-width: 1px;
+    border-color: #ffffff;
+    background-color: whitesmoke;
+    /* background: linear-gradient(90deg, rgba(246,246,247,1) 0%, rgba(177,176,186,1) 54%, rgba(106,103,106,1) 97%); */
+    border-style: groove;
+    -webkit-box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    -moz-box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    box-shadow: 0px 0px 22px 1px rgba(0,0,0,0.31);
+    border-radius: 10px;
+">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    
+<div class="table-responsive">
+                        <table class="table user-list" style="margin-top: 32px;margin-bottom: 0;">
+                            <thead>
+                                <tr style="
+    text-align: center;
+">
+                                <th style="
+"><span style="">Product Name</span></th>
+                                <th><span>Barcode</span></th>
+                                <th><span>Current Quantity</span></th>
+                                <th><span>New Quantity</span></th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr style="
+    text-align: center;
+">
+                                  <td>
+                                      
+                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.php#" class="user-link"><?php echo $_GET['Product_Name']; ?></a>
+                                      
+                                  </td>
+                                  <td><?php echo $_GET['barcode']; ?></td>
+                                  <td>
+                                      <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_product_status.php#"><?php echo $_GET['Quantity']; ?></a>
+                                  </td>
+                                  
+                                  
+                              <td style="
+    padding-top: 8px;
+">
+                                        <input type="number" id="new_quantity" step="1" class="form-control mb-4" min="0" required="" placeholder="Change Quantity" name="new_product_quantity" style="
+    width: 40%;
+    margin: auto;
+">
+                                    </td></tr>
+                              
+                                
+                                
+                            </tbody>
+                        </table>
+                    <button class="btn btn-info btn-block" onclick="location.href = 'update_product_quantity2.php';" type="submit" name="Submit" style="
+    width: 45%;
+    border-radius: 35px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 26%, rgba(0,212,255,1) 100%);
+    height: 41px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+">Change</button></div>
+    
 
-    <div class="text-center">
-        <p class="h4 mb-4">Add Products</p>
-
-        <p>Increase your sales by increasing diversity</p>
-
-        
+                </div>
+            </div>
+        </div>
     </div>
-<p>Do you want to upload products individually. 
-        <b> 
-        <a href="add_product_page.php" >Click here</a></b> 
-
-</p>
-
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01" name = "product_file_upload" required aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div> 
-  <br><br>
-    <button class="btn btn-info btn-block" name="Submit" type="submit">Submit for Approval</button>
+</div>
+</form>
 
 
-</form></div></div>
   
-
-
-
-<div class="hiddendiv common"></div>
-
 <script>
-  $(document).ready(function(){
-      $('input[type="file"]').change(function(e){
-          var fileName = e.target.files[0].name;
-          alert('The file "' + fileName +  '" has been selected.');
-      });
-  });
+  var mystatus= document.getElementsByClassName("product_approval_status");
+  console.log(mystatus);
+  console.log(mystatus[0].innerText);
+  for (i =0; i < mystatus.length;i++)
+  {
+    console.log(i);
+    console.log(mystatus[i].innerText);
+    mystatus[i].style.fontWeight = "bold";
+    if (mystatus[i].innerText == "Approved"){
+      mystatus[i].style.color = "#11bb6d";
+     
+    }
+    else if (mystatus[i].innerText == "Pending")
+    {
+      mystatus[i].style.color = "#e00303";
+      
+    }
+    else if (mystatus[i].innerText == "To be Changed"){
+      mystatus[i].parentNode.innerHTML = '<span class="product_approval_status" style="font-weight: bold; color: rgb(255, 118, 1);margin-right: 34px">To be Changed</span><form action="" method="post" style = "display:inline-block;"><button type="submit" name="product_edit_submit" class="btn peach-gradient" style="margin: 0;padding: 6px;width: 80px;border-radius: 30px;position: relative;">Edit</button></form>';
+mystatus[i].parentNode.style.width = "28%";
+    }
+
+  }
 </script>
-
-
-
 <script src="./mydatatable_files/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
     <script src="./mydatatable_files/popper.min.js"></script>
@@ -339,5 +334,4 @@ margin-top: -.3rem;
     <script src="./mydatatable_files/plugins.js"></script>
     <script src="./mydatatable_files/scripts.js"></script>
 
-
-  </body></html>
+</body></html>
