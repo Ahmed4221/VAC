@@ -1,0 +1,22 @@
+.dropdown{
+  transition: display 1s !important;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-menu{
+  display: block !important;
+
+}
+
+.transform_on_hover{
+  transition: transform 1s !important;
+}
+.transform_on_hover:hover{
+  transform:scale(1.3);
+}
+.pointer_cursor{
+  cursor: pointer;
+}
+#dataTable3 > tbody > tr:hover{
+  background-color: #eaeaea !important;
+}
