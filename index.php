@@ -21,7 +21,9 @@
             $sql_vendorchange = "SELECT * from `Vendor` where Email='".$email."' and Password ='".$password."' and Approved=-1 ";
             $result = mysqli_query($conn,$sql_vendorchange);
             if (mysqli_num_rows($result)>0){
+              session_start();
               $_SESSION["UserEmail"] = $email;
+              $_SESSION['TemporaryloggedIn'] = true;
               header("Location: vendor_module/suggested_changes_vendor_side.php");
             }
 

@@ -34,6 +34,35 @@ function csv_to_array($filename='', $delimiter=',')
 }
 
 
+function delete_vendor_while_update($email){
+  $conn = require '../connection.php';
+ 
+//   echo $email;
+  $sql = "DELETE from `Vendor` where Email = '$email'  ";
+  $res = mysqli_query($conn,$sql);
+//   echo $sql;
+
+
+  //removing files
+  $sql2 = "SELECT * from `Vendor` where Email = '$email'";
+  $res = mysqli_query($conn,$sql2);
+  $followingdata = $res->fetch_assoc();
+  $followingdata['Trade_Lisence'] = str_replace("/opt/lampp/htdocs/Freelance","",$followingdata['Trade_Lisence']);
+  $followingdata['VATForm'] = str_replace("/opt/lampp/htdocs/Freelance","",$followingdata['VATForm']); 
+  $followingdata['Passport/Emirateid'] = str_replace("/opt/lampp/htdocs/Freelance","",$followingdata['Passport/Emirateid']);
+  // echo  $followingdata['Passport/Emirateid'];
+  unlink($followingdata['Trade_Lisence']);
+  unlink($followingdata['VATForm']);
+  unlink($followingdata['Passport/Emirateid']);
+
+
+// inserting new vendor information in users table
+$sql = "DELETE FROM `Users`where `Email`='".$email."'";        
+mysqli_query($conn,$sql);
+
+}
+
+
 function bulk_insertion($product_unit,
                         $product_description,
                         $brand_name,
