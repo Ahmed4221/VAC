@@ -21,7 +21,7 @@ else{
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>View all Vendors</title>
+  <title>View Vendor Requests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -211,17 +211,18 @@ height: 50px;
                                                           <table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
                                   <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
                                       <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Client Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Office: activate to sort column ascending">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Age: activate to sort column ascending">Agreed Commission</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Start Date: activate to sort column ascending">Variable Commision</th>
-                                    
-                                    </tr>
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 167px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Vendor Name</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Email</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">Trade Licence</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 162px;" aria-label="Start Date: activate to sort column ascending">VAT Registration</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">Passport / Emirates ID </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">Change Status</th>
+                                      </tr>
                                   </thead>
                                   <tbody>
                                    <?php
                                       $counter = 0;
-                                          $sql = "Select * from `Vendor`";
+                                          $sql = "Select * from `Vendor` where Approved = 0";
                                           $res = mysqli_query($conn,$sql);
                                         //   $followingdata = $res->fetch_assoc();
                                         while($followingdata = mysqli_fetch_assoc($res)){
@@ -233,8 +234,10 @@ height: 50px;
                                           <tr role="row" class="odd">
                                           <td tabindex="0" class="sorting_1">'.$followingdata['Name'].'</td>
                                           <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
+                                          <td class=""> <a href="'.$followingdata['Trade_Lisence'].'" download="TradeLisence"  data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src='.$followingdata['Trade_Lisence'].' alt=""></a></td>
+                                          <td class=""> <a href="'.$followingdata['VATForm'].' download="VAT" data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src='.$followingdata['VATForm'].' alt=""></a></td>
+                                          <td class=""> <a href="'.$followingdata['Passport/Emirateid'].' download="Passport/Emirate_id"data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src='.$followingdata['Passport/Emirateid'].' alt=""></a></td>
+                                          <td class=""> <button class = "btn btn-success custom_button" style = "margin-right: 5px;" onClick = "approved(this.parentNode.parentNode.children[1].innerText)">Approve</button><button class = "btn btn-danger custom_button" onClick = "dissapproved(this.parentNode.parentNode.children[1].innerText)">Disapprove</button><button style = "margin-left: 5px;" class = "btn btn-warning custom_button" onClick = "edits(this.parentNode.parentNode.children[1].innerText)">Suggest Edits</button></td>
                                       </tr>';
                                           echo $output;}
       
@@ -295,6 +298,19 @@ height: 50px;
    </div>
 </div>
 
+<script>
+    
+
+    function approved(vendor_email) {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_approved.php?VendorEmail=" + vendor_email;
+    }
+    function dissapproved(vendor_email) {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_disapproved.php?VendorEmail=" + vendor_email;
+    }
+    function edits(vendor_email) {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_edits.php?VendorEmail=" + vendor_email;
+    }
+    </script>
 
 
 <!-- Footer End -->

@@ -16,7 +16,16 @@
           //checking if the user exists
           $sql = "SELECT * from `Users` where Email='".$email."' and Password ='".$password."' ";
           $result = mysqli_query($conn,$sql);
-          if (mysqli_num_rows($result)==0) { 
+          if (mysqli_num_rows($result)==0) {
+            
+            $sql_vendorchange = "SELECT * from `Vendor` where Email='".$email."' and Password ='".$password."' and Approved=-1 ";
+            $result = mysqli_query($conn,$sql_vendorchange);
+            if (mysqli_num_rows($result)>0){
+              $_SESSION["UserEmail"] = $email;
+              header("Location: vendor_module/suggested_changes_vendor_side.php");
+            }
+
+
             $msg = "User not found" ;
             echo "<script type='text/javascript'>alert('$msg');</script>";}
           else { 

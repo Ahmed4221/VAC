@@ -12,8 +12,14 @@
         $email=$_POST['defaultSubscriptionFormEmail'];
         $password=$_POST['passwdInput'];
         $trade =$_FILES["TradeLisenceImage"]["name"];
+        //removing spaces
+        $trade = preg_replace('/\s+/', '_', $trade);
         $vat =$_FILES["VATImage"]["name"];
+        //removing spaces
+        $vat = preg_replace('/\s+/', '_', $vat);
         $passport =$_FILES["PassportImage"]["name"];
+        //removing spaces
+        $passport = preg_replace('/\s+/', '_', $passport);
         if (isset($email) and isset($password) and isset($trade) and isset($vat) and isset($passport)  ) {
           
           $trade = $email."_TradeLisence_".$trade;
@@ -49,13 +55,13 @@
             }
             
             //inserting new vendor information in users table
-            $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) VALUES ('".$email."','".$password."','vendor')";        
-            if (mysqli_query($conn,$sql)) {
-              $counter +=1 ;
+            // $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) VALUES ('".$email."','".$password."','vendor')";        
+            // if (mysqli_query($conn,$sql)) {
+            //   $counter +=1 ;
 
-            } 
+            // } 
 
-            if ($counter==5){
+            if ($counter==4){
               echo "<script>
               alert('Congratulations! Your Account has been submitted for approval successfully');
               window.location.href='../index.php';

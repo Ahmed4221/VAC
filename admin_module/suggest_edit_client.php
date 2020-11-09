@@ -1,22 +1,27 @@
+<?php
+session_start();
 
-<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>";
-  // echo "Usertype is   : ",$_SESSION["UserType"];
+if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
+//   echo "Usertype is   : ",$_SESSION["UserType"];
+          //making connection
+          $conn = require '../connection.php';
+        //   echo "connection made";
 }
 else{
   //redirect to the login page
-  header('Location: index.php'); }
+  header('Location: ../index.php'); }
 
 
-
-?&gt;
+?>
+<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 
 <!-- saved from url=(0072)file:///Users/rafayabbas/Documents/Personal/VAC/see_order_individual.php -->
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Datatable - srtdash</title>
+  <title>View all Vendors</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -48,7 +53,31 @@ else{
   <!-- Footer files -->
   
 
+<style>
+.certificate-image {
+        display: inline-block;
+        border: 1px solid #ddd;
+        position: relative;
+    }
+        .certificate-image img {
+            height: 40px;
+        }
+        .certificate-image:hover {
+            -webkit-transform-origin: 50% 0%;
+            -ms-transform-origin: 50% 0%;
+            -moz-transform-origin: 50% 0%;
+            -o-transform-origin: 50% 0%;
+            -ms-transform: scale(8); /* IE 9 */
+            -moz-transform: scale(8); /* Firefox */
+            -o-transform: scale(8); /* Opera */
+            transform: scale(8);
+            z-index: 1001;
+            border-color: #fff;
+            box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
 
+</style>
 
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
@@ -122,7 +151,6 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 
 
-
 </div>
 </li>
 <a class="nav-link waves-effect waves-light" href="settings.htm">Settings
@@ -135,7 +163,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 
 </ul>
-<a href="file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/logout.php" class="btn btn-info btn-lg">
+<a href="../logout.php" class="btn btn-info btn-lg">
  <span class="glyphicon glyphicon-log-out"></span> Log out
 </a>
 </div>
@@ -145,7 +173,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 <div class="row row-cols-1 row-cols-md-2" style="
 width: 100%;
-height: 200px;
+height: 50px;
 ">
 </div>
 
@@ -172,59 +200,20 @@ height: 200px;
                   <div class="card">
                       <div class="card-body">
                           
-                          <div class="data-tables datatable-dark">
-                              <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                  <div class="row">
-                                      <div class="col-sm-12">
-                                          <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                              <div class="row"><div class="col-sm-12">
-                                                  <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                      <div class="row"><div class="col-sm-12">
-                                                          <table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
-                                  <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                      <tr role="row">
-                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 167px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Vendor Name</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 323px;" aria-label="Position: activate to sort column ascending">Email</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Trade Licence</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">VAT Registration</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 162px;" aria-label="Start Date: activate to sort column ascending">Passport / Emirates ID</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending"><button primary>View details</button></th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                    <td>KKhhan Restaurant</td>
-                                    <td><rafay class="abbas malik@gmail com"></rafay></td>
-                                    <td>1</td>
-                                    <td>$20</td>
-                                    <td>In processing (VENDOR). <span onclick="order_status_change_clicked()" class = "pointer_cursor" ><i class="fa fa-pencil-square-o transform_on_hover" style = "float:right"></i></span></td>
-                                  </tr>
-                                  <!-- <?php
-                                      $counter = 0;
-                                      foreach ($barcodes as $barcode){
-                                          $sql = "Select * from `Product` where Barcode = '".$barcode."'";
-                                          $res = mysqli_query($conn,$sql);
-                                          $followingdata = $res->fetch_assoc();
-
-                                          $output = '                                        
-                                          <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Product_Name'].'</td>
-                                          <td class="">'.$barcode.'</td>
-                                          <td class="">'.$followingdata['Product_Category'].'</td>
-                                          <td class="">'.$followingdata['productSubCategory'].'</td>
-                                          <td class="">'.$Qty[$counter].'</td>
-                                          <td class="">'.$price[$counter].'</td>
-                                          <td class="">0</td>
-                                      </tr>';
-                                          $counter = $counter+1;
-                                          echo $output;
-                                      }
-
-                                  ?> -->
-
-                                 </tbody>
-                              </table></div></div></div></div></div></div></div></div></div>
-                          </div>
+                        <form action = "#" method = "get" class = "styled_form">
+                          What do you want to suggest to <span name = "vendor_name" id = "vendor_name">Client name</span>
+                          <br>
+                          <br>
+                          <textarea rows="5" cols="60" name="description" style="
+                              border-radius: 19px;
+                              border-color: #32d5a9;
+                          "></textarea><br>
+                          <label class = "styled_label">Enter Commision on which you want client to agree ( % )</label>
+                          <input type="number" name="agreed_commision" min="0" max="100" id = "agreed_commision" class = "styled_number_input"></input>
+                          <label class = "styled_label">Enter variable commision which won't be seen by client ( % )</label>
+                          <input type="number" name="agreed_commision" min="0" max="100" id = "agreed_commision" class = "styled_number_input"></input>
+                          <button type = "submit" value = "submit" class=styled_button >Suggest</button>
+                       </form>
                       </div>
                   </div>
               </div>
@@ -276,6 +265,16 @@ height: 200px;
    </div>
 </div>
 
+<script>
+    
+
+    function approved(vendor_email) {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_approved.php?" + vendor_email;
+    }
+    function dissapproved(vendor_email) {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_disapproved.php?" + vendor_email;
+    }
+    </script>
 
 
 <!-- Footer End -->
@@ -330,3 +329,5 @@ console.log( "ready!" );
 
 
 </footer></body></html>
+
+

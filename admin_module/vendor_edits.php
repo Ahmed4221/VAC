@@ -1,17 +1,49 @@
 <?php
 session_start();
-
 if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
-//   echo "Usertype is   : ",$_SESSION["UserType"];
-          //making connection
-          $conn = require '../connection.php';
-        //   echo "connection made";
-}
-else{
-  //redirect to the login page
-  header('Location: ../index.php'); }
+    //   echo "Usertype is   : ",$_SESSION["UserType"];
+              //making connection
+
+              $conn = require '../connection.php';
+              $email =  $_GET['VendorEmail'];
+              
+              if (isset( $_POST["Submit"]) ){
+
+                    
+                    $sql = "INSERT INTO `VendorFeedback`(`VendorID`, `SuggestedEdit`, `Resolved`) VALUES ('$email','".$_POST["description"]."',0)";
+                    $res = mysqli_query($conn,$sql);
+                    $sql = "UPDATE `Vendor` SET Approved = -1 where Email = '$email'";
+                    $res = mysqli_query($conn,$sql);
+
+                    header('Location: view_vendor_requests.php');
+                }
 
 
+            }
+            //   $sql = "UPDATE `Vendor` SET `Approved`=1 where Email = '$email'  ";
+            //   $res = mysqli_query($conn,$sql);
+            //   echo $sql;
+
+            //   $sql2 = "SELECT * from `Vendor` where Email = '$email'";
+            //   $res = mysqli_query($conn,$sql2);
+            //   $followingdata = $res->fetch_assoc();
+            //   $email = $followingdata['Email'];
+            //   $pass = $followingdata['Password'];
+
+            //   echo $email;
+            //   echo $pass;
+
+            // // inserting new vendor information in users table
+            // $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) VALUES ('".$email."','".$pass."','vendor')";        
+            // mysqli_query($conn,$sql);
+
+            // header('Location: view_vendor_requests.php');
+  
+    
+    else{
+      //redirect to the login page
+      header('Location: ../index.php');
+    }
 ?>
 <!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
@@ -199,51 +231,17 @@ height: 50px;
               <div class="col-12 mt-5">
                   <div class="card">
                       <div class="card-body">
-                          
-                          <div class="data-tables datatable-dark">
-                              <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                  <div class="row">
-                                      <div class="col-sm-12">
-                                          <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                              <div class="row"><div class="col-sm-12">
-                                                  <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                      <div class="row"><div class="col-sm-12">
-                                                          <table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
-                                  <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                      <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Client Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Office: activate to sort column ascending">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Age: activate to sort column ascending">Agreed Commission</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Start Date: activate to sort column ascending">Variable Commision</th>
-                                    
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                   <?php
-                                      $counter = 0;
-                                          $sql = "Select * from `Vendor`";
-                                          $res = mysqli_query($conn,$sql);
-                                        //   $followingdata = $res->fetch_assoc();
-                                        while($followingdata = mysqli_fetch_assoc($res)){
-                                           
-                                          $followingdata['Trade_Lisence'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Trade_Lisence']);
-                                          $followingdata['VATForm'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['VATForm']); 
-                                          $followingdata['Passport/Emirateid'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Passport/Emirateid']);  
-                                          $output = '                                        
-                                          <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Name'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                      </tr>';
-                                          echo $output;}
-      
-
-                                  ?> 
-
-                                 </tbody>
-                              </table></div></div></div></div></div></div></div></div></div>
-                          </div>
+                      
+                        <form action = "vendor_edits.php?VendorEmail=<?php echo $_GET["VendorEmail"]; ?>" method = "POST" class = "styled_form">
+                          What do you want to suggest to <span name = "vendor_name" id = "vendor_name">Vendor name</span>
+                          <br>
+                          <br>
+                          <textarea rows="5" cols="60" name="description" style="
+    border-radius: 19px;
+    border-color: #32d5a9;
+"></textarea><br>
+                          <button type = "submit" name="Submit" value = "submit" class=styled_button >Suggest</button>
+                       </form>
                       </div>
                   </div>
               </div>
@@ -294,6 +292,7 @@ height: 50px;
       
    </div>
 </div>
+
 
 
 
