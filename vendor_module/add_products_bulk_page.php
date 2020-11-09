@@ -2,13 +2,13 @@
 
 error_reporting(0);
 session_start();
-require 'functions.php';
+require '../common_files/functions.php';
  // check if that session is true, else redirect to the login page  
 if($_SESSION['loggedIn']){
     //allow
     $user = $_SESSION["UserEmail"];
     //making connection
-    $conn = require 'connection.php';
+    $conn = require '../connection.php';
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -51,12 +51,12 @@ if($_SESSION['loggedIn']){
           $item['UAE_ALL'],
           $conn);
           $total_counter = $total_counter+1;
-          $success_counter = $success_counter+1;
+          $success_counter = $success_counter+$temp;
           
         
       }
       $result_message = "Out of Total :".$total_counter." , ".$success_counter."items have been successfully stored";
-      // echo "<script type='text/javascript'>alert('$result_message');</script>";
+      echo "<script type='text/javascript'>alert('$result_message');</script>";
     }
     else{
       $message = "The file format is not supported. Please upload a valid file with .csv extension";
@@ -69,7 +69,7 @@ if($_SESSION['loggedIn']){
   }
   else{
     //redirect to the login page
-    header('Location: index.php'); }
+    header('Location: ../index.php'); }
 
 
 ?>
@@ -102,6 +102,53 @@ if($_SESSION['loggedIn']){
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
 <style>
+  .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+button {
+    display: inline-block;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    width: 60px;
+}
+
+#close-image img {
+    display: block;
+    height: 60px;  
+    width: 80px;
+}
+
+#close-CSS {
+    background-image: url( 'images/ms-excel-logo.png' );
+    background-size: 100px 130px;
+    height: 134px;  
+    width: 104px;
+}
+
+
   .number-input input[type="number"] {
 -webkit-appearance: textfield;
 -moz-appearance: textfield;
@@ -241,7 +288,7 @@ margin-top: -.3rem;
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>
@@ -256,7 +303,7 @@ margin-top: -.3rem;
 <form action="add_products_bulk_page.php" method="post" enctype="multipart/form-data" style="
     width: 100%;  
 ">
-
+</br>
     <div class="text-center">
         <p class="h4 mb-4">Add Products</p>
 
@@ -269,6 +316,11 @@ margin-top: -.3rem;
         <a href="add_product_page.php" >Click here</a></b> 
 
 </p>
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
+
+
 
 <div class="input-group">
   <div class="input-group-prepend">
@@ -321,4 +373,54 @@ margin-top: -.3rem;
     <script src="./mydatatable_files/scripts.js"></script>
 
 
+    <script>
+        var data = [
+      // [62,'dada','ACHA','na leyna ye wala','kg',21,21,'Bevrages','softdrink','Africa','UAE',22,22,22,22,22,16]
+    ];
+    
+    
+    function download_csv() {
+        var csv = 'Barcode,Product_Name,Brand_Name,Production_Description,Unit_Value,Per_Ctn_Quantity,Price_per_Ctn,Category,Sub_Category,ProductRegion,UAE_ALL,Price,Weight,Length,Width,Height,Quantity\n';
+        data.forEach(function(row) {
+                csv += row.join(',');
+                csv += "\n";
+        });
+    
+        console.log(csv);
+        var hiddenElement = document.createElement('a');
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'SampleBulkUpload.csv';
+        hiddenElement.click();
+}
+</script>
+
+<!-- <button style="background: url(images/ms-excel-logo.png)" onclick="download_csv()">Download CSV</button> -->
+</br></br></br>
+<center>
+  <b>
+<p style="color:blue;">If you do not know how to user Bulk Upload, Please click on the "Excel" button below to download sample format. 
+</b>
+</p >
+<p style="color:red;">A sample row has already been filled for your convinience, Please remove it. 
+
+</p>
+</center>
+</br></br>
+<center >
+<button onclick="download_csv()"  id="close-image"  ><img  src="images/ms-excel-logo.png"></button>
+</center>
+</br>
+
+<center>
+<a href="#" data-html="true" data-toggle="tooltip" title="1) The first row alread added is a dummy for your understanding, please remove it.
+ 2) Barcode is unique for each item. If you already have this item then it will not be updated.
+ 3) Quantity shall not be updated from here . To update quantity go to update quantity.
+ 4) In column UAE_ALL Type UAE if your product is valid for UAE sales and type Export if your product is also elligible for export
+ 5) In the column named Product Region type in the region in which your product is mostly sold.
+ 6) Information related to a single product should be filled in a single row.
+ 7) Please use the value matrics such as kg or lt for kilogram and litre.
+ 8) Once you have filled in all the information required click on browse, then upload and submit for approval">For information on how to fill this Excel sheeet hover over this text</a>
+
+</center>
   </body></html>

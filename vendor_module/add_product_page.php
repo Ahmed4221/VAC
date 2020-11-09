@@ -6,7 +6,7 @@
         //allow
         $user = $_SESSION["UserEmail"];
         //making connection
-        $conn = require 'connection.php';
+        $conn = require '../connection.php';
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -85,7 +85,7 @@
   }
   else{
   //redirect to the login page
-  header('Location: index.php'); }
+  header('Location: ../index.php'); }
 
 ?>
 
@@ -260,7 +260,7 @@ margin-top: -.3rem;
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>
@@ -285,7 +285,7 @@ margin-top: -.3rem;
   </div>
 <p>Do you want to upload multiple products through csv. 
       <b> 
-      <a href="add_products_bulk_page.php" target="_blank">Click here</a></b> 
+      <a href="add_products_bulk_page.php" >Click here</a></b> 
 
 </p>
 

@@ -1,75 +1,70 @@
 <?php
+
     error_reporting(0);
     //making connection
     $conn = require 'connection.php';
-    $result_message = "";
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    
     if(isset($_POST["Submit"])){
 
-        $firstname=$_POST['defaultRegisterFormFirstName'];
-        $lastname=$_POST['defaultRegisterFormLastName'];
-        $email=$_POST['defaultRegisterFormEmail'];
-        $password=$_POST['defaultRegisterFormPassword'];
-
-        if (isset($email) and isset($password) and isset($firstname) and isset($lastname) ) {
+        $email=$_POST['defaultLoginFormEmail'];
+        $password=$_POST['defaultLoginFormPassword'];
+        if (isset($email) and isset($password) ) {
           
-          //inserting new suer information in client table
-          $sql = "INSERT INTO `Client`(`FirstName`, `LastName`, `Email`, `Password`) 
-                  VALUES ('".$firstname."','".$lastname."','".$email."','".$password."')";
-          if (mysqli_query($conn,$sql)) {
-            //inserting new suer information in users table
-            $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) 
-                    VALUES ('".$email."','".$password."','Client')";
-            mysqli_query($conn,$sql) or die(mysqli_error($conn));
+          //checking if the user exists
+          $sql = "SELECT * from `Users` where Email='".$email."' and Password ='".$password."' ";
+          $result = mysqli_query($conn,$sql);
+          if (mysqli_num_rows($result)==0) { 
+            $msg = "User not found" ;
+            echo "<script type='text/javascript'>alert('$msg');</script>";}
+          else { 
 
-            echo "<script>
-            alert('Congratulations! Your user account is all set to go');
-            window.location.href='index.php';
-            </script>";
-          } else {
-            $result_message= 'Sorry there was an error in signing up. Please try again';
-            echo "<script type='text/javascript'>alert('$result_message');</script>";
+            $row = mysqli_fetch_row($result);
+            $usertype =  $row[2]; // the usertype value
+            session_start();
+            $_SESSION["UserEmail"] = $email;
+            $_SESSION["UserType"] = $usertype;
+            $_SESSION['loggedIn'] = true;
+            if ($usertype == "Client"){ 
+            header("Location: client_module/client_dash.php");}
+            if ($usertype == "vendor"){ 
+              header("Location: vendor_module/vendor_dash.php");}
+            if ($usertype == "admin"){ 
+              header("Location: admin_module/admin_dash.php");}
 
           }
-           
         
         }
    
   }
 
 ?>
-
-
 <!DOCTYPE html>
-<!-- saved from url=(0102)file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/sign_signup.php -->
+<!-- saved from url=(0102)file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/Real%20project/sign_signup.htm -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title> Client Signup</title>
+  <title>Index</title>
   <!-- MDB icon -->
   <link rel="icon" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="./signup_page_files/all.css">
+  <link rel="stylesheet" href="./common_files/signin_page_files/all.css">
   <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="./signup_page_files/css">
+  <link rel="stylesheet" href="./common_files/signin_page_files/css">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="./signup_page_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./common_files/signin_page_files/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="./signup_page_files/mdb.min.css">
+  <link rel="stylesheet" href="./common_files/signin_page_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="./signup_page_files/style.css">
+  <link rel="stylesheet" href="./common_files/signin_page_files/style.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 <body>
 
-
-  
   <!-- Start your project here-->  
   <!--Navbar 
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
@@ -110,8 +105,8 @@
     </ul>
   </div>
 </nav>
-Navbar -->
-
+.Navbar -->
+</br></br></br></br></br></br></br></br></br></br></br>
 <div class="row mx-md-4">
     
 <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12 " style="
@@ -119,75 +114,69 @@ Navbar -->
 ">
 
 <!-- Default form login -->
+<div style="height: 392px;width: 100%;">
+    
+    <!-- Default form login -->
+<form action="index.php" method="post" class="text-center border border-light p-5">
 
-<!-- Default form login -->
-<div style="height: 315px;width: 100%;margin-top: 110.25px;display: block;margin-bottom: 36px;">
-<!-- Default form register -->
-<form action="Client_Signup.php" method="post" class="text-center border border-light p-5">
+    <p class="h4 mb-4">Sign in</p>
 
-    <p class="h4 mb-4">Sign up</p>
-
-    <div class="form-row mb-4">
-        <div class="col">
-            <!-- First name -->
-            <input type="text" id="defaultRegisterFormFirstName" name="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
-        </div>
-        <div class="col">
-            <!-- Last name -->
-            <input type="text" id="defaultRegisterFormLastName" name="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
-        </div>
-    </div>
-
-    <!-- E-mail -->
-    <input type="email" id="defaultRegisterFormEmail" name="defaultRegisterFormEmail" class="form-control" placeholdermb-4" placeholder="E-mail">
+    <!-- Email -->
+    <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
 
     <!-- Password -->
-    <input type="password" id="defaultRegisterFormPassword" name="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
-    </small>
+    <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
 
-    
-    
-    
+    <div class="d-flex justify-content-around">
+        <div>
+            <!-- Remember me -->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
+        </div>
+        
+    </div>
 
-    
-    
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4 waves-effect waves-light" name = "Submit" type="Submit">Sign in</button>
 
-    <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block waves-effect waves-light" name="Submit" type="submit">Sign Up</button>
 
-    
-    
 
-    
-    
-    
-    
-
-    <hr>
-
-    <!-- Terms of service -->
-    <p>Are you a 
-        <b>Vendor</b> sign up 
-        <a href="vendor_signup.php" >here</a>
-
-</p></form>
-<!-- Default form register -->
+    <!-- Register -->
+   
+</form>
 </div>
+    <!-- Terms of service -->
+    <p>Don't have an account 
+        <b>Signup</b> here 
+            <!-- Sign UP button -->
+    <a href="client_module/Client_Signup.php"> 
+    <button class="btn btn-info btn-block my-4 waves-effect waves-light" name = "Submit" type="Submit">Sign Up</button> 
+    </a>
+
+</p
+
+
+
+
+
+
+<!-- Default form login -->
+
 
 
     </div>
   <!-- End your project here-->
 
   <!-- jQuery -->
-  <script type="text/javascript" src="./signup_page_files/jquery.min.js"></script>
+  <script type="text/javascript" src="./signin_page_files/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="./signup_page_files/popper.min.js"></script>
+  <script type="text/javascript" src="./signin_page_files/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="./signup_page_files/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./signin_page_files/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="./signup_page_files/mdb.min.js"></script>
+  <script type="text/javascript" src="./signin_page_files/mdb.min.js"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript"></script>
 

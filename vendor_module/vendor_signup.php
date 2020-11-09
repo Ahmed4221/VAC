@@ -1,7 +1,7 @@
 <?php
     error_reporting(0);
     //making connection
-    $conn = require 'connection.php';
+    $conn = require '../connection.php';
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -46,17 +46,29 @@
             if (mysqli_query($conn,$sql)) {
               $counter +=1 ;
 
+            }
+            
+            //inserting new vendor information in users table
+            $sql = "INSERT INTO `Users`(`Email`, `Password`, `UserType`) VALUES ('".$email."','".$password."','vendor')";        
+            if (mysqli_query($conn,$sql)) {
+              $counter +=1 ;
+
             } 
-            if ($counter==4){
+
+            if ($counter==5){
               echo "<script>
               alert('Congratulations! Your Account has been submitted for approval successfully');
-              window.location.href='index.php';
+              window.location.href='../index.php';
               </script>";
             }
             else{
+              //delete records on unsuccessful insertion or moving of files
               $result_message= 'Sorry there was an error in signing up as vendor. Please try again';
               echo "<script type='text/javascript'>alert('$result_message');</script>";
               $sql = "DELETE FROM `Vendor` WHERE `Email`='".$email."' ";
+              $sql = "DELETE FROM `Users` WHERE `Email`='".$email."' ";
+              mysqli_query($conn,$sql);
+              mysqli_query($conn,$sql2);
               unlink($vat_target_path);
               unlink($trade_target_path);
               unlink($passport_target_path);

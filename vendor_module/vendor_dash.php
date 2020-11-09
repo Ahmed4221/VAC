@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-if($_SESSION['loggedIn']){
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserType"]=="vendor")) {
     // echo $_SESSION["UserEmail"], "    has logged in \n";
     // echo "<br>";
     // echo "Usertype is   : ",$_SESSION["UserType"];
 }
 else{
     //redirect to the login page
-    header('Location: index.php'); }
+    header('Location: ../index.php'); }
 
 
 
@@ -99,7 +99,7 @@ else{
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>

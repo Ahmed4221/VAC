@@ -91,7 +91,7 @@ else if(isset( $_POST["Submit"]) and $_SESSION['loggedIn'] ){
 
 else{
     //redirect to the login page
-    header('Location: index.php'); }
+    header('Location: ../index.php'); }
 
 ?>
 <!-- saved from url=(0068)file:///Users/rafayabbas/Documents/Personal/VAC/add_product_page.php -->
@@ -259,7 +259,7 @@ margin-top: -.3rem;
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>

@@ -3,7 +3,7 @@
     session_start();
     
     //making connection
-    $conn = require 'connection.php';
+    $conn = require '../connection.php';
     $result_message = "";
     if ($_SESSION['loggedIn']){
           if(isset($_POST["Submit"])){
@@ -32,7 +32,7 @@
 
   else{
     //redirect to the login page
-    header('Location: index.php');
+    header('Location: ../index.php');
     // echo "Not logged in"; }
   }
 
@@ -200,7 +200,7 @@ margin-top: -.3rem;
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>
@@ -288,8 +288,17 @@ margin-top: -.3rem;
 </div>
 </form>
 
-
-  
+</br></br></br>
+<center>
+<p>
+Kindly Keep in mind that the quantity shall not be added to previous quantity but shall be updated to the figure provided in New Quantity section.
+</p>
+</center>
+<center>
+<p>
+i.e if previous quantity is 10, typing 5 in new quantity will not make total quantity to 15 but will set the quantity to 5.
+</p>
+</center>
 <script>
   var mystatus= document.getElementsByClassName("product_approval_status");
   console.log(mystatus);

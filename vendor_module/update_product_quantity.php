@@ -3,7 +3,7 @@ session_start();
 
 if($_SESSION['loggedIn']){
   $user = $_SESSION["UserEmail"];
-  $conn = require 'connection.php';
+  $conn = require '../connection.php';
   $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' ";
   $barcodes = [];
   $price = [];
@@ -19,7 +19,7 @@ if($_SESSION['loggedIn']){
   }
   else{
       //redirect to the login page
-      header('Location: index.php'); }
+      header('Location: ../index.php'); }
 
 ?>
 
@@ -100,7 +100,7 @@ if($_SESSION['loggedIn']){
 
 
 </ul>
-  <a href="logout.php" class="btn btn-info btn-lg">
+  <a href="../logout.php" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-log-out"></span> Log out
       </a>
 </div>
