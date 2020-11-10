@@ -284,7 +284,7 @@ border-bottom: 6px solid #eff8fe;
           <div class="card">
               <div class="card-body">
               
-                <form action="vendor_edits.php?" style="text-align: center;" method = "POST" class = "styled_form">
+                <div  style="text-align: center;" class = "styled_form">
                   What do you want to suggest to <span name="vendor_name" id="vendor_name">Vendor name</span>
                   <br>
                   <br>
@@ -292,8 +292,8 @@ border-bottom: 6px solid #eff8fe;
 border-radius: 19px;
 border-color: #32d5a9;
 "></textarea><br>
-                  <button type="submit" name="Submit" value="submit" class="styled_button">Suggest</button>
-               </form>
+                  <button type="submit" name="Submit" onclick="suggested()" value="submit" class="styled_button">Suggest</button>
+          </div>
               </div>
           </div>
       </div>
@@ -448,14 +448,22 @@ span.onclick = function() {
 </script>
 
 <script>
-  
+  vendor_email = document.querySelector("body > div.container > div > div.col-lg-6.col-xs-5 > table:nth-child(4) > tbody > tr:nth-child(2) > td").innerText;
+  product_barcode = document.querySelector("body > div.container > div > div.col-lg-6.col-xs-5 > table:nth-child(2) > tbody > tr:nth-child(2) > td").innerText;
+
     function approved(){
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_approved.htm?VendorEmail=" + "myemail from php" + "&ProductBarcode=" + "barcode from php";
+
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_product_approved.php?VendorEmail=" + vendor_email+ "&ProductBarcode=" + product_barcode;
     
     }
-    function disapproved(){
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_dissapproved.php?VendorEmail=" + vendor_email;
+    function dissapproved(){
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "vendor_product_dissapproved.php?VendorEmail=" + vendor_email + "&ProductBarcode=" + product_barcode;
     
+    }
+    function suggested(){
+      var suggested_text = document.querySelector("body > div.main-content-inner > div > div > div > div > div > textarea").value;
+      console.log(suggested_text);
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "suggest_vendor_product_details.php?VendorEmail=" + vendor_email+ "&ProductBarcode=" + product_barcode + "&SuggestedText=" + suggested_text;
     }
   
 </script>
