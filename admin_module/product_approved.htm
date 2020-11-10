@@ -511,6 +511,7 @@ span.onclick = function() {
       $(default_image_btn).removeClass("custom_radio_button_selected");
       default_image_btn.innerText = "Select Default Image";
       $(default_image).removeClass("selected_image");
+      img_selected = "";
       }
       if($(new_image_btn).hasClass("custom_radio_button_selected"))
       {
@@ -545,6 +546,7 @@ span.onclick = function() {
       $(new_image_btn).removeClass("custom_radio_button_selected");
       new_image_btn.innerText = "Select New Image";
       $(new_image).removeClass("selected_image");
+      img_selected = "";
       }
       
       console.log("image selected : " , img_selected);
@@ -575,6 +577,7 @@ span.onclick = function() {
       $(default_desc_btn).removeClass("custom_radio_button_selected");
       default_desc_btn.innerText = "Select Default Description";
       $(default_desc).removeClass("selected_desc");
+      desc_selected = "";
       }
       if($(new_desc_btn).hasClass("custom_radio_button_selected"))
       {
@@ -609,6 +612,7 @@ span.onclick = function() {
       $(new_desc_btn).removeClass("custom_radio_button_selected");
       new_desc_btn.innerText = "Select New Description";
       $(new_desc).removeClass("selected_desc");
+      desc_selected = "";
       }
       
       console.log("Description Selected: " , desc_selected);
