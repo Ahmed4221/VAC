@@ -6,6 +6,18 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
           //making connection
           $conn = require '../connection.php';
         //   echo "connection made";
+        $sql = "SELECT * FROM `Vendors_Products` where  `Approved`=0";
+        $res = mysqli_query($conn,$sql);
+        $vendor_ids=[];
+        $barcodes=[];
+        while($row = mysqli_fetch_assoc($res))
+            {
+            $barcodes[] = $row['Barcode'];
+            $vendor_ids[] = $row['Vendor_id'];
+
+            }
+
+
 }
 else{
   //redirect to the login page
@@ -214,36 +226,32 @@ height: 50px;
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 167px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Vendor Name</th>
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 167px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Vendor Email</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Product Name</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Product Name</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">Product Picture</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 162px;" aria-label="Start Date: activate to sort column ascending">Price</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Barcode</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">View Product </th>
                                       </tr>
                                   </thead>
                                   <tbody>
                                    <?php
                                       $counter = 0;
-                                          $sql = "Select * from `Vendor` where Approved = 0";
+                                      while ($counter<sizeof($barcodes)){
+                                          $sql = "Select * from `Product` where Barcode = '".$barcodes[$counter]."' ";
                                           $res = mysqli_query($conn,$sql);
                                         //   $followingdata = $res->fetch_assoc();
                                         while($followingdata = mysqli_fetch_assoc($res)){
-                                           
-                                          $followingdata['Trade_Lisence'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Trade_Lisence']);
-                                          $followingdata['VATForm'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['VATForm']); 
-                                          $followingdata['Passport/Emirateid'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Passport/Emirateid']);  
+                                           $innersql = "SELECT * from `Vendor` where Email = '$vendor_ids[$counter]' ";
+                                           $res = mysqli_query($conn,$innersql);
+                                           $vendordata = $res->fetch_assoc();
                                           $output = '                                        
                                           <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Name'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class=""> <a href="'.$followingdata['Trade_Lisence'].'" download="TradeLisence"  data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src='.$followingdata['Trade_Lisence'].' alt=""></a></td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class=""> <button class = "btn btn-primary custom_button" style = "margin-right: 5px;" onClick = "view_product_individual((this.parentNode.parentNode.children[1].innerText),(this.parentNode.parentNode.children[3].innerText))">View Product</button></td>
+                                          <td tabindex="0" class="sorting_1">'.$vendordata['Name'].'</td>
+                                          <td tabindex="0" class="sorting_1">'.$vendor_ids[$counter].'</td>
+                                          <td tabindex="0" class="sorting_1">'.$followingdata['Product_Name'].'</td>
+                                          <td class="">'.$barcodes[$counter].'</td>
+                                          <td class=""> <button class = "btn btn-primary custom_button" style = "margin-right: 5px;" onClick = "view_product_individual((this.parentNode.parentNode.children[1].innerText),(this.parentNode.parentNode.children[3].innerText),(this.parentNode.parentNode.children[0].innerText))">View Product</button></td>
                                       </tr>';
                                           echo $output;}
-      
-
+                                           $counter += 1;
+                                        }
                                   ?> 
 
                                  </tbody>
@@ -301,8 +309,8 @@ height: 50px;
 </div>
 
 <script>
-    function view_product_individual(vendor_email, product_barcode) {
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1)) +  "view_vendor_product_details.htm?VendorEmail=" + vendor_email + "&ProductBarcode=" + product_barcode;
+    function view_product_individual(vendor_email, product_barcode, vendorname) {
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1)) +  "view_vendor_product_details.php?VendorEmail=" + vendor_email + "&ProductBarcode=" + product_barcode + "&vendorname="+vendorname;
     }
     </script>
 

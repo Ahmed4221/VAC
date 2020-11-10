@@ -1,22 +1,35 @@
+<?php
+session_start();
 
-<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>";
-  // echo "Usertype is   : ",$_SESSION["UserType"];
+if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
+//   echo "Usertype is   : ",$_SESSION["UserType"];
+          //making connection
+          $conn = require '../connection.php';
+        //   echo "connection made";
+        $sql = "SELECT * FROM `Product` where Barcode =  '".$_GET['ProductBarcode']."' ";
+        $res = mysqli_query($conn,$sql);
+        $productdata = $res->fetch_assoc();
+        $sql2 = "SELECT * FROM `Vendors_Products` where Barcode =  '".$_GET['ProductBarcode']."' and Vendor_id = '".$_GET['VendorEmail']."' ";
+        $res2 = mysqli_query($conn,$sql2);
+        $vendordata = $res2->fetch_assoc();
+
+
 }
 else{
   //redirect to the login page
-  header('Location: index.php'); }
+  header('Location: ../index.php'); }
 
 
-
-?&gt;
+?>
+<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 
 <!-- saved from url=(0072)file:///Users/rafayabbas/Documents/Personal/VAC/see_order_individual.php -->
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Datatable - srtdash</title>
+  <title>View Vendor Product Details</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -135,7 +148,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 
 </ul>
-<a href="file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/logout.php" class="btn btn-info btn-lg">
+<a href="../logout.php" class="btn btn-info btn-lg">
  <span class="glyphicon glyphicon-log-out"></span> Log out
 </a>
 </div>
@@ -159,7 +172,16 @@ height: 200px;
 <div class="container">
   <div class="row">
        <div class="col-lg-6 col-xs-4 item-photo">
-            <img style="max-width:100%;" class="myImg pointer_cursor transform_on_hover" src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg">
+            <img style="max-width:100%;" class="myImg pointer_cursor transform_on_hover" src=<?php
+            if ($productdata['ImagePath']=="BulkImage"){
+              $productdata['ImagePath'] = "../common_files/bulk_product_image.jpeg";
+              echo $productdata['ImagePath'];
+            }
+            else{ 
+            $productdata['ImagePath']=str_replace("/opt/lampp/htdocs/Freelance","..",$productdata['ImagePath']);
+            echo $productdata['ImagePath'];
+            }
+             ?>>
         </div>
         <div class="col-lg-6 col-xs-5" style="border:0px solid gray">
           <h4 style="
@@ -169,50 +191,50 @@ height: 200px;
           <table style="width:100%;">
             <tbody><tr class="table_row_styled">
               <th>Product Name</th>
-              <td>Coca Cola</td>
+              <td><?php echo $productdata['Product_Name']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Barcode </th>
-              <td>123432432343</td>
+              <td><?php echo $_GET['ProductBarcode']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Brand Name</th>
-              <td>CocaCola</td>
+              <td><?php echo $productdata['Brand_Name']; ?></td>
             </tr>
             <tr class="table_row_styled">
-              <th>Price per CTN</th><td>24 $</td>
+              <th>Price per CTN</th><td><?php echo $vendordata['price_per_ctn']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Per CTN Quantity</th>
-              <td>52</td>
+              <td><?php echo $vendordata['per_ctn_quantity']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Weight</th>
-              <td>24 KG</td>
+              <td><?php echo $vendordata['weight']; ?></td>
             </tr>
             <tr class="table_row_styled">
                 <th>Length (<span id="value_metric">ft</span>)</th>
-              <td>10</td>
+              <td><?php echo $vendordata['length']; ?></td>
             </tr>
             <tr class="table_row_styled">
                 <th>Width (<span id="value_metric">ft</span>)</th>
-              <td>10</td>
+              <td><?php echo $vendordata['width']; ?></td>
             </tr>
             <tr class="table_row_styled">
                 <th>Height (<span id="value_metric">ft</span>)</th>
-              <td>20</td>
+              <td><?php echo $vendordata['height']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>In Stock</th>
-              <td>520</td>
+              <td><?php echo $vendordata['Quantity']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Suggested Export Region</th>
-              <td>Africa</td>
+              <td><?php echo $vendordata['product_region']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Can Sell in UAE</th>
-              <td>Y</td>
+              <td><?php echo $vendordata['UAE_ALL']; ?></td>
             </tr>
           </tbody></table>  
 
@@ -225,24 +247,13 @@ height: 200px;
           <table style="width:100%">
             <tbody><tr class="table_row_styled">
               <th>Vendor Name</th>
-              <td>Rafay Abbas</td>
+              <td><?php echo $_GET['vendorname']; ?></td>
             </tr>
             <tr class="table_row_styled">
               <th>Vendor Email </th>
-              <td>rafay.abbas.malik@gmail.com</td>
+              <td><?php echo $_GET['VendorEmail']; ?></td>
             </tr>
-            <tr class="table_row_styled">
-              <th>VAT</th>
-              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="VAT Form" style="width:100%;max-width:20px"></td>
-            </tr>
-            <tr class="table_row_styled">
-              <th>Passport/ Emirates ID</th>
-              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Passport/ Emirates IDForm" style="width:100%;max-width:20px"></td>
-            </tr>
-            <tr class="table_row_styled">
-              <th>Trade License</th>
-              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Trade License" style="width:100%;max-width:20px"></td>
-            </tr>
+
             
           </tbody></table>                                 
         </div>                              
@@ -253,9 +264,7 @@ height: 200px;
                 
                 <p style="padding:15px;">
                     <small>
-                    Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go. 
-
-                    With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                    <?php echo $productdata['Description']; ?>
                     </small>
                 </p>
                 
@@ -275,9 +284,7 @@ border-bottom: 6px solid #eff8fe;
           <div class="card">
               <div class="card-body">
               
-                <form action="vendor_edits.php?VendorEmail=<?php echo $_GET[" vendoremail"];="" ?="" style="
-    text-align: center;
-">" method = "POST" class = "styled_form"&gt;
+                <form action="vendor_edits.php?" style="text-align: center;" method = "POST" class = "styled_form">
                   What do you want to suggest to <span name="vendor_name" id="vendor_name">Vendor name</span>
                   <br>
                   <br>
