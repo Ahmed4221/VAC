@@ -106,7 +106,7 @@ else{
 </li><li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_products.htm">All Products</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_products.php">All Products</a>
 <a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.htm">Prodcut Approvals</a>
  
 
