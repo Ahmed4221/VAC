@@ -439,15 +439,18 @@ span.onclick = function() {
 }
   })
 </script>
-<script>
-  $(document).ready(function() {
-    function approved(){
 
+<script>
+  
+    function approved(){
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_approved.htm?VendorEmail=" + "myemail from php" + "&ProductBarcode=" + "barcode from php";
+    
     }
     function disapproved(){
-      
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_dissapproved.php?VendorEmail=" + vendor_email;
+    
     }
-  })
+  
 </script>
 
 <!-- Footer  -->
