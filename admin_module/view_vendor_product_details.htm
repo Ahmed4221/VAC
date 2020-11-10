@@ -40,7 +40,7 @@ else{
 
   <!-- My Custom Css -->
   <link rel="stylesheet" href="./Common_files/custom_css_all.css">
-  
+  <link rel="stylesheet" href=".admin_dash_files/product_detail_css.css">
   <!-- modernizr css -->
   <script src="./admin_dash_files/modernizr-2.8.3.min.js"></script>
 
@@ -154,11 +154,163 @@ height: 200px;
 <!--/.Navbar -->
 
 
+<!-- Product Details-->
+
+<div class="container">
+  <div class="row">
+       <div class="col-lg-6 col-xs-4 item-photo">
+            <img style="max-width:100%;" class="myImg pointer_cursor transform_on_hover" src="https://ak1.ostkcdn.com/images/products/8818677/Samsung-Galaxy-S4-I337-16GB-AT-T-Unlocked-GSM-Android-Cell-Phone-85e3430e-6981-4252-a984-245862302c78_600.jpg">
+        </div>
+        <div class="col-lg-6 col-xs-5" style="border:0px solid gray">
+          <h4 style="
+    margin-bottom: 20px;
+    text-align: center;
+"> Product Info</h4>
+          <table style="width:100%;">
+            <tbody><tr class="table_row_styled">
+              <th>Product Name</th>
+              <td>Coca Cola</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Barcode </th>
+              <td>123432432343</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Brand Name</th>
+              <td>CocaCola</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Price per CTN</th><td>24 $</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Per CTN Quantity</th>
+              <td>52</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Weight</th>
+              <td>24 KG</td>
+            </tr>
+            <tr class="table_row_styled">
+                <th>Length (<span id="value_metric">ft</span>)</th>
+              <td>10</td>
+            </tr>
+            <tr class="table_row_styled">
+                <th>Width (<span id="value_metric">ft</span>)</th>
+              <td>10</td>
+            </tr>
+            <tr class="table_row_styled">
+                <th>Height (<span id="value_metric">ft</span>)</th>
+              <td>20</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>In Stock</th>
+              <td>520</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Suggested Export Region</th>
+              <td>Africa</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Can Sell in UAE</th>
+              <td>Y</td>
+            </tr>
+          </tbody></table>  
 
 
+          <h4 style="
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 20px;
+"> Vendor Info</h4>
+          <table style="width:100%">
+            <tbody><tr class="table_row_styled">
+              <th>Vendor Name</th>
+              <td>Rafay Abbas</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Vendor Email </th>
+              <td>rafay.abbas.malik@gmail.com</td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>VAT</th>
+              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="VAT Form" style="width:100%;max-width:20px"></td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Passport/ Emirates ID</th>
+              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Passport/ Emirates IDForm" style="width:100%;max-width:20px"></td>
+            </tr>
+            <tr class="table_row_styled">
+              <th>Trade License</th>
+              <td><img class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Trade License" style="width:100%;max-width:20px"></td>
+            </tr>
+            
+          </tbody></table>                                 
+        </div>                              
 
+        <div class="col-xs-9">
+            
+            <div style="width:100%;border-top:1px solid silver;border-bottom:1px solid silver;"><h3 style="text-align:center">Description</h3>
+                
+                <p style="padding:15px;">
+                    <small>
+                    Stay connected either on the phone or the Web with the Galaxy S4 I337 from Samsung. With 16 GB of memory and a 4G connection, this phone stores precious photos and video and lets you upload them to a cloud or social network at blinding-fast speed. With a 17-hour operating life from one charge, this phone allows you keep in touch even on the go. 
 
+                    With its built-in photo editor, the Galaxy S4 allows you to edit photos with the touch of a finger, eliminating extraneous background items. Usable with most carriers, this smartphone is the perfect companion for work or entertainment.
+                    </small>
+                </p>
+                
+            </div>
+        </div>		
+    </div>
+</div>
 
+<!-- Product Details End -->
+<!-- Suggest Edits -->
+
+<div class="main-content-inner" style="
+border-bottom: 6px solid #eff8fe;
+">
+  <div class="row"><!-- Dark table start -->
+      <div class="col-12 mt-5">
+          <div class="card">
+              <div class="card-body">
+              
+                <form action="vendor_edits.php?VendorEmail=<?php echo $_GET[" vendoremail"];="" ?="" style="
+    text-align: center;
+">" method = "POST" class = "styled_form"&gt;
+                  What do you want to suggest to <span name="vendor_name" id="vendor_name">Vendor name</span>
+                  <br>
+                  <br>
+                  <textarea rows="5" cols="60" name="description" style="
+border-radius: 19px;
+border-color: #32d5a9;
+"></textarea><br>
+                  <button type="submit" name="Submit" value="submit" class="styled_button">Suggest</button>
+               </form>
+              </div>
+          </div>
+      </div>
+      <!-- Dark table end -->
+  </div>
+</div>
+</div>
+<!-- main content area end -->
+</div>
+
+<!-- Suggest Edits End -->
+
+<!-- Approve or Dissapproved -->
+<div>
+  <h5 style="text-align: center;"> Approve to finalize the image, description, category and sub-category.</h5>
+  <span style="
+    text-align: center;
+    width: 100%;
+    margin-left: 43%;
+"><button class="btn btn-success custom_button" style="
+    margin: 24px;
+" onclick="approved()">Approve</button><button class="btn btn-danger custom_button" onclick="dissapproved()">Disapprove</button>
+  </span>
+</div>
 <!-- Footer -->
 
 <footer class="container-fluid bg-grey py-5" style="
@@ -194,6 +346,21 @@ height: 200px;
    </div>
 </div>
 
+<!-- The Modal -->
+<div id="myModal" class="modal" style="display: none; background: rgba(0, 0, 0, 0.48);overflow-y:auto;">
+  <span class="close" style="
+    margin-top: 4%;
+    margin-right: 19%;
+    color: white;
+">×</span>
+  <img class="modal-content" id="img01" src="file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/images/my_modal_img.png" style="
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6%;
+">
+  <div id="caption">Passport/ Emirates IDForm</div>
+</div>
 
 
 <!-- Footer End -->
@@ -243,6 +410,48 @@ console.log( "ready!" );
 });
 </script> -->
 
+<!-- Script for modal -->
+<script>
+  $(document).ready(function() {
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementsByClassName("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+document.querySelectorAll('.myImg').forEach(item => {
+  item.addEventListener('click', event => {
+    //handle click
+    modal.style.display = "block";
+  modalImg.src = event.target.src;
+  captionText.innerHTML = event.target.alt;
+  })
+})
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+  })
+</script>
+
+<script>
+  
+    function approved(){
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_approved.htm?VendorEmail=" + "myemail from php" + "&ProductBarcode=" + "barcode from php";
+    
+    }
+    function disapproved(){
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_dissapproved.php?VendorEmail=" + vendor_email;
+    
+    }
+  
+</script>
 
 <!-- Footer  -->
 

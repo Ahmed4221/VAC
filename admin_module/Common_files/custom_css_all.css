@@ -12,7 +12,7 @@
   transition: transform 1s !important;
 }
 .transform_on_hover:hover{
-  transform:scale(1.3);
+  transform:scale(1.2);
 }
 .pointer_cursor{
   cursor: pointer;
@@ -40,4 +40,88 @@ text-align: center;
     border-style: solid;
     border-width: 1px;
     border-color: #0b01ec;
+}
+
+.table_row_styled{
+  height: 32px;
+  text-align: center;
+}
+.table_row_styled:hover{
+  opacity: 0.6;
+  background-color: whitesmoke;
+}
+
+.my_custom_card{
+  width: 90%;
+    margin: 4%;
+    background-color: whitesmoke;
+    
+    padding: 45px;
+}
+.img_container{
+
+}
+.custom_radio_button{
+  width: 162px;
+  background: white;
+  border-style: solid;
+  border-color: #a8d7ff;
+  border-width: 1px;
+  border-radius: 5px;
+  transition: all 1s;
+  height: 26px;
+}
+.custom_radio_button:hover{
+  
+  background: #2bafce;
+  color:white;
+  transform:scale(1.2);
+  height: 40px;
+
+}
+.custom_radio_button_selected{
+  width: 162px;
+    background: #33dca3;
+    border-style: solid;
+    border-color: silver;
+    border-width: 1px;
+    border-radius: 5px;
+    transition: all 1s;
+    color: white;
+    height: 26px;
+    font-weight: bold;
+}
+.button_container{
+  text-align: center;
+}
+
+.selected_image{
+  transform:all 1s;
+  webkit-box-shadow: 0px 0px 35px 9px rgb(0 0 0);
+    -moz-box-shadow: 0px 0px 35px 9px rgba(0,217,22,1);
+    box-shadow: 0px 0px 35px 9px rgb(0 0 0);
+}
+.card_heading{
+  text-align: center;
+    margin-left: 86px;
+    margin-bottom: 3rem;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding-bottom: 9px;
+    border-bottom-color: silver;
+}
+#default_desc_btn{
+width:202px;
+}
+#new_desc_btn{
+width:202px;
+}
+.selected_desc{
+  border-color: #4fe669;
+    border-style: groove;
+    border-width: 1px;
+    border-radius: 20px;
+}
+.paragraph_tag{
+  padding:10px
 }
