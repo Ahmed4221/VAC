@@ -18,8 +18,8 @@
             $product_description = $_POST["product_description"];
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
-            $product_category=$_POST['category'];
-            $product_sub_category=$_POST['sub_category'];
+            $product_category="-";//$_POST['category'];
+            $product_sub_category="-";//$_POST['sub_category'];
             $price_per_ctn = $_POST['price_per_ctn'];
             $barcode = $_POST['barcode'];
             $weight = $_POST['weight'];
@@ -44,8 +44,8 @@
             //means product does not exist
             if (mysqli_num_rows($product_exists)==0){
               //if does not exist now adding the product in our databaswe
-              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit` ) 
-                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."' )";
+              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit`,`Approved` ) 
+                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."',0 )";
               if (mysqli_query($conn,$sql)){
                 $message = "New Product added in Inventory";
               }
@@ -295,12 +295,12 @@ margin-top: -.3rem;
 <textarea rows="10" type="text" id="product_description" class="form-control mb-4" placeholder="Enter description" required="" name="product_description" style="
   height: 145px;
 "></textarea>
-<label> Product's Category </label>
+<!-- <label> Product's Category </label>
   <select  id="category" class="form-control mb-4" placeholder="Product Category" required="" name="category">
   </select>
   <label> Product's Sub Category </label>
   <select  id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required="" name="sub_category">
-  </select>
+  </select> -->
   <input type="number" id="price_per_ctn" class="form-control mb-4" min="0" placeholder="Price per CTN ($$$)" required="" name="price_per_ctn"><label> Choose value metric </label>
 
 <select id="product_value" name="product_value" class="form-control mb-4" value="All" required="">

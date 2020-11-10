@@ -67,8 +67,6 @@ function bulk_insertion($product_unit,
                         $product_description,
                         $brand_name,
                         $product_name,
-                        $product_category,
-                        $product_sub_category,
                         $price_per_ctn,
                         $barcode,
                         $weight,
@@ -86,8 +84,8 @@ function bulk_insertion($product_unit,
         $product_description = $product_description;
         $brand_name=$brand_name;
         $product_name=$product_name;
-        $product_category=$product_category;
-        $product_sub_category=$product_sub_category;
+        $product_category="-";//$product_category;
+        $product_sub_category="-";//$product_sub_category;
         $price_per_ctn = $price_per_ctn;
         $barcode = $barcode;
         $weight = $weight;
@@ -103,13 +101,13 @@ function bulk_insertion($product_unit,
 
         $message = "Error";
         //checking if that kind of product already exists in our Database
-        $sql = "SELECT * FROM `Product` where Barcode='".$barcode."' ";
+        $sql = "SELECT * FROM `Product` where Barcode='".$barcode."' and Approved = 1";
         $product_exists = mysqli_query($conn,$sql);
         //means product does not exist
         if (mysqli_num_rows($product_exists)==0){
           //if does not exist now adding the product in our databaswe
-          $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit` ) 
-                  VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."' )";
+          $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit`,`Approved` ) 
+                  VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."',0 )";
           if (mysqli_query($conn,$sql)){
             $message = "New Product added in Inventory";
           }

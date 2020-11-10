@@ -37,8 +37,8 @@ if($_SESSION['loggedIn']){
           $item['Production_Description'],
           $item["Brand_Name"],
           $item['Product_Name'],
-          $item['Category'],
-          $item['Sub_Category'],
+          //"-",//$item['Category'],
+          //"-",//$item['Sub_Category'],
           $item['Price_per_Ctn'],
           $item['Barcode'],
           $item['Weight'],
@@ -380,7 +380,7 @@ margin-top: -.3rem;
     
     
     function download_csv() {
-        var csv = 'Barcode,Product_Name,Brand_Name,Production_Description,Unit_Value,Per_Ctn_Quantity,Price_per_Ctn,Category,Sub_Category,ProductRegion,UAE_ALL,Price,Weight,Length,Width,Height,Quantity\n';
+        var csv = 'Barcode,Product_Name,Brand_Name,Production_Description,Unit_Value,Per_Ctn_Quantity,Price_per_Ctn,ProductRegion,UAE_ALL,Price,Weight,Length,Width,Height,Quantity\n';
         data.forEach(function(row) {
                 csv += row.join(',');
                 csv += "\n";

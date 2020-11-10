@@ -4,7 +4,7 @@ session_start();
 if($_SESSION['loggedIn']){
   $user = $_SESSION["UserEmail"];
   $conn = require '../connection.php';
-  $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' ";
+  $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' and Approved=1 ";
   $barcodes = [];
   $price = [];
   $Qty = [];
