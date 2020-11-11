@@ -11,11 +11,11 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
                 VALUES ('".$_GET['ProductBarcode']."'
                         ,'".$_GET['VendorEmail']."'
                         ,'".$_GET['SuggestedText']."'
-                        ,0)"
+                        ,0)";
         $res = mysqli_query($conn,$sql);
 
 
-        $updateCase = "UPDATE `Vendors_Products` SET Approved=-1 where Barcode =  '".$_GET['ProductBarcode']."' and VendorID =  '".$_GET['VendorEmail']."'";
+        $updateCase = "UPDATE `Vendors_Products` SET Approved=-1 where Barcode =  '".$_GET['ProductBarcode']."' and Vendor_id =  '".$_GET['VendorEmail']."'";
         $res = mysqli_query($conn,$updateCase);
 
         header('Location: view_vendor_product_requests.php');

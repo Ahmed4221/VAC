@@ -1,11 +1,17 @@
 <?php
 session_start();
+$conn = require 'connection.php';
+$barcode = $_GET['incoming_barcode'];
+$user = $_SESSION["UserEmail"];
+$showSuggestedChanegs = "SELECT * FROM `VendorProductFeedback` where Barcode = '".$barcode."' and VendorID = '".$user."' and Resolved=0 ";
+$SuggestedText = mysqli_query($conn,$showSuggestedChanegs);
+$SuggestedChangesfollowingdata = $SuggestedText->fetch_assoc();
 
 //case 1:to show all the previously saved data
 if($_SESSION['loggedIn'] and !isset($_POST["Submit"])){
-$user = $_SESSION["UserEmail"];
-$conn = require 'connection.php';
-$barcode = $_GET['incoming_barcode'];
+
+
+
 $sql = "SELECT * FROM  `Vendors_Products` where Barcode = '".$barcode."' and Vendor_id = '".$user."'";
 $res = mysqli_query($conn,$sql);
 $followingdata = $res->fetch_assoc();
@@ -26,8 +32,8 @@ else if(isset( $_POST["Submit"]) and $_SESSION['loggedIn'] ){
             $product_description = $_POST["product_description"];
             $brand_name=$_POST['brand_name'];
             $product_name=$_POST['product_name'];
-            $product_category=$_POST['category'];
-            $product_sub_category=$_POST['sub_category'];
+            $product_category="-";
+            $product_sub_category="-";
             $price_per_ctn = $_POST['price_per_ctn'];
             $barcode = $_POST['barcode'];
             $weight = $_POST['weight'];
@@ -55,7 +61,7 @@ else if(isset( $_POST["Submit"]) and $_SESSION['loggedIn'] ){
             //adding that product for that vendor
             $sql = "INSERT INTO `Vendors_Products`(`Barcode`, `price_per_ctn`, `weight`,`Quantity` ,`per_ctn_quantity`, `length`, `width`, `height`, `product_region`, `UAE_ALL`, `Vendor_id` , `Approved`) 
                     VALUES ('".$barcode."','".$price_per_ctn."','".$weight."','".$quantity."','".$per_ctn_quantity."','".$length."','".$width."','".$height."',
-                            '".$product_region."','".$UAE_ALL."','".$user."',-1)";
+                            '".$product_region."','".$UAE_ALL."','".$user."',0)";
                     
                     if (mysqli_query($conn,$sql)){
                       if (strpos($message, 'Error') !== false) {
@@ -63,9 +69,14 @@ else if(isset( $_POST["Submit"]) and $_SESSION['loggedIn'] ){
                       }
                       $message = "The product has been edited for you and sent for approval";
 
+                      $Updatecase = "UPDATE `VendorProductFeedback`
+                                               SET  Resolved=1 
+                                               where Barcode = '".$barcode."' and VendorID = '".$user."' ";
+                      mysqli_query($conn,$Updatecase);
+
                       echo "<script>
                       alert('The product has been edited for you and sent for approval');
-                      window.location.href='vendor_dashboard.php';
+                      window.location.href='vendor_dash.php';
                       </script>";
 
                     }
@@ -115,6 +126,9 @@ else{
   <link rel="stylesheet" href="./edit_added_product_page_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="./edit_added_product_page_files/style.css">
+
+
+  <link rel="stylesheet" href="../admin_module/Common_files/custom_css_all.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
@@ -267,7 +281,19 @@ margin-top: -.3rem;
 
 <!-- nav end -->
 
+<div class = "my_custom_card">
+  <div class = "row">
+    <div class = "col-lg-2 col-md-3"></div>
+    <div class = "col-lg-8 col-md-6">
+      <h3 class = "card_heading">Changes Suggested by Admin</h3>
+      <p class = "paragraph_tag" style= "text-align: center;">
 
+      <?php echo $SuggestedChangesfollowingdata['Suggestion']; ?>
+
+      </p>
+    </div>
+  </div>
+  </div>
     <!-- Material input -->
 <div class="row">
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
@@ -298,16 +324,7 @@ margin-top: -.3rem;
 "></textarea>';
   echo $temp;
   
-  echo '<label> Products Category </label>';
-
-
-  $temp = '<select id="category" readonly class="form-control mb-4" value='.$productfollowingdata['Product_Category'].' placeholder='.$productfollowingdata['Product_Category'].' required="" name="category"><option value="Beverages">Beverages</option><option value="Dairy &amp; Eggs">Dairy &amp; Eggs</option><option value="Meats &amp; Seafood">Meats &amp; Seafood</option><option value="Fresh Vegetable &amp; Fruits">Fresh Vegetable &amp; Fruits</option><option value="Personal Care">Personal Care</option><option value="Home Care">Home Care</option><option value="Laundry">Laundry</option><option value="Baby">Baby</option><option value="Snacks">Snacks</option><option value="Bakery">Bakery</option><option value="Sauces &amp; Dressing">Sauces &amp; Dressing</option><option value="Soups &amp; Oil">Soups &amp; Oil</option><option value="Frozen Foods">Frozen Foods</option><option value="Packet &amp; Cereals">Packet &amp; Cereals</option><option value="Pasta &amp; Rice">Pasta &amp; Rice</option><option value="Condiments">Condiments</option><option value="Canned &amp; Jars">Canned &amp; Jars</option><option value="Deli">Deli</option><option value="Food to Go">Food to Go</option><option value="Pet Care">Pet Care</option><option value="Stationary &amp; Misc">Stationary &amp; Misc</option><option value="Tobbacco &amp; Accessories">Tobbacco &amp; Accessories</option><option value="Non Muslim">Non Muslim</option></select>';
-  echo $temp;
   
-  echo '<label> Products Sub Category </label>';
-  
-  $temp = '<select id="sub_category" class="form-control mb-4" readonly value='.$productfollowingdata['productSubCategory'].'  placeholder='.$productfollowingdata['productSubCategory'].' required="" name="sub_category"><option value="Water">Water</option><option value="Soft Drinks">Soft Drinks</option><option value="Juices">Juices</option><option value="Ice Tea &amp; Coffee">Ice Tea &amp; Coffee</option><option value="Energy Drink">Energy Drink</option><option value="Malt Beverages">Malt Beverages</option><option value="Sports Drink">Sports Drink</option><option value="Ice">Ice</option><option value="Sparkling">Sparkling</option><option value="Powdered Beverage">Powdered Beverage</option></select>';
-  echo $temp;
   
   echo '<label> Price Per Ctn </label>';
   $temp = '<input type="number" id="price_per_ctn" class="form-control mb-4" min="0" value='.$followingdata['price_per_ctn'].' placeholder='.$followingdata['price_per_ctn'].' required="" name="price_per_ctn"><label> Choose value metric </label>';

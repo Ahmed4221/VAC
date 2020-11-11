@@ -113,6 +113,11 @@ function bulk_insertion($product_unit,
           }
         }
 
+        //adding option description 
+        $addInDescOption = "INSERT INTO `DescriptionOptions`(`Barcode`, `VendorName`, `Description_added`) 
+        VALUES ('".$barcode."','".$user."','".$product_description."')";
+        $optionSubmission = mysqli_query($conn,$addInDescOption);
+
         
         //checking if product already exists for that vendor
         $check_product_for_vendor = "SELECT * FROM `Vendors_Products` WHERE Barcode = '".$barcode."' and Vendor_id = '".$user."' ";

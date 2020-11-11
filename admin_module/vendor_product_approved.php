@@ -33,7 +33,7 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
             }
         }
         else{echo $outersql;}
-        // header('Location: view_vendor_product_requests.php');
+        header('Location: view_vendor_product_requests.php');
 
 
 

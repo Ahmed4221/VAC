@@ -48,8 +48,19 @@
                       VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."',0 )";
               if (mysqli_query($conn,$sql)){
                 $message = "New Product added in Inventory";
+
+
               }
             }
+            //adding option picture 
+            $addInPicOption = "INSERT INTO `PictureOptions`(`Barcode`, `VendorName`, `Picture`) 
+            VALUES ('".$barcode."','".$user."','".$product_image_target_path."')";
+            $optionSubmission = mysqli_query($conn,$addInPicOption);
+
+            //adding option description 
+            $addInDescOption = "INSERT INTO `DescriptionOptions`(`Barcode`, `VendorName`, `Description_added`) 
+            VALUES ('".$barcode."','".$user."','".$product_description."')";
+            $optionSubmission = mysqli_query($conn,$addInDescOption);
 
             
             //checking if product already exists for that vendor

@@ -16,6 +16,7 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
             $vendor_ids[] = $row['Vendor_id'];
 
             }
+            
 
 
 }
