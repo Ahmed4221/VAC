@@ -6,6 +6,41 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
           //making connection
           $conn = require '../connection.php';
         //   echo "connection made";
+
+        //getting default image from products table
+        $defaultImageQuery = "SELECT * FROM `Product` where Barcode =  '".$_GET['ProductBarcode']."' ";
+        $defaultImageQueryResult = mysqli_query($conn,$defaultImageQuery);
+        $defaultImageQueryResult = $defaultImageQueryResult->fetch_assoc();
+        $defaultProductImage = $defaultImageQueryResult['ImagePath'];
+        $defaultProductDescription = $defaultImageQueryResult['Description'];
+        $defaultProductImageToShow = str_replace("/opt/lampp/htdocs/Freelance","..",$defaultProductImage);
+        // echo $defaultProductImage;
+        // echo $defaultProductDescription;
+
+        //getting  image given by this vendor
+        $customImageQuery = "SELECT * FROM `PictureOptions` where Barcode =  '".$_GET['ProductBarcode']."' and VendorName =  '".$_GET['VendorEmail']."'";
+        $customImageQueryResult = mysqli_query($conn,$customImageQuery);
+        $customImageQueryResult = $customImageQueryResult->fetch_assoc();
+        $customProductImage = $customImageQueryResult['Picture'];
+        $customProductImageToShow = str_replace("/opt/lampp/htdocs/Freelance","..",$customProductImage);
+        // echo $customProductImage;
+
+
+        //getting  description given by this vendor
+        $customDescQuery = "SELECT * FROM `DescriptionOptions` where Barcode =  '".$_GET['ProductBarcode']."' and VendorName =  '".$_GET['VendorEmail']."'";
+        $customDescQueryResult = mysqli_query($conn,$customDescQuery);
+        $customDescQueryResult = $customDescQueryResult->fetch_assoc();
+        $customProductDescription = $customDescQueryResult['Description_added'];
+        // echo $customProductDescription;
+
+        
+
+
+
+
+
+
+        
 }
 else{
   //redirect to the login page
@@ -195,14 +230,14 @@ height: 50px;
             <div class = "col-lg-1 col-md-2"></div>
             <div class = "col-lg-5 col-md-10 ">
               <div class = "img_container">
-                <img id = "default_img_id" class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
+                <img id = "default_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $defaultProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
               </div>
             </div>
 
             <div class = "col-lg-1 col-md-2"></div>
             <div class = "col-lg-5 col-md-10 ">
               <div class = "img_container">
-                <img id = "new_img_id" class="myImg pointer_cursor transform_on_hover" src="./images/my_modal_img.png" alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
+                <img id = "new_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $customProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
               </div>
             </div>
           </div>
@@ -239,17 +274,8 @@ height: 50px;
       <div class = "col-lg-5 col-md-10 ">
         <div class = "para_container">
          <p class = "paragraph_tag" id = "desc_default">
-           Lorem ipsum dolor sit amet, consectetur adipiscing
 
-           Lorem ipsum dolor sit amet, consectetur adipiscing
-
-           Lorem ipsum dolor sit amet, consectetur adipiscing
-
-           Lorem ipsum dolor sit amet, consectetur adipiscing
-
-           Lorem ipsum dolor sit amet, consectetur adipiscing
-
-           Lorem ipsum dolor sit amet, consectetur adipiscing
+          <?php echo $defaultProductDescription;  ?>
          </p>
 
         </div>
@@ -259,17 +285,7 @@ height: 50px;
       <div class = "col-lg-5 col-md-10 ">
         <div class = "para_container">
           <p class = "paragraph_tag" id = "desc_new">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
- 
-            Lorem ipsum dolor sit amet, consectetur adipiscing
- 
-            Lorem ipsum dolor sit amet, consectetur adipiscing
- 
-            Lorem ipsum dolor sit amet, consectetur adipiscing
- 
-            Lorem ipsum dolor sit amet, consectetur adipiscing
- 
-            Lorem ipsum dolor sit amet, consectetur adipiscing
+          <?php echo $customProductDescription;  ?>
           </p>
  
          </div>
@@ -694,7 +710,16 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
     }
     else{
       // Add as many parameters as you want at the end in the same format as before.
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "product_approval_finalized.php?VendorEmail=" + vendor_email + "&ProductBarcode=" + prdocut_barcode + "&";
+      vendor_email = '<?=$_GET['VendorEmail']; ?>' ;
+      barcode = '<?=$_GET['ProductBarcode']; ?>' ;
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) 
+      + "product_approval_finalized.php?VendorEmail=" + vendor_email 
+      + "&ProductBarcode=" + barcode
+      + "&CategorySelected="+ category_selected
+      + "&SubCategorySelected="+ sub_category_selected
+      + "&ImageSelected="+ img_selected
+      + "&DescriptionSelected="+ desc_selected
+       ;
   
     }
   })

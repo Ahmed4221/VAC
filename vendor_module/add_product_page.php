@@ -35,7 +35,7 @@
             $destination_path = getcwd().DIRECTORY_SEPARATOR;
             $destination_path = $destination_path.="products/";
             $product_image_target_path = $destination_path . basename($vendor_product_image_id);
-
+            $product_image_target_path = preg_replace('/\s+/', '_', $product_image_target_path);
 
             $message = "Error";
             //checking if that kind of product already exists in our Database
