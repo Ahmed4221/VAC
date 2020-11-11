@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 session_start();
 
 //case 1:to show all the previously saved data
@@ -93,7 +93,7 @@ else{
     //redirect to the login page
     header('Location: ../index.php'); }
 
-?>
+?> -->
 <!-- saved from url=(0068)file:///Users/rafayabbas/Documents/Personal/VAC/add_product_page.php -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
@@ -115,6 +115,9 @@ else{
   <link rel="stylesheet" href="./edit_added_product_page_files/mdb.min.css">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="./edit_added_product_page_files/style.css">
+
+
+  <link rel="stylesheet" href="../admin_module/Common_files/custom_css_all.css">
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
@@ -267,7 +270,21 @@ margin-top: -.3rem;
 
 <!-- nav end -->
 
-
+<div class = "my_custom_card">
+  <div class = "row">
+    <div class = "col-lg-2 col-md-3"></div>
+    <div class = "col-lg-8 col-md-6">
+      <h3 class = "card_heading">Changes Suggested by Admin</h3>
+      <p class = "paragraph_tag" style= "text-align: center;">Lorem ipsum dolor sit am lorem, consectetur
+        Lorem ipsum dolor sit am lorem, consectetur
+        Lorem ipsum dolor sit am lorem, consectetur
+        Lorem ipsum dolor sit am lorem, consectetur
+        Lorem ipsum dolor sit am lorem, consectetur
+        Lorem ipsum dolor sit am lorem, consectetur
+      </p>
+    </div>
+  </div>
+  </div>
     <!-- Material input -->
 <div class="row">
 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
@@ -298,16 +315,7 @@ margin-top: -.3rem;
 "></textarea>';
   echo $temp;
   
-  echo '<label> Products Category </label>';
-
-
-  $temp = '<select id="category" readonly class="form-control mb-4" value='.$productfollowingdata['Product_Category'].' placeholder='.$productfollowingdata['Product_Category'].' required="" name="category"><option value="Beverages">Beverages</option><option value="Dairy &amp; Eggs">Dairy &amp; Eggs</option><option value="Meats &amp; Seafood">Meats &amp; Seafood</option><option value="Fresh Vegetable &amp; Fruits">Fresh Vegetable &amp; Fruits</option><option value="Personal Care">Personal Care</option><option value="Home Care">Home Care</option><option value="Laundry">Laundry</option><option value="Baby">Baby</option><option value="Snacks">Snacks</option><option value="Bakery">Bakery</option><option value="Sauces &amp; Dressing">Sauces &amp; Dressing</option><option value="Soups &amp; Oil">Soups &amp; Oil</option><option value="Frozen Foods">Frozen Foods</option><option value="Packet &amp; Cereals">Packet &amp; Cereals</option><option value="Pasta &amp; Rice">Pasta &amp; Rice</option><option value="Condiments">Condiments</option><option value="Canned &amp; Jars">Canned &amp; Jars</option><option value="Deli">Deli</option><option value="Food to Go">Food to Go</option><option value="Pet Care">Pet Care</option><option value="Stationary &amp; Misc">Stationary &amp; Misc</option><option value="Tobbacco &amp; Accessories">Tobbacco &amp; Accessories</option><option value="Non Muslim">Non Muslim</option></select>';
-  echo $temp;
   
-  echo '<label> Products Sub Category </label>';
-  
-  $temp = '<select id="sub_category" class="form-control mb-4" readonly value='.$productfollowingdata['productSubCategory'].'  placeholder='.$productfollowingdata['productSubCategory'].' required="" name="sub_category"><option value="Water">Water</option><option value="Soft Drinks">Soft Drinks</option><option value="Juices">Juices</option><option value="Ice Tea &amp; Coffee">Ice Tea &amp; Coffee</option><option value="Energy Drink">Energy Drink</option><option value="Malt Beverages">Malt Beverages</option><option value="Sports Drink">Sports Drink</option><option value="Ice">Ice</option><option value="Sparkling">Sparkling</option><option value="Powdered Beverage">Powdered Beverage</option></select>';
-  echo $temp;
   
   echo '<label> Price Per Ctn </label>';
   $temp = '<input type="number" id="price_per_ctn" class="form-control mb-4" min="0" value='.$followingdata['price_per_ctn'].' placeholder='.$followingdata['price_per_ctn'].' required="" name="price_per_ctn"><label> Choose value metric </label>';
