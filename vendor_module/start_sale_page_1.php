@@ -1,7 +1,14 @@
 <?php
 session_start();
 
+
 if($_SESSION['loggedIn']){
+  if(isset($_GET['SaleSetMessage'])) {
+    $message = $_GET['SaleSetMessage'];
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+
+
   $user = $_SESSION["UserEmail"];
   $conn = require '../connection.php';
   $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' and Approved=1 ";
@@ -106,7 +113,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 
 </ul>
-<a href="file:///Users/rafayabbas/Documents/Personal/VAC/logout.php" class="btn btn-info btn-lg">
+<a href="../logout.php" class="btn btn-info btn-lg">
  <span class="glyphicon glyphicon-log-out"></span> Log out
 </a>
 </div>

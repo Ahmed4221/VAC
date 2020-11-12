@@ -1,30 +1,9 @@
-<?php
-session_start();
-
-if($_SESSION['loggedIn']){
-  $user = $_SESSION["UserEmail"];
-  $conn = require '../connection.php';
-  $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' and Approved=1 ";
-  $barcodes = [];
-  $getting_vendor_products = mysqli_query($conn,$getting_vendor_products_sql);
-  while($row = mysqli_fetch_assoc($getting_vendor_products))
-  {
-    $barcodes[] = $row['Barcode'];
-  }
-  
-  }
-  else{
-      //redirect to the login page
-      header('Location: ../index.php'); }
-
-?>
-
 <!DOCTYPE html>
 <!-- saved from url=(0069)file:///Users/rafayabbas/Documents/Personal/VAC/start_sale_page_2.htm -->
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Set - Sale</title>
+    <title>Start - Sale</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="./start_sale_page_2_files/flip_box.css">
@@ -160,14 +139,14 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 "> Days</div></span>
 </div>
       
-   <input type="number" id="length" step="1" class="form-control mb-4" min="0" required="" placeholder="Discount (%)" style="
+   <input type="number" id="length" step="1" class="form-control mb-4" min="0" max="100" required="" placeholder="Discount (%)" style="
   width: 32%;
   display: block;
   margin-left: auto;
   margin-right: auto;
 " name="sale_discount">
 
-<button type="button" class="btn btn-success start-sale-button " style="
+<button type="button" onclick="start_sale()" class="btn btn-success start-sale-button " style="
                         background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
                         border: 0;
                         background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
@@ -195,6 +174,32 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
     
     <!-- offset area end -->
     <!-- jquery latest version -->
+
+
+
+
+    <!-- This script is to get the barcode, sale days and sale discount value on button click -->
+    <script>
+        function start_sale() {
+            var days = document.querySelector("body > div > div > div > div > div > div > div > div > span > span").innerText;
+            var discount = document.querySelector("#length").value;
+            if (discount == "") {
+                alert("Please enter discount")
+            }
+            else {
+                
+            const queryString = window.location.search;
+
+            const urlParams = new URLSearchParams(queryString);
+
+            const barcode = urlParams.get('barcode')
+
+            console.log(barcode);
+
+            window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "sale_approved.php?barcode=" + barcode + "&daysOfSale=" + days + "&saleDiscount=" + discount;
+            }
+        }
+    </script>
     <script src="./start_sale_page_2_files/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
     <script src="./start_sale_page_2_files/popper.min.js"></script>
