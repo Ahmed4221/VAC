@@ -110,7 +110,7 @@ else{
 <a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.htm">Prodcut Approvals</a>
  
 
-
+ 
 
 
  
@@ -118,8 +118,8 @@ else{
 </li><li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_sales.htm">Current Sales</a>
-<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.htm">Sale Approval Requests</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_sales.php">Current Sales</a>
+<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.php">Sale Approval Requests</a>
  
 
 
@@ -128,7 +128,7 @@ else{
  
 </div>
 </li>
-<a class="nav-link waves-effect waves-light" href="settings.htm">Settings
+<a class="nav-link waves-effect waves-light" href="settings.php">Settings
   </a>
   </li>
 
