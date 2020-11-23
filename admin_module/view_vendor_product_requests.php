@@ -102,87 +102,64 @@ background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
 ">
-<a class="navbar-brand" href="admin_dash.htm">VAC</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-<ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<a class="nav-link waves-effect waves-light" href="admin_dash.htm">Home
-<span class="sr-only">(current)</span>
-</a>
-</li>
+    <a class="navbar-brand" href="admin_dash.php">VAC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link waves-effect waves-light" href="admin_dash.php">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.htm">All Vendors</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.htm">Approval Requests</a>
-
-
-
-
-
-
-</div>
-</li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">All Vendors</a>
+                    <a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Approval Requests</a>
+                </div>
+            </li>
 
 
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_clients.htm">All Clients</a>
-<a class="dropdown-item waves-effect waves-light" href="view_client_requests.htm">Client Approval Requests</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item waves-effect waves-light" href="view_all_clients.php">All Clients</a>
+                    <a class="dropdown-item waves-effect waves-light" href="view_client_requests.php">Client Approval Requests</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item waves-effect waves-light" href="view_all_products.php">All Products</a>
+                    <a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.php">Prodcut Approvals</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item waves-effect waves-light" href="view_all_sales.php">Current Sales</a>
+                    <a class="dropdown-item waves-effect waves-light" href="view_sale_requests.php">Sale Approval Requests</a>
+                </div>
+            </li>
+            <a class="nav-link waves-effect waves-light" href="settings.php">Settings
+            </a>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
 
 
 
-
-
-
-</div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_products.htm">All Products</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.htm">Prodcut Approvals</a>
-
-
-
-
-
-
-</div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_sales.htm">Current Sales</a>
-<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.htm">Sale Approval Requests</a>
-
-
-
-
-
-</div>
-</li>
-<a class="nav-link waves-effect waves-light" href="settings.htm">Settings
-</a>
-</li>
-
-</ul>
-<ul class="navbar-nav ml-auto nav-flex-icons">
-
-
-
-</ul>
-<a href="../logout.php" class="btn btn-info btn-lg">
- <span class="glyphicon glyphicon-log-out"></span> Log out
-</a>
-</div>
+        </ul>
+        <a href="../logout.php" class="btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+    </div>
 </nav>
-
-<!-- nav end -->
 
 <div class="row row-cols-1 row-cols-md-2" style="
 width: 100%;
