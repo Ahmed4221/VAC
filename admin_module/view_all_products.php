@@ -20,7 +20,7 @@ else{
     header('Location: ../index.php'); }
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0098)file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/mydatatable.htm -->
+<!-- saved from url=(0098)file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/mydatatable.php -->
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style="">
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -66,14 +66,14 @@ background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
 ">
-<a class="navbar-brand" href="admin_dash.htm">VAC</a>
+<a class="navbar-brand" href="admin_dash.php">VAC</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
 <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link waves-effect waves-light" href="admin_dash.htm">Home
+<a class="nav-link waves-effect waves-light" href="admin_dash.php">Home
 <span class="sr-only">(current)</span>
 </a>
 </li>
@@ -81,8 +81,8 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.htm">All Vendors</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.htm">Approval Requests</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">All Vendors</a>
+<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Approval Requests</a>
 
 
 
@@ -97,8 +97,8 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 <li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_clients.htm">All Clients</a>
-<a class="dropdown-item waves-effect waves-light" href="view_client_requests.htm">Client Approval Requests</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_clients.php">All Clients</a>
+<a class="dropdown-item waves-effect waves-light" href="view_client_requests.php">Client Approval Requests</a>
 
 
 
@@ -109,7 +109,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 </li><li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_products.htm">All Products</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_products.php">All Products</a>
 <a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.php">Prodcut Approvals</a>
 
 
@@ -121,8 +121,8 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 </li><li class="nav-item dropdown">
 <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_sales.htm">Current Sales</a>
-<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.htm">Sale Approval Requests</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_sales.php">Current Sales</a>
+<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.php">Sale Approval Requests</a>
 
 
 
@@ -131,7 +131,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 </div>
 </li>
-<a class="nav-link waves-effect waves-light" href="settings.htm">Settings
+<a class="nav-link waves-effect waves-light" href="settings.php">Settings
 </a>
 </li>
 

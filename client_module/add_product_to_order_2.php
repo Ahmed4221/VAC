@@ -1,25 +1,26 @@
+
+
+
 <?php
 session_start();
-
-if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin")) {
-    // echo $_SESSION["UserEmail"], "    has logged in \n";
-    // echo "<br>";
-    // echo "Usertype is   : ",$_SESSION["UserType"];
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
+    echo $_SESSION["UserEmail"], "    has logged in \n";
+    echo "<br>";
+    echo "Usertype is   : ",$_SESSION["UserType"];
 }
-else{
-    //redirect to the login page
-    header('Location: ../index.php'); }
+
 
 
 
 ?>
+
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 <!-- saved from url=(0072)file:///Users/rafayabbas/Documents/Personal/VAC/see_order_individual.php -->
 
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin - Dashboard</title>
+    <title>Confirm Price</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -46,7 +47,9 @@ else{
     
     <!-- modernizr css -->
     <script src="./admin_dash_files/modernizr-2.8.3.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <!-- Footer files -->
     
@@ -64,105 +67,197 @@ else{
   background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
   ">
 <a class="navbar-brand" href="admin_dash.php">VAC</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="true" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+<div class="navbar-collapse collapse in show" id="navbarSupportedContent-333" aria-expanded="true" style="">
 <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<a class="nav-link waves-effect waves-light" href="admin_dash.php">Home
+<li class="nav-item active" style="
+    width: 70px;
+">
+<a class="nav-link waves-effect waves-light" href="admin_dash.htm">Home
 <span class="sr-only">(current)</span>
 </a>
 </li>
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</a>
+<li class="nav-item dropdown" style="
+    width: 83px;
+">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+    width: 70px;
+">Orders</a>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">All Vendors</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Approval Requests</a>
+<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">Order (In Progress)</a>
+<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Order Sent For Confirmation</a>
  
 
 
 
 
  
-</div>
+<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Order Pending Confirmation</a><a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Placed Order Status</a></div>
 </li>
 
 
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_clients.php">All Clients</a>
-<a class="dropdown-item waves-effect waves-light" href="view_client_requests.php">Client Approval Requests</a>
- 
 
 
+  
 
+<li class="nav-item">
+<a class="nav-link waves-effect waves-light" href="settings.htm">Sale</a>
+</li></ul>
 
- 
-</div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_products.php">All Products</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.php">Prodcut Approvals</a>
- 
-
- 
-
-
- 
-</div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_sales.php">Current Sales</a>
-<a class="dropdown-item waves-effect waves-light" href="view_sale_requests.php">Sale Approval Requests</a>
- 
-
-
-
-
- 
-</div>
-</li>
-<a class="nav-link waves-effect waves-light" href="settings.php">Settings
-  </a>
-  </li>
-
-</ul>
-<ul class="navbar-nav ml-auto nav-flex-icons">
-
-
-
-</ul>
-<a href="../logout.php" class="btn btn-info btn-lg">
+<a href="../logout.php" class="btn btn-info btn-lg" style="
+    float: right;
+    height: 39px;
+    font-size: 13px;
+    margin-top: 0.45%;
+">
    <span class="glyphicon glyphicon-log-out"></span> Log out
  </a>
 </div>
 </nav>
 
+        
+
 <!-- nav end -->
 
-<div class="row row-cols-1 row-cols-md-2" style="
-  width: 100%;
-  height: 200px;
-">
+<!-- Products Start -->
+
+
+<div class="my_custom_card">
+
+  <div class="container">
+  <div class="row mt-20">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <p style="text-align: center;border-bottom: silver;border-bottom-style: groove;border-bottom-width: 1px;padding-bottom: 31px;">The number of units which you require are not
+        more than the units available for this price.<br> Please 
+        see below the price on which you can get required additional 
+        units.
+      </p>
+    </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-md-2"></div>
+    <div class="col-md-4" style="
+      text-align: center;
+  ">
+      <p>No. of Units</p>
+      <p style="
+      border-top-style: groove;
+      border-top-width: 1px;
+      border-top-color: #fff5f5;
+      width: 37%;
+      margin-left: auto;
+      margin-right: auto;
+  ">20</p>
+      <p style="">10</p>
+    </div>
+    <div class="col-md-4" style="
+      text-align: center;
+  ">
+      <p>Price per Unit</p>
+      <p style="
+      border-top-style: groove;
+      border-top-width: 1px;
+      border-top-color: #fff5f5;
+      width: 37%;
+      margin-left: auto;
+      margin-right: auto;
+  "><span id="price-per-unit">200</span> $</p>
+      <p><span id="price-per-unit">230</span> $</p>
+    </div>
+  </div>
+
+  <div class="row mt-20">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button type="button" class="btn-grad2" id="confirm_button">Confirm</button>
+    </div>
+  </div>
 </div>
+</div>
+
+
+<!-- Product End -->
+
+
+
+
+
+<!-- Place order Button -->
+<!-- <div class= "my_custom_card">
+  <div class = "container"> 
+    <div class="row mt-20">
+      
+      <button class = "btn-grad" onclick = "place_order_clicked(this)"> Place Order </button>
+
+    </div>
+  </div>
+</div> -->
+
+
+  <!-- Place Order Button End -->
+
+
 
 
 
 <!--/.Navbar -->
 
 
- 
+<!-- Order Placed Script -->
+<script>
+  
+   $(document).ready(function() {
+    function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}
+////////// Initializing Global Variables ///////////
+container_selected = GetURLParameter("container_selected");
 
+cbm = parseInt(GetURLParameter("allowed_cbm")); 
+current_cbm = parseInt(GetURLParameter("current_cbm"));
+individual_cbm = parseInt(GetURLParameter("individual_cbm"));
+quantity = parseInt(GetURLParameter("quantity"));
+product_id = GetURLParameter("product_id");
 
+console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,product_id, " ", container_selected);
+//////////// Global Variables End /////////////////
+    
 
+ });
 
+ </script>
+<script>
+  $(document).ready(function() {
+    $("#confirm_button").click(function() {
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
+        + "order_placed.php?" 
+        + "&allowed_cbm=" + cbm
+        + "&individual_cbm=" + individual_cbm
+        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
+        + "&container_selected=" + container_selected
+        + "&quantity=" + quantity
+        + "&product_id=" + product_id;
+    })
+  });
+</script>
 <!-- Footer -->
+
+
 
 <footer class="container-fluid bg-grey py-5" style="
     background: aliceblue;
@@ -198,6 +293,7 @@ else{
   </div>
   
 
+  
 
   <!-- Footer End -->
   <!-- jquery latest version -->
@@ -221,31 +317,13 @@ else{
   <script src="./admin_dash_files/scripts.js"></script>
 
   <!-- Script for adding button and doing action on Status -->
-  <!-- <script>
-      $( document ).ready(function() {
-  console.log( "ready!" );
-
-      console.log(document.getElementById("order_status").innerText);
-      var status = document.getElementById("order_status").innerText;
-      var status_container = document.getElementById("order_status_container").innerHTML;
-      if(status == "Pending Vendor Approval")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;"><button type="submit" value ="approve" name="approve_btn" class="btn btn-outline-success waves-effect" style="margin-left: 30px;margin-right: 30px;">Approve</button>';
-          status_container += '<button type="submit" value = "disapprove" name="disapprove_btn" class="btn btn-outline-danger waves-effect">Disapprove</button> </form>';
-          
-      }
-      else if(status == "Pending Client Confirmation")
-      {
-          
-      }
-      else if(status == "Pending Shipment Update")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;" ><button type="submit" value="add_shipment" name="add_shipment_btn" class="btn btn-outline-primary waves-effect" style="margin-left: 30px;margin-right: 30px;" >Add Shipment Details</button> </form>';
-      }
-      document.getElementById("order_status_container").innerHTML = status_container;
-  });
-  </script> -->
-
+  
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+    </script>
+    
 
 <!-- Footer  -->
 
