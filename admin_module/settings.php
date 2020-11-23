@@ -1,22 +1,17 @@
-
-<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.php -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>";
-  // echo "Usertype is   : ",$_SESSION["UserType"];
-}
-else{
-  //redirect to the login page
-  header('Location: index.php'); }
+<?php
 
 
 
-?&gt;
+?>
+<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 
 <!-- saved from url=(0072)file:///Users/rafayabbas/Documents/Personal/VAC/see_order_individual.php -->
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Datatable - srtdash</title>
+  <title>Add Value Metric</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -135,7 +130,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
 
 
 </ul>
-<a href="file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/logout.php" class="btn btn-info btn-lg">
+<a href="../logout.php" class="btn btn-info btn-lg">
  <span class="glyphicon glyphicon-log-out"></span> Log out
 </a>
 </div>
@@ -153,7 +148,69 @@ height: 200px;
 
 <!--/.Navbar -->
 
+<div class="my_custom_card">
 
+  <div class="container">
+    <div class="card_heading">
+      <h3> Add New Value Metric </h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="add_metric_container" style="text-align: center;">
+  <span style="
+    display: block;
+">        
+<label style="
+    display: inline-block;
+    margin-right: 5vw;
+"> Add new Metric </label><label style="
+    display: inline-block;
+"> Add new Symbol </label>
+    </span>
+    
+          <input type="text" id="metric_name" class="form-control mb-4" name="new_metric" style="
+    display: inline-block;
+    width: 45%;
+">
+          <input type="text" id="metric_symbol" class="form-control mb-4" name="new_metric" style="
+    display: inline-block;
+    width: 45%;
+">
+          
+          <button class="custom_button btn btn-success" id="default_img" onclick="metric_added()" style="
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+">Add new Metric</button>
+        </div>
+      </div>
+
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="delete_metric_container" style="text-align: center;">
+          <label> Delete existing Metric </label>
+          <select id="metric_list" class="form-control mb-4" placeholder="Metric" name="metric_list">
+          <?php
+          $conn = require '../connection.php';
+          $getMetrics = "SELECT * FROM `Value_Metrics` ";
+          $result = mysqli_query($conn,$getMetrics);
+          while ($row = mysqli_fetch_array($result)){
+          echo '<option value='.$row['Symbol'].'>'.$row['Symbol'].'</option>';
+          }
+          
+          ?>
+          </select>
+          <button class="custom_button btn btn-danger" id="default_img" onclick="metric_deleted()">Delete Selected Metric</button>
+
+        </div>
+      </div>
+    </div>
+    
+ </div>
+
+
+</div>
 
 
 
@@ -194,7 +251,40 @@ height: 200px;
    </div>
 </div>
 
+<script>
+  function metric_added()
+  {
+    var metric_to_add = document.querySelector("#metric_name").value;
+    var symbol_to_add = document.querySelector("#metric_symbol").value;
+    if (metric_to_add == "")
+    {
+      alert("No metric provided. Kindly provide a metric.");
+    }
+    else if(symbol_to_add == "")
+    {
+      alert("No symbol Added. Kindly provide a symbol.");
+    }
+    else{
 
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "metric_added.php?metricName=" + metric_to_add + "&metricSymbol=" + symbol_to_add;
+    }
+  }
+  function metric_deleted(){
+    var metric_to_delete = document.querySelector("#metric_list").value;
+    if (metric_to_delete == "")
+    {
+      alert("No metric selected. Kindly select a metric.")
+    }
+    else{
+      if(confirm("Are you sure you want to delete this metric '"+metric_to_delete+"' ?"))
+      {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "metric_deleted.php?MetricToDelete=" + metric_to_delete ;
+  
+      }
+
+    }
+  }
+</script>
 
 <!-- Footer End -->
 <!-- jquery latest version -->
