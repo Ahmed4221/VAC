@@ -9,7 +9,7 @@ if($_SESSION['TemporaryloggedIn'] ){
 
               
               $email =  $_SESSION["UserEmail"];
-            // //   echo $email;
+            //   echo $email;
               $sql = "SELECT * from `VendorFeedback` where VendorID = '$email'  ";
               
               $res = mysqli_query($conn,$sql);
@@ -244,7 +244,7 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
           
           <!-- page title area end -->
           <div class="main-content-inner">
-          <div class="row"><!-- Dark table start -->
+          <div class="row"><!-- Dark table start
                   <div class="col-12 mt-5">
                       <div class="card">
                         <div class="card-body" style="
@@ -269,11 +269,11 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
                                                
     
                                      <tr role="row" class="odd">
-                                              <td tabindex="0" class="sorting_1">hussain</td>
-                                              <td class="email_table">h@h.com</td>
-                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_TradeLisence_Screenshot_from_2020-02-26_10-52-00.png" download="TradeLisence" data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src="../vendor_module/uploads/h@h.com_TradeLisence_Screenshot_from_2020-02-26_10-52-00.png" alt=""></a></td>
-                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_VAT_Screenshot_from_2020-03-20_17-54-42.png download=" vat"="" data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src="../vendor_module/uploads/h@h.com_VAT_Screenshot_from_2020-03-20_17-54-42.png" alt=""></a></td>
-                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_PASSPORT_Screenshot_from_2020-06-17_22-58-59.png download=" passport="" emirate_id"data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src="../vendor_module/uploads/h@h.com_PASSPORT_Screenshot_from_2020-06-17_22-58-59.png" alt=""></a></td>
+                                              <td tabindex="0" class="sorting_1"><?php echo $coming_name; ?></td>
+                                              <td class="email_table"><?php echo $coming_email; ?></td>
+                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_TradeLisence_Screenshot_from_2020-02-26_10-52-00.png" download="TradeLisence" data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src=<?php echo $trade; ?> alt=""></a></td>
+                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_VAT_Screenshot_from_2020-03-20_17-54-42.png download=" vat"="" data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src=<?php echo $vat; ?> alt=""></a></td>
+                                              <td class=""> <a href="../vendor_module/uploads/h@h.com_PASSPORT_Screenshot_from_2020-06-17_22-58-59.png download=" passport="" emirate_id"data-popup-open="popup-certificate" class="certificate-image"><img class="popup-certificate-image" src=<?php echo $passport; ?> alt=""></a></td>
                                               
                                           </tr></tbody>
                                   </table></div></div></div></div></div></div></div></div></div></div></div></div>

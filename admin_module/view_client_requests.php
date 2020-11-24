@@ -214,7 +214,7 @@ height: 50px;
                                           <td class="">'.$followingdata['Email'].'</td>
                                           <td class="">'.$followingdata['Email'].'</td>
                                           <td class=""> <button class = "btn btn-success custom_button" style = "margin-right: 5px;" onClick = "approved(this.parentNode.parentNode.children[1].innerText)">Approve</button><button class = "btn btn-danger custom_button" onClick = "dissapproved(this.parentNode.parentNode.children[1].innerText)">Disapprove</button></td>
-                                          <td class=""><button type="button" onclick = "location.href = 'suggest_edit_client.php'+'?'+this.parentNode.parentNode.children[1].innerText " class="btn btn-primary custom_button">Suggest Edit</button></td>
+                                          <td class=""><button type="button" onclick = "location.href = suggest_edit_client.php+'.'?'.'+this.parentNode.parentNode.children[1].innerText " class="btn btn-primary custom_button">Suggest Edit</button></td>
                                         </tr>';
                                           echo $output;}
       

@@ -156,6 +156,82 @@
 
 <!-- nav end -->
   
+<!-- Carousel -->
+
+<div class="container" style="
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    height: 31vw;
+">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="
+    width: 100vw;
+    height: 31vw;
+    padding: 0;
+">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+      
+      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" style="height: 31vw;font-family: 'Glyphicons Halflings';">
+      <div class="item">
+                <h1 style="
+            position: absolute;
+            top: 68%;
+            z-index: 2;
+            left: 24%;
+            color: #f8f8ffb5;
+            font-size: 4vw;
+        "> Don’t worry, we have it </h1>
+        <img src="./images/banner_1.jpg" alt="Los Angeles" style="">
+        
+      </div>
+
+      
+    
+      <div class="item">
+        <h1 style="
+    position: absolute;
+    top: 56%;
+    z-index: 2;
+    left: 25%;
+    color: #f8f8ffb5;
+    font-size: 4vw;
+"> Expect more. Pay less </h1>
+        <img src="./images/banner_2.jpg" alt="New york" style="width:100%;">
+      </div>
+      <div class="item active">
+        <h1 style="
+    position: absolute;
+    top: 68%;
+    z-index: 2;
+    left: 26%;
+    color: #f8f8ffb5;
+    font-size: 4vw;
+"> Discover the difference </h1>
+        <img src="./images/banner_3.jpg" alt="New york" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- Carousel End-->
     <!-- page container area start -->
 
     <div class="products-to-sale" style="
@@ -167,13 +243,13 @@
       <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
         <div class="flip-box" style=" border: 0;">
             <div class="flip-box-inner">
-              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('. $ImageToShow.');background-size: cover;border-radius: 17px;">
+              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_1.jpg');background-size: cover;border-radius: 17px;">
                 <!-- Insert The product Name here-->
                 <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
               <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('.$ImageToShow.') ; background-size: cover;border-radius: 17px;">
+              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_1.jpg') ; background-size: cover;border-radius: 17px;">
                 <!-- Insert barcode after  sign in the href -->
-                <a href="file:///Users/rafayabbas/Documents/Personal/VAC/vendor_module/start_sale_page_2.php?barcode=%27.$barcodes[$counter].%27"> 
+                <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
                     <button type="button" class="btn btn-success start-sale-button" style="
                     margin-top: 27%;
                     background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
@@ -187,6 +263,131 @@
             </div>
           </div>
     </div>
+
+    <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+      <div class="flip-box" style=" border: 0;">
+          <div class="flip-box-inner">
+            <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_2.jpg');background-size: cover;border-radius: 17px;">
+              <!-- Insert The product Name here-->
+              <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
+            <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
+            <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_2.jpg') ; background-size: cover;border-radius: 17px;">
+              <!-- Insert barcode after  sign in the href -->
+              <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+                  <button type="button" class="btn btn-success start-sale-button" style="
+                  margin-top: 27%;
+                  background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
+                  border: 0;
+                  background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+                  color: whitesmoke;
+                  border-radius: 25px;
+              ">View Product</button>
+              </a>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+  <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+    <div class="flip-box" style=" border: 0;">
+        <div class="flip-box-inner">
+          <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_3.jpg');background-size: cover;border-radius: 17px;">
+            <!-- Insert The product Name here-->
+            <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
+          <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
+          <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_3.jpg') ; background-size: cover;border-radius: 17px;">
+            <!-- Insert barcode after  sign in the href -->
+            <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+                <button type="button" class="btn btn-success start-sale-button" style="
+                margin-top: 27%;
+                background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
+                border: 0;
+                background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+                color: whitesmoke;
+                border-radius: 25px;
+            ">View Product</button>
+            </a>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+  <div class="flip-box" style=" border: 0;">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_4.jpg');background-size: cover;border-radius: 17px;">
+          <!-- Insert The product Name here-->
+          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
+        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
+        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_4.jpg') ; background-size: cover;border-radius: 17px;">
+          <!-- Insert barcode after  sign in the href -->
+          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+              <button type="button" class="btn btn-success start-sale-button" style="
+              margin-top: 27%;
+              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
+              border: 0;
+              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+              color: whitesmoke;
+              border-radius: 25px;
+          ">View Product</button>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+  <div class="flip-box" style=" border: 0;">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_5.jpg');background-size: cover;border-radius: 17px;">
+          <!-- Insert The product Name here-->
+          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
+        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
+        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_5.jpg') ; background-size: cover;border-radius: 17px;">
+          <!-- Insert barcode after  sign in the href -->
+          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+              <button type="button" class="btn btn-success start-sale-button" style="
+              margin-top: 27%;
+              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
+              border: 0;
+              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+              color: whitesmoke;
+              border-radius: 25px;
+          ">View Product</button>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+  <div class="flip-box" style=" border: 0;">
+      <div class="flip-box-inner">
+        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_1.jpg');background-size: cover;border-radius: 17px;">
+          <!-- Insert The product Name here-->
+          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
+        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
+        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_1.jpg') ; background-size: cover;border-radius: 17px;">
+          <!-- Insert barcode after  sign in the href -->
+          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+              <button type="button" class="btn btn-success start-sale-button" style="
+              margin-top: 27%;
+              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
+              border: 0;
+              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
+              color: whitesmoke;
+              border-radius: 25px;
+          ">View Product</button>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
+   
        
     </div>
     

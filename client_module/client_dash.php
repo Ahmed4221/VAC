@@ -1,10 +1,10 @@
 <?php
 session_start();
-// if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-//     echo $_SESSION["UserEmail"], "    has logged in \n";
-//     echo "<br>";
-//     echo "Usertype is   : ",$_SESSION["UserType"];
-// }
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
+    echo $_SESSION["UserEmail"], "    has logged in \n";
+    echo "<br>";
+    echo "Usertype is   : ",$_SESSION["UserType"];
+}
 
 
 
@@ -86,7 +86,8 @@ session_start();
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item waves-effect waves-light" href="order_in_progress.php">Order (In Progress)</a>
             <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php">Order Sent For Confirmation</a>
-            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a><a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Placed Order Status</a>
+            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a>
+            <a class="dropdown-item waves-effect waves-light" href="see_order_status.php">Placed Order Status</a>
           </div>
       </li>
       <li class="nav-item">
@@ -309,6 +310,13 @@ $( document ).ready(function() {
     console.log("suggested_region : " , suggested_region);
     console.log("export_authorization : " , export_authorization);
     console.log("barcode : " , barcode);
+    window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
+        + "show_searched_products.php?" 
+        + "&category=" + category
+        + "&sub_category=" + sub_category
+        + "&suggested_region=" + suggested_region
+        + "&export_authorization=" + export_authorization
+        + "&barcode=" + barcode;
   }
 })
 

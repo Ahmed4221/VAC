@@ -57,7 +57,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
   <!--Navbar -->
-  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
+ <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
   background-color: #33b5e5 !important;
   /* margin-bottom: 70px !important; */
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
@@ -66,57 +66,47 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
   background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
   background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
   ">
-<a class="navbar-brand" href="admin_dash.htm">VAC</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="true" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="navbar-collapse collapse in show" id="navbarSupportedContent-333" aria-expanded="true" style="">
-<ul class="navbar-nav mr-auto">
-<li class="nav-item active" style="
-    width: 70px;
-">
-<a class="nav-link waves-effect waves-light" href="admin_dash.htm">Home
-<span class="sr-only">(current)</span>
-</a>
-</li>
+  <a class="navbar-brand" href="client_dash.php">VAC</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse in show" id="navbarSupportedContent-333" aria-expanded="true" style="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" style="
+      width: 70px;
+      ">
+        <a class="nav-link waves-effect waves-light" href="client_dash.php">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
 
-<li class="nav-item dropdown" style="
-    width: 83px;
-">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
-    width: 70px;
-">Orders</a>
-<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-<a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">Order (In Progress)</a>
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Order Sent For Confirmation</a>
- 
+      <li class="nav-item dropdown" style="
+      width: 83px;
+      ">
+          <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+          width: 70px;
+          ">Orders</a>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+            <a class="dropdown-item waves-effect waves-light" href="order_in_progress.php">Order (In Progress)</a>
+            <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php">Order Sent For Confirmation</a>
+            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a>
+            <a class="dropdown-item waves-effect waves-light" href="see_order_status.php">Placed Order Status</a>
+          </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="see_sale.php">Sale</a>
+      </li>
+    </ul>
 
-
-
-
- 
-<a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Order Pending Confirmation</a><a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Placed Order Status</a></div>
-</li>
-
-
-
-
-
-  
-
-<li class="nav-item">
-<a class="nav-link waves-effect waves-light" href="settings.htm">Sale</a>
-</li></ul>
-
-<a href="../logout.php" class="btn btn-info btn-lg" style="
-    float: right;
-    height: 39px;
-    font-size: 13px;
-    margin-top: 0.45%;
-">
-   <span class="glyphicon glyphicon-log-out"></span> Log out
- </a>
-</div>
+    <a href="../logout.php" class="btn btn-info btn-lg" style="
+        float: right;
+        height: 39px;
+        font-size: 13px;
+        margin-top: 0.45%;
+    ">
+      <span class="glyphicon glyphicon-log-out"></span> Log out
+    </a>
+  </div>
 </nav>
 
 <!-- nav end -->

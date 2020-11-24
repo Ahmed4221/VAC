@@ -198,7 +198,7 @@ height: 50px;
                                   <tbody>
                                    <?php
                                       $counter = 0;
-                                          $sql = "Select * from `Vendor`";
+                                          $sql = "Select * from `Vendor` where Approved=1";
                                           $res = mysqli_query($conn,$sql);
                                         //   $followingdata = $res->fetch_assoc();
                                         while($followingdata = mysqli_fetch_assoc($res)){
