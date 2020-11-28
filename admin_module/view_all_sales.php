@@ -1,22 +1,28 @@
+<?php
+session_start();
 
-<!-- saved from url=(0075)file:///Users/rafayabbas/Documents/Personal/VAC/admin_module/admin_dash.htm -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>";
-  // echo "Usertype is   : ",$_SESSION["UserType"];
+if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
+//   echo "Usertype is   : ",$_SESSION["UserType"];
+          //making connection
+          $conn = require '../connection.php';
+        //   echo "connection made";
+        $sql = "SELECT * FROM `SaleOnProducts` WHERE `Approved` = 1 AND EndDate >= CURDATE()";
+        $query = mysqli_query($conn,$sql);
+        
 }
 else{
   //redirect to the login page
-  header('Location: index.php'); }
+  header('Location: ../index.php'); }
 
 
-
-?&gt;
-
+?>
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 <!-- saved from url=(0072)file:///Users/rafayabbas/Documents/Personal/VAC/see_order_individual.php -->
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Datatable - srtdash</title>
+  <title>View All Sales</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -162,28 +168,27 @@ height: 200px;
                                       <tr role="row">
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Vendor ID</th>
                                           <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Sale ID</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Position: activate to sort column ascending">Sale Duration</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Position: activate to sort column ascending">Start Date</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Position: activate to sort column ascending">End Date</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Office: activate to sort column ascending">Discount</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Age: activate to sort column ascending">Product ID</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Start Date: activate to sort column ascending">Approve/Disapprove</th>
+                                          
                                       </tr>
                                   </thead>
                                   <tbody>
                                   <?php
                                       $counter = 0;
-                                      foreach ($barcodes as $barcode){
-                                          $sql = "Select * from `Product` where Barcode = '".$barcode."'";
-                                          $res = mysqli_query($conn,$sql);
-                                          $followingdata = $res->fetch_assoc();
-
+                                      while($row = mysqli_fetch_assoc($query)){
+                                          $duration = $row['Vendor_id'];
                                           $output = '                                        
                                           <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Product_Name'].'</td>
-                                          <td class="">'.$barcode.'</td>
-                                          <td class="">'.$barcode.'</td>
-                                          <td class="">'.$followingdata['Product_Category'].'</td>
-                                          <td class="">'.$followingdata['productSubCategory'].'</td>
-                                          <td class=""><button class = "btn btn-success custom_button" style = "margin-right: 5px;" onClick = "approved(this.parentNode.parentNode.children[1].innerText)">Approve</button><button class = "btn btn-danger custom_button" onClick = "dissapproved(this.parentNode.parentNode.children[1].innerText)">Disapprove</button></td>
+                                          <td tabindex="0" class="sorting_1">'.$row['Vendor_id'].'</td>
+                                          <td class="">'.$row['SaleID'].'</td>
+                                          <td class="">'.$row['StartDate'].'</td>
+                                          <td class="">'.$row['EndDate'].'</td>
+                                          <td class="">'.$row['DiscountPercentage'].'</td>
+                                          <td class="">'.$row['Barcode'].'</td>
+                                         
                                       </tr>';
                                           $counter = $counter+1;
                                           echo $output;
