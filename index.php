@@ -18,6 +18,7 @@
           $result = mysqli_query($conn,$sql);
           if (mysqli_num_rows($result)==0) {
             
+            #checking if vendor account is under set-up
             $sql_vendorchange = "SELECT * from `Vendor` where Email='".$email."' and Password ='".$password."' and Approved=-1 ";
             $result = mysqli_query($conn,$sql_vendorchange);
             if (mysqli_num_rows($result)>0){
@@ -25,6 +26,16 @@
               $_SESSION["UserEmail"] = $email;
               $_SESSION['TemporaryloggedIn'] = true;
               header("Location: vendor_module/suggested_changes_vendor_side.php");
+            }
+
+            #checking if client account is during set-up
+            $sql_vendorchange = "SELECT * from `Client` where Email='".$email."' and Password ='".$password."' and Approved=-1 ";
+            $result = mysqli_query($conn,$sql_vendorchange);
+            if (mysqli_num_rows($result)>0){
+              session_start();
+              $_SESSION["UserEmail"] = $email;
+              $_SESSION['ClientTemporaryloggedIn'] = true;
+              header("Location: client_module/suggested_changes_client_side.php");
             }
 
 

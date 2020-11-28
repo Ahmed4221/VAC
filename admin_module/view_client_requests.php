@@ -21,7 +21,7 @@ else{
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>View all Vendors</title>
+  <title>View Client Requests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -190,31 +190,24 @@ height: 50px;
                                       <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Client Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Office: activate to sort column ascending">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Age: activate to sort column ascending">Agreed Commission</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Start Date: activate to sort column ascending">Variable Commision</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="salary: activate to sort column ascending">Change Status</th>
-                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Suggest Edits</th>
+
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 10%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Approve/Disapprove</th>
                                         </tr>
                                   </thead>
                                   <tbody>
                                    <?php
                                       $counter = 0;
-                                          $sql = "Select * from `Vendor`";
+                                          $sql = "Select * from `Client` where Approved = 0";
                                           $res = mysqli_query($conn,$sql);
                                         //   $followingdata = $res->fetch_assoc();
                                         while($followingdata = mysqli_fetch_assoc($res)){
                                            
-                                          $followingdata['Trade_Lisence'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Trade_Lisence']);
-                                          $followingdata['VATForm'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['VATForm']); 
-                                          $followingdata['Passport/Emirateid'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Passport/Emirateid']);  
                                           $output = '                                        
                                           <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Name'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class=""> <button class = "btn btn-success custom_button" style = "margin-right: 5px;" onClick = "approved(this.parentNode.parentNode.children[1].innerText)">Approve</button><button class = "btn btn-danger custom_button" onClick = "dissapproved(this.parentNode.parentNode.children[1].innerText)">Disapprove</button></td>
-                                          <td class=""><button type="button" onclick = "location.href = suggest_edit_client.php+'.'?'.'+this.parentNode.parentNode.children[1].innerText " class="btn btn-primary custom_button">Suggest Edit</button></td>
+                                          <td tabindex="0" class="sorting_1">'.$followingdata['FirstName'].'</td>
+                                          <td tabindex="0" class="sorting_1">'.$followingdata['Email'].'</td>
+
+                                          <td class=""> <button class = "btn btn-success custom_button" style = "margin-right: 5px;" onClick = "approved(this.parentNode.parentNode.children[1].innerText)">Set Commision</button></td>
                                         </tr>';
                                           echo $output;}
       
@@ -279,10 +272,8 @@ height: 50px;
     
 
     function approved(vendor_email) {
-        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "client_approved.php?" + vendor_email;
-    }
-    function dissapproved(vendor_email) {
-        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "client_disapproved.php?" + vendor_email;
+        // alert (vendor_email);
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "client_commision_setting.php?ClientEmail=" + vendor_email;
     }
     </script>
 

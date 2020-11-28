@@ -21,7 +21,7 @@ else{
 
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>View all Vendors</title>
+  <title>View all Clients</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
   <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -200,20 +200,17 @@ height: 50px;
                                   <tbody>
                                    <?php
                                       $counter = 0;
-                                          $sql = "Select * from `Vendor`";
+                                          $sql = "Select * from `Client` where Approved=1";
                                           $res = mysqli_query($conn,$sql);
                                         //   $followingdata = $res->fetch_assoc();
                                         while($followingdata = mysqli_fetch_assoc($res)){
-                                           
-                                          $followingdata['Trade_Lisence'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Trade_Lisence']);
-                                          $followingdata['VATForm'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['VATForm']); 
-                                          $followingdata['Passport/Emirateid'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['Passport/Emirateid']);  
+ 
                                           $output = '                                        
                                           <tr role="row" class="odd">
-                                          <td tabindex="0" class="sorting_1">'.$followingdata['Name'].'</td>
+                                          <td tabindex="0" class="sorting_1">'.$followingdata['FirstName'].'</td>
                                           <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
-                                          <td class="">'.$followingdata['Email'].'</td>
+                                          <td class="">'.$followingdata['AgreedCommision'].'</td>
+                                          <td class="">'.$followingdata['HiddenCommision'].'</td>
                                       </tr>';
                                           echo $output;}
       
