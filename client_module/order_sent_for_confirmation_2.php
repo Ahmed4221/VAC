@@ -118,73 +118,77 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <div class="my_custom_card">
 
-    <div class="page-container sbar_collapsed">
-         
-      <!-- main content area start -->
-      <div class="main-content" style="min-height: 589px;">
-          <!-- header area start -->
-          
-          <!-- header area end -->
-          <!-- page title area start -->
-          
-          <!-- page title area end -->
-          <div class="main-content-inner">
-              <div class="row"><!-- Dark table start -->
-                  <div class="col-12 mt-5">
-                      <div class="card">
-                          <div class="card-body">
-                              
-                              <div class="data-tables datatable-dark">
-                                  <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                      <div class="row">
-                                          <div class="col-sm-12">
-                                              <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                  <div class="row"><div class="col-sm-12">
-                                                      <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                          <div class="row"><div class="col-sm-12">
-                                                              <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
-                                      <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                          <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Product Barcode: activate to sort column descending" aria-sort="ascending">Product Barcode</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Quantity: activate to sort column ascending">Quantity</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Price Per Unit: activate to sort column ascending">Price Per Unit</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Total Price: activate to sort column ascending">Total Price</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="Status: activate to sort column ascending">Status</th></tr>
-                                      </thead>
-                                      <tbody>  
-                                      <tr role="row" class="odd">
-                                              <td tabindex="0" class="sorting_1">1231213</td>
-                                              <td class="">40</td>
-                                              <td class="">200</td>
-                                              <td class="">8000</td>
-                                              
-                                              <td class="">Confirmed</td>
-                                          </tr><tr role="row" class="even">
-                                              <td tabindex="0" class="sorting_1">1231213</td>
-                                              <td class="">40</td>
-                                              <td class="">200</td>
-                                              <td class="">8000</td>
-                                              
-                                              <td class="">Pending</td>
-                                          </tr><tr role="row" class="odd">
-                                              <td tabindex="0" class="sorting_1">1231213</td>
-                                              <td class="">40</td>
-                                              <td class="">200</td>
-                                              <td class="">8000</td>
-                                              
-                                              <td class="">Declined</td>
-                                          </tr></tbody>
-                                  </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- Dark table end -->
-              </div>
-          </div>
-      </div>
-      <!-- main content area end -->
-      <!-- footer area start-->
-      
-      <!-- footer area end-->
-  </div>
+  <div class="page-container sbar_collapsed">
+       
+    <!-- main content area start -->
+    <div class="main-content" style="min-height: 424px;">
+        <!-- header area start -->
+        
+        <!-- header area end -->
+        <!-- page title area start -->
+        
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="row"><!-- Dark table start -->
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="data-tables datatable-dark">
+                                <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                <div class="row"><div class="col-sm-12">
+                                                    <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row"><div class="col-sm-12">
+                                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
+                                    <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
+                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Product Barcode: activate to sort column descending" aria-sort="ascending">Product Barcode</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Quantity: activate to sort column ascending">Quantity</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Price Per Unit: activate to sort column ascending">Price Per Unit</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Total Price: activate to sort column ascending">Total Price</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="Status: activate to sort column ascending">Status</th></tr>
+                                    </thead>
+                                    <tbody>  
+                                    <tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">1231213</td>
+                                            <td class="">40</td>
+                                            <td class="">200</td>
+                                            <td class="">8000</td>
+                                            
+                                            <td class="">Confirmed</td>
+                                        </tr><tr role="row" class="even">
+                                            <td tabindex="0" class="sorting_1">1231213</td>
+                                            <td class="">40</td>
+                                            <td class="">200</td>
+                                            <td class="">8000</td>
+                                            
+                                            <td class="">Pending</td>
+                                        </tr><tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">1231213</td>
+                                            <td class="">40</td>
+                                            <td class="">200</td>
+                                            <td class="">8000</td>
+                                            
+                                            <td class="">Declined</td>
+                                        </tr></tbody>
+                                </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                                                    
+                                                    <button class="btn btn-success" href="#" onclick="confirm_order(this)" style="
+  margin-left: 45%;
+">Confirm Order </button>
+                </div>
+                <!-- Dark table end -->
+            </div>
+        </div>
+    </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
     
-  </div>
+    <!-- footer area end-->
+</div>
+  
+</div>
 </div>
 
 
@@ -196,12 +200,12 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <script>
   $(document).ready(function() {
-    view_details = function(elem) {
-      var order_id = $(elem).parent().parent().children().eq(0).text();
-      console.log(order_id);
+    order_id = 123 // PHP
+    confirm_order = function(elem) {
+      alert("By continuing this action, all order that are not confirmed till now will be removed from the order.");
 
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "order_sent_for_confirmation_2.php?" 
+        + "#.php?" 
         + "&order_id=" + order_id;
        
     }

@@ -1,6 +1,3 @@
-
-
-
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
@@ -20,7 +17,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Place Order</title>
+    <title>Client - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -57,7 +54,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
   <!--Navbar -->
- <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
   background-color: #33b5e5 !important;
   /* margin-bottom: 70px !important; */
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
@@ -109,11 +106,9 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
   </div>
 </nav>
 
-        
-
 <!-- nav end -->
 
-<!-- Products Start -->
+<!-- Carousel -->
 
 
 <div class="my_custom_card">
@@ -144,30 +139,52 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                                         <div class="row"><div class="col-sm-12">
                                                             <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
                                     <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" aria-sort="ascending">Order ID</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">Order Date</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">Order Amount</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="View Order: activate to sort column ascending">View Order</th></tr>
+                                        <tr role="row">
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" 
+                                            colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" 
+                                            aria-sort="ascending">
+                                            Order ID
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" 
+                                            rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
+                                            Barcode
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" 
+                                            colspan="1" style="width: 338px;" aria-label="Status: activate to sort column ascending">
+                                            Amount
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">
+                                            Status
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 148px;" aria-label="View Order: activate to sort column ascending">
+                                            View Order
+                                          </th>
+                                        </tr>
                                     </thead>
                                     <tbody>  
                                     <tr role="row" class="odd">
                                             <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">27/11/2020</td>
-                                            <td class="">Pending Confirmation (All)</td>
+                                            <td class="">13412132412</td>
                                             <td class="">5000</td>
+                                            <td class="">Confirmed</td>
                                             
                                             <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
                                         </tr><tr role="row" class="even">
                                             
                                           <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">27/10/2020</td>
-                                          <td class="">Pending Confirmation (Partial)</td>
+                                          <td class="">1234134123423</td>
                                           <td class="">500</td>
+                                          <td class="">Dispatched to Central Warehouse</td>
                                           
                                           <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
                                         </tr><tr role="row" class="odd">
                                             
                                           <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">04/11/2020</td>
-                                          <td class="">Pending Confirmation (All)</td>
+                                          <td class="">12341234234</td>
                                           <td class="">300</td>
+                                          <td class="">Order being processed</td>
                                           
                                           <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
                                         </tr></tbody>
@@ -187,87 +204,29 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 </div>
   
 </div>
-</div>
 
-
-
-
-<!-- Product End -->
-
-
-
-<script>
-  $(document).ready(function() {
-    view_details = function(elem) {
-      var order_id = $(elem).parent().parent().children().eq(0).text();
-      console.log(order_id);
-
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "order_sent_for_confirmation_2.php?" 
-        + "&order_id=" + order_id;
-       
-    }
-  })
-</script>
-
-
+<!-- Carousel End-->
 
 
 
 
 <!--/.Navbar -->
 
-
-<!-- Order Placed Script -->
-<!-- <script>
-  
-   $(document).ready(function() {
-    function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
-}
-////////// Initializing Global Variables ///////////
-container_selected = GetURLParameter("container_selected");
-
-cbm = parseInt(GetURLParameter("allowed_cbm")); 
-current_cbm = parseInt(GetURLParameter("current_cbm"));
-individual_cbm = parseInt(GetURLParameter("individual_cbm"));
-quantity = parseInt(GetURLParameter("quantity"));
-product_id = GetURLParameter("product_id");
-
-console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,product_id, " ", container_selected);
-//////////// Global Variables End /////////////////
-    
-
- });
-
- </script>
 <script>
-  $(document).ready(function() {
-    $("#confirm_button").click(function() {
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "order_placed.php?" 
-        + "&allowed_cbm=" + cbm
-        + "&individual_cbm=" + individual_cbm
-        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
-        + "&container_selected=" + container_selected
-        + "&quantity=" + quantity
-        + "&product_id=" + product_id;
-    })
-  });
-</script> -->
+  $( document ).ready(function() {
+    view_details =  function(elem){
+      order_id = $(elem).parent().parent().children().eq(0).text();
+      barcode = $(elem).parent().parent().children().eq(1).text();
+      console.log("order id clicked = ", order_id);
+      console.log("barcode : " , barcode);
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_3.php?orderID=" + order_id +"&barcode=" + barcode;
+  
+    }
+  })
+</script>
+
+
 <!-- Footer -->
-
-
 
 <footer class="container-fluid bg-grey py-5" style="
     background: aliceblue;
@@ -303,7 +262,6 @@ console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,
   </div>
   
 
-  
 
   <!-- Footer End -->
   <!-- jquery latest version -->
@@ -326,24 +284,35 @@ console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,
   <script src="./admin_dash_files/plugins.js"></script>
   <script src="./admin_dash_files/scripts.js"></script>
 
-<script src="./mydatatable_files/jquery-2.2.4.min.js"></script>
-    <script src="./mydatatable_files/plugins.js"></script>
-    <script src="./mydatatable_files/scripts.js"></script>
-<!-- Start datatable js -->
-<script src="./mydatatable_files/jquery.dataTables.js"></script>
-<script src="./mydatatable_files/jquery.dataTables.min.js"></script>
-<script src="./mydatatable_files/dataTables.bootstrap4.min.js"></script>
-<script src="./mydatatable_files/dataTables.responsive.min.js"></script>
-<script src="./mydatatable_files/responsive.bootstrap.min.js"></script>
-<!-- others plugins -->
-<script src="./mydatatable_files/plugins.js"></script>
-<script src="./mydatatable_files/scripts.js"></script>
-
-
   <!-- Script for adding button and doing action on Status -->
-  
-  
-    
+  <!-- <script>
+      $( document ).ready(function() {
+  console.log( "ready!" );
+
+      console.log(document.getElementById("order_status").innerText);
+      var status = document.getElementById("order_status").innerText;
+      var status_container = document.getElementById("order_status_container").innerHTML;
+      if(status == "Pending Vendor Approval")
+      {
+          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;"><button type="submit" value ="approve" name="approve_btn" class="btn btn-outline-success waves-effect" style="margin-left: 30px;margin-right: 30px;">Approve</button>';
+          status_container += '<button type="submit" value = "disapprove" name="disapprove_btn" class="btn btn-outline-danger waves-effect">Disapprove</button> </form>';
+          
+      }
+      else if(status == "Pending Client Confirmation")
+      {
+          
+      }
+      else if(status == "Pending Shipment Update")
+      {
+          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;" ><button type="submit" value="add_shipment" name="add_shipment_btn" class="btn btn-outline-primary waves-effect" style="margin-left: 30px;margin-right: 30px;" >Add Shipment Details</button> </form>';
+      }
+      document.getElementById("order_status_container").innerHTML = status_container;
+  });
+  </script> -->
+
+  <!-- Script for category and sub categor selection -->
+ 
+
 <!-- Footer  -->
 
 

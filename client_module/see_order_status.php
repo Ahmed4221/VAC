@@ -110,78 +110,94 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <!-- Carousel -->
 
-<div class="container" style="
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    height: 31vw;
-">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="
-    width: 100vw;
-    height: 31vw;
-    padding: 0;
-">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-      
-      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-      <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-    </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" style="height: 31vw;font-family: 'Glyphicons Halflings';">
-      <div class="item">
-                <h1 style="
-            position: absolute;
-            top: 68%;
-            z-index: 2;
-            left: 24%;
-            color: #f8f8ffb5;
-            font-size: 4vw;
-        "> Don’t worry, we have it </h1>
-        <img src="./images/banner_1.jpg" alt="Los Angeles" style="">
+<div class="my_custom_card">
+
+  <div class="page-container sbar_collapsed">
+       
+    <!-- main content area start -->
+    <div class="main-content" style="min-height: 589px;">
+        <!-- header area start -->
         
-      </div>
-
-      
-    
-      <div class="item">
-        <h1 style="
-    position: absolute;
-    top: 56%;
-    z-index: 2;
-    left: 25%;
-    color: #f8f8ffb5;
-    font-size: 4vw;
-"> Expect more. Pay less </h1>
-        <img src="./images/banner_2.jpg" alt="New york" style="width:100%;">
-      </div>
-      <div class="item active">
-        <h1 style="
-    position: absolute;
-    top: 68%;
-    z-index: 2;
-    left: 26%;
-    color: #f8f8ffb5;
-    font-size: 4vw;
-"> Discover the difference </h1>
-        <img src="./images/banner_3.jpg" alt="New york" style="width:100%;">
-      </div>
+        <!-- header area end -->
+        <!-- page title area start -->
+        
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="row"><!-- Dark table start -->
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="data-tables datatable-dark">
+                                <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                <div class="row"><div class="col-sm-12">
+                                                    <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row"><div class="col-sm-12">
+                                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
+                                    <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
+                                        <tr role="row">
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" 
+                                            colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" 
+                                            aria-sort="ascending">
+                                            Order ID
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" 
+                                            rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
+                                            Order Date
+                                          </th>
+                                          
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">
+                                            Order Amount
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 148px;" aria-label="View Order: activate to sort column ascending">
+                                            View Order
+                                          </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                    <tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">1</td>
+                                            <td class="">27/11/2020</td>
+                                            <td class="">5000</td>
+                                            
+                                            <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr><tr role="row" class="even">
+                                            
+                                          <td tabindex="0" class="sorting_1">2</td>
+                                          <td class="">27/10/2020</td>
+                                          <td class="">500</td>
+                                          
+                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr><tr role="row" class="odd">
+                                            
+                                          <td tabindex="0" class="sorting_1">3</td>
+                                          <td class="">04/11/2020</td>
+                                          <td class="">300</td>
+                                          
+                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr></tbody>
+                                </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dark table end -->
+            </div>
+        </div>
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
+    
+    <!-- footer area end-->
 </div>
-
+  
+</div>
 
 <!-- Carousel End-->
 
@@ -190,41 +206,16 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <!--/.Navbar -->
 
-
-<!-- Script to search according to given input fields -->
- <script>
-$( document ).ready(function() {
-  category = "All"
-  sub_category = "All" 
-  suggested_region = "All"
-  export_authorization = "Export"
-  barcode = ""
-  search = function(){
-    category = $("#category").val();
-    sub_category = $("#sub_category").val();
-    suggested_region = $("#product_region").val();
-    export_authorization = $("input[name='uae_export']:checked").val();
-    barcode = $("#barcode").val();
-
-    console.clear();
-    console.log("category : " , category);
-    console.log("sub_category : " , sub_category);
-    console.log("suggested_region : " , suggested_region);
-    console.log("export_authorization : " , export_authorization);
-    console.log("barcode : " , barcode);
-    window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "show_searched_products.php?" 
-        + "&category=" + category
-        + "&sub_category=" + sub_category
-        + "&suggested_region=" + suggested_region
-        + "&export_authorization=" + export_authorization
-        + "&barcode=" + barcode;
-  }
-})
-
-   </script>
-
-
+<script>
+  $( document ).ready(function() {
+    view_details =  function(elem){
+      order_id = $(elem).parent().parent().children().eq(0).text();
+      console.log("order id clicked = ", order_id);
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?" + order_id;
+  
+    }
+  })
+</script>
 
 
 <!-- Footer -->
@@ -312,55 +303,7 @@ $( document ).ready(function() {
   </script> -->
 
   <!-- Script for category and sub categor selection -->
-  <script>
-    $(document).ready(function(){
-        
-        var sub_category = [['All Sub Categories'],['Water','Soft Drinks','Juices','Ice Tea & Coffee','Energy Drink','Malt Beverages','Sports Drink','Ice','Sparkling','Powdered Beverage'],
-        ['Yoghurt','Laban Drink','Spreads','Shelf Milk','Soya & Others','Desserts','Powdered Milk','Smoothies','Ghee','Spreads'],
-        ['Processed Meat','Fresh Chicken','Fresh Beef','Fresh Mutton','Fresh Sea Food','Sausages','Burger','Deli Meat & Cold Cuts','Dried'],
-        ['Fruits','Vegetables','Fresh Herbs'],
-        ['Family Planning','Female Care','Soaps & Hand Wash','Body Wash & Shower','Oral Care','Male Grooming','Hair Care','Deodorant','Healthcare','Facial & Skin Care','Coloration','Sanitizer','Sanitary Protection','Kids Care','First Aid & General Health','Foot Care','Perfumes & Body Spray'],
-        ['Dishwash','Multi Purpose','Bathroom','Kitchen','Air Freshener','Antiseptic','Odor Remover','Hygiene','Insect Repellant','Pest Control','Plastics, Foils & Bags','Cleaning Tools','Utensils','Disposable & Glass Ware','Batteries','Shoe Care','Tissue & Toilet Paper','barbeque'],
-        ['Stain Remover','Fabric Softner','Detergent','Accessories'],
-        ['Baby Food','Diapers','Bath','Accessories','Baby Care'],
-        ['Ice Cream','Chocolates','Chips','Gum & Candy','Biscuits','Nuts, Dried Fruits & Seeds','Custards','Dips & Salsa','Dessert','Cakes','Popcorn','Sweets, Mints & Gum','dates'],
-        ['Toast','Bread','Buns & Rolls','Healthy Breads','Pastry','Baguette','Snacks','Baking Products','Dessert'],
-        ['Cooking Sauce','Ketchup','Mayonnaise','Salad Dressing','Hot Sauce','Mustard','Syrup','Paste'],
-        ['Cooking Oil','Vinegar','Soups'],
-        ['Chicken','Meat','Ice','Vegetables & Fruits','Seafood','Wraps & Rolls','Pizza & Breads','Ice Cream & Desserts'],
-        ['Cereals','Cereal Bars','Oatmeal','Packet Soup','Home Baking','Tea & Coffee','Flour','ready to cook'],
-        ['Pasta','Noodles','Rice','Pulses & Grains'],
-        ['Spices','Sugar','Salt','Artificial Sweeteners','Food Color & Flavor','Seasoning'],
-        ['Fish','Beef','Chicken','Fruits','Turkey','Beans & Vegetables','Pickles & Olives','Pickles & Olives','Dressing & Mayo','Pasta Sauce','Jam, Honey & Spreads','Home Baking','Savoury'],
-        ['Cold Cuts','Pickles'],
-        ['Sandwich','Salad','Meals'],
-        ['Pet Grooming','Pet Food','Pet Care'],
-        ['Electronic Items','Greeting Cards','Office Supplies','Storage Solutions','Toys'],
-        ['Ciggarettes','Shisha Flavour','Shisha','Coal','Lighter'],
-        ['Pork','Frozen','Canned','Chips']
-      ];
-      var category = ['All Categories','Beverages','Dairy & Eggs','Meats & Seafood','Fresh Vegetable & Fruits','Personal Care','Home Care','Laundry','Baby','Snacks','Bakery','Sauces & Dressing','Soups & Oil','Frozen Foods','Packet & Cereals','Pasta & Rice','Condiments','Canned & Jars','Deli','Food to Go','Pet Care','Stationary & Misc' ,'Tobbacco & Accessories', 'Non Muslim'];
-      var category_text="";
-      
-      for (var i=0;i<category.length;i++){
-  category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
-      }
-      document.getElementById("category").innerHTML = category_text;
-      document.getElementById("category").onchange = function() {
-        var sub_category_text = "";
-        for (var i=0;i<category.length;i++){
-          if(document.getElementById("category").value == category[i]){
-            for(var j=0;j<sub_category[i].length;j++){
-              sub_category_text+='<option value="'+sub_category[i][j]+'">'+sub_category[i][j]+'</option>';
-            }
-            
-          }
-        }
-        document.getElementById("sub_category").innerHTML = sub_category_text;
-      }
-      document.getElementById("category").onchange();
-    });
-  </script>
+ 
 
 <!-- Footer  -->
 

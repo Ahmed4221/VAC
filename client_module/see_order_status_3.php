@@ -1,6 +1,3 @@
-
-
-
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
@@ -20,7 +17,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Place Order</title>
+    <title>Client - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -51,13 +48,24 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
+
+
+    
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+    <link rel="stylesheet" href="./custom_css_vendor/shipment_status.css">
     <!-- Footer files -->
     
 
 
 
   <!--Navbar -->
- <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
   background-color: #33b5e5 !important;
   /* margin-bottom: 70px !important; */
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
@@ -109,108 +117,99 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
   </div>
 </nav>
 
-        
-
 <!-- nav end -->
 
-<!-- Products Start -->
+<!-- Carousel -->
 
 
-<div class="my_custom_card">
-
-  <div class="page-container sbar_collapsed">
-       
-    <!-- main content area start -->
-    <div class="main-content" style="min-height: 589px;">
-        <!-- header area start -->
-        
-        <!-- header area end -->
-        <!-- page title area start -->
-        
-        <!-- page title area end -->
-        <div class="main-content-inner">
-            <div class="row"><!-- Dark table start -->
-                <div class="col-12 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            
-                            <div class="data-tables datatable-dark">
-                                <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                <div class="row"><div class="col-sm-12">
-                                                    <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                        <div class="row"><div class="col-sm-12">
-                                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
-                                    <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                        <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" aria-sort="ascending">Order ID</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">Order Date</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">Order Amount</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="View Order: activate to sort column ascending">View Order</th></tr>
-                                    </thead>
-                                    <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">27/11/2020</td>
-                                            <td class="">Pending Confirmation (All)</td>
-                                            <td class="">5000</td>
-                                            
-                                            <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
-                                            
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">27/10/2020</td>
-                                          <td class="">Pending Confirmation (Partial)</td>
-                                          <td class="">500</td>
-                                          
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">04/11/2020</td>
-                                          <td class="">Pending Confirmation (All)</td>
-                                          <td class="">300</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
-                                </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Dark table end -->
-            </div>
-        </div>
-    </div>
-    <!-- main content area end -->
-    <!-- footer area start-->
-    
-    <!-- footer area end-->
+<div class="container" style="
+    margin-left: 0;
+    margin-right: 0;
+">
+  <article class="card" style="
+    width: 147%;
+    margin-left: 2vh;
+">
+      <header class="card-header"> My Orders / Tracking </header>
+      <div class="card-body">
+          <h6>Order ID: <span id="order_id">123123123</span></h6>
+          
+          <div class="track">
+              <div class="step active">
+                <span class="icon">
+                    <i class="fa fa-check" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Order confirmed</span> 
+              </div>
+              <div class="step" style="
+"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Order being processed</span>
+                <span class="icon" style="
+    top: -32px;
+"> 
+                  <i class="fa fa-user" style="margin-top: 28%;"></i> 
+                </span>
+              </div>
+              <div class="step"> 
+                <span class="icon" style=""> 
+                  <i class="fa fa-truck" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Dispatched to Central Warehouse</span> 
+              </div>
+              <div class="step"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Received at Warehouse</span> 
+                <span class="icon" style="
+    top: -32px;
+    position: relative;
+"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span>
+              </div>
+              <div class="step"> 
+                <span class="icon"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Shipped From Warehouse</span> 
+              </div>
+              <div class="step"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Received</span> 
+                <span class="icon" style="
+    top: -32px;
+    position: relative;
+"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span> 
+                
+              </div>
+          </div>
+          <hr>
+          
+          
+          <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+    <label style="
+    margin-left: 26%;
+"> Update Status </label>
+    <select id="change_shipment_status">
+        <option value="5" >Shipped From Warehouse</option>
+        <option value="6" >Received</option>
+    </select>
+    <button class="btn btn-success" href="#" style="
+    float: right;
+" onclick="update_status()">Update</button>
+      </div>
+  </article>
 </div>
-  
-</div>
-</div>
 
-
-
-
-<!-- Product End -->
-
-
-
-<script>
-  $(document).ready(function() {
-    view_details = function(elem) {
-      var order_id = $(elem).parent().parent().children().eq(0).text();
-      console.log(order_id);
-
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "order_sent_for_confirmation_2.php?" 
-        + "&order_id=" + order_id;
-       
-    }
-  })
-</script>
-
-
+<!-- Carousel End-->
 
 
 
@@ -218,56 +217,39 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 <!--/.Navbar -->
 
 
-<!-- Order Placed Script -->
-<!-- <script>
-  
-   $(document).ready(function() {
-    function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
-}
-////////// Initializing Global Variables ///////////
-container_selected = GetURLParameter("container_selected");
-
-cbm = parseInt(GetURLParameter("allowed_cbm")); 
-current_cbm = parseInt(GetURLParameter("current_cbm"));
-individual_cbm = parseInt(GetURLParameter("individual_cbm"));
-quantity = parseInt(GetURLParameter("quantity"));
-product_id = GetURLParameter("product_id");
-
-console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,product_id, " ", container_selected);
-//////////// Global Variables End /////////////////
-    
-
- });
-
- </script>
 <script>
-  $(document).ready(function() {
-    $("#confirm_button").click(function() {
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "order_placed.php?" 
-        + "&allowed_cbm=" + cbm
-        + "&individual_cbm=" + individual_cbm
-        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
-        + "&container_selected=" + container_selected
-        + "&quantity=" + quantity
-        + "&product_id=" + product_id;
-    })
-  });
-</script> -->
+  $( document ).ready(function() {
+console.log( "ready!" );
+
+  shipment_status = 1  // PHP
+  order_id = 123123123  //PHP
+  $('select option[value="'+shipment_status+'"]').attr("selected",true);
+  $("#order_id").text( order_id );
+  adjust_shipment_status = function(status_index) {
+    $(".track").children().removeClass("active");
+    let my_classes = $(".track").children();
+    for (let i = 0; i < status_index; i++) {
+      my_classes.eq(i).addClass("active");
+    }
+  }
+
+  adjust_shipment_status(shipment_status);
+
+  $("#change_shipment_status").change(function() {
+    shipment_status = parseInt( $(this).children("option:selected").val());
+    adjust_shipment_status(shipment_status);
+
+
+    
+  })
+
+  update_status = function() {
+    window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "update_shipmentstatus.php?orderId=" + order_id + "&shipment_status=" + shipment_status;
+
+  }
+});
+</script>
 <!-- Footer -->
-
-
 
 <footer class="container-fluid bg-grey py-5" style="
     background: aliceblue;
@@ -303,7 +285,6 @@ console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,
   </div>
   
 
-  
 
   <!-- Footer End -->
   <!-- jquery latest version -->
@@ -326,24 +307,35 @@ console.log(cbm , " " ,current_cbm , " " ,individual_cbm , " " , quantity ," " ,
   <script src="./admin_dash_files/plugins.js"></script>
   <script src="./admin_dash_files/scripts.js"></script>
 
-<script src="./mydatatable_files/jquery-2.2.4.min.js"></script>
-    <script src="./mydatatable_files/plugins.js"></script>
-    <script src="./mydatatable_files/scripts.js"></script>
-<!-- Start datatable js -->
-<script src="./mydatatable_files/jquery.dataTables.js"></script>
-<script src="./mydatatable_files/jquery.dataTables.min.js"></script>
-<script src="./mydatatable_files/dataTables.bootstrap4.min.js"></script>
-<script src="./mydatatable_files/dataTables.responsive.min.js"></script>
-<script src="./mydatatable_files/responsive.bootstrap.min.js"></script>
-<!-- others plugins -->
-<script src="./mydatatable_files/plugins.js"></script>
-<script src="./mydatatable_files/scripts.js"></script>
-
-
   <!-- Script for adding button and doing action on Status -->
-  
-  
-    
+  <!-- <script>
+      $( document ).ready(function() {
+  console.log( "ready!" );
+
+      console.log(document.getElementById("order_status").innerText);
+      var status = document.getElementById("order_status").innerText;
+      var status_container = document.getElementById("order_status_container").innerHTML;
+      if(status == "Pending Vendor Approval")
+      {
+          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;"><button type="submit" value ="approve" name="approve_btn" class="btn btn-outline-success waves-effect" style="margin-left: 30px;margin-right: 30px;">Approve</button>';
+          status_container += '<button type="submit" value = "disapprove" name="disapprove_btn" class="btn btn-outline-danger waves-effect">Disapprove</button> </form>';
+          
+      }
+      else if(status == "Pending Client Confirmation")
+      {
+          
+      }
+      else if(status == "Pending Shipment Update")
+      {
+          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;" ><button type="submit" value="add_shipment" name="add_shipment_btn" class="btn btn-outline-primary waves-effect" style="margin-left: 30px;margin-right: 30px;" >Add Shipment Details</button> </form>';
+      }
+      document.getElementById("order_status_container").innerHTML = status_container;
+  });
+  </script> -->
+
+  <!-- Script for category and sub categor selection -->
+ 
+
 <!-- Footer  -->
 
 

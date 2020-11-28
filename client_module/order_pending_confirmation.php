@@ -86,7 +86,8 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
             <a class="dropdown-item waves-effect waves-light" href="order_in_progress.php">Order (In Progress)</a>
             <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php">Order Sent For Confirmation</a>
-            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a><a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Placed Order Status</a>
+            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a>
+            <a class="dropdown-item waves-effect waves-light" href="see_order_status.php">Placed Order Status</a>
           </div>
       </li>
       <li class="nav-item">
@@ -114,7 +115,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
  <div class="page-container sbar_collapsed">
        
   <!-- main content area start -->
-  <div class="main-content" style="min-height: 285px;">
+  <div class="main-content" style="min-height: 534px;">
       <!-- header area start -->
       
       <!-- header area end -->
@@ -135,10 +136,31 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                               <div class="row"><div class="col-sm-12">
                                                   <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                                       <div class="row"><div class="col-sm-12">
-                                                          <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
+                                                          <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
                                   <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
-                                      <tr role="row" style="
-"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 320px;text-align: center;" aria-label="Order ID: activate to sort column descending" aria-sort="ascending">Order ID</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 321px;text-align: center;" aria-label="Products: activate to sort column ascending">Products</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 136px;text-align: center;" aria-label="Total Amount: activate to sort column ascending">Total Amount</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 137px;text-align: center;" aria-label="CBM: activate to sort column ascending">CBM</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 137px;text-align: center;" aria-label="Confirm: activate to sort column ascending">Confirm</th></tr>
+                                      <tr role="row" style="">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable3"
+                                         rowspan="1" colspan="1" style="width: 238px; text-align: center;" 
+                                         aria-label="Order ID: activate to sort column descending" aria-sort="ascending">
+                                          Order ID
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                        style="width: 95px; text-align: center;" aria-label="Products: activate to sort column ascending">
+                                          Products
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" 
+                                        colspan="1" style="width: 239px; text-align: center;" aria-label="Total Amount: activate to sort column ascending">
+                                          Total Amount
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                        style="width: 239px; text-align: center;" aria-label="CBM: activate to sort column ascending">
+                                          CBM
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                        style="width: 240px; text-align: center;" aria-label="Confirm: activate to sort column ascending">
+                                          Confirm
+                                        </th>
+                                  </tr>
                                   </thead>
                                   <tbody>
                                                              
@@ -162,7 +184,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                           <td class="">20</td>
                                           <td class=""> <button class="btn btn-success custom_button" style="margin-right: 5px;" onclick="approved(this.parentNode.parentNode.children[0].innerText)">Confirm</button><button class="btn btn-danger custom_button" onclick="dissapproved(this.parentNode.parentNode.children[0].innerText)">Cancel</button></td>
                                          </tr></tbody>
-                              </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                              </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                           </div>
                       </div>
                   </div>
