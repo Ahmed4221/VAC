@@ -4,9 +4,12 @@
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
+    $OrderIDIncoming = $_GET['order_id'];
+    $AnyApproved = 0;
 }
 
 
@@ -146,29 +149,34 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                     <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
                                         <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Product Barcode: activate to sort column descending" aria-sort="ascending">Product Barcode</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Quantity: activate to sort column ascending">Quantity</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Price Per Unit: activate to sort column ascending">Price Per Unit</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Total Price: activate to sort column ascending">Total Price</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="Status: activate to sort column ascending">Status</th></tr>
                                     </thead>
-                                    <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1231213</td>
-                                            <td class="">40</td>
-                                            <td class="">200</td>
-                                            <td class="">8000</td>
+                                    <tbody>
+                                      <?php 
+                                      $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '$OrderIDIncoming' ";
+                                      $rez = mysqli_query($conn,$innersql);
+                                      while($row = mysqli_fetch_assoc($rez)){
+                                        $Status = "Approved";
+                                        if ($row["VendorApproved"] == 1){
+                                          $Status = "Approved";
+                                          $AnyApproved = 1;
+                                        }
+                                        if ($row["VendorApproved"] == 0){
+                                          $Status = "Pending";
+                                        }
+                                        if ($row["VendorApproved"] == -1){
+                                          $Status = "Declined";
+                                        }
+                                    $output ='<tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">'. $row['Barcode'] .'</td>
+                                            <td class="">'. $row['Quantity'] .'</td>
+                                            <td class="">'. $row['Price'] .'</td>
+                                            <td class="">'. $row['Price']*$row['Quantity'] .'</td>
                                             
-                                            <td class="">Confirmed</td>
-                                        </tr><tr role="row" class="even">
-                                            <td tabindex="0" class="sorting_1">1231213</td>
-                                            <td class="">40</td>
-                                            <td class="">200</td>
-                                            <td class="">8000</td>
-                                            
-                                            <td class="">Pending</td>
-                                        </tr><tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1231213</td>
-                                            <td class="">40</td>
-                                            <td class="">200</td>
-                                            <td class="">8000</td>
-                                            
-                                            <td class="">Declined</td>
-                                        </tr></tbody>
+                                            <td class="">'.$Status.'</td>
+                                        </tr>';
+                                      echo $output;
+                                    }
+                                        ?>
+                                        </tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>
@@ -200,15 +208,24 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <script>
   $(document).ready(function() {
-    order_id = 123 // PHP
-    confirm_order = function(elem) {
+    order_id = "<?php echo $OrderIDIncoming ?>"; // PHP
+     
+    approved = "<?php echo $AnyApproved ?>";
+confirm_order = function(elem) {
+      
+      if (approved==1){
       alert("By continuing this action, all order that are not confirmed till now will be removed from the order.");
 
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "#.php?" 
+        + "ConfirmOrder.php?" 
         + "&order_id=" + order_id;
-       
+      }
+      else{
+    alert("Since not even a single Vendor has Approved , So the order cannot be started.");
+  }
     }
+  
+
   })
 </script>
 

@@ -14,7 +14,9 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
     //insering in the main table first
-    $sql = "INSERT INTO `PlacedOrders`(`OrderID`, `ClientID`) VALUES ( '.$OrderID.','".$_SESSION['UserEmail']."') ";
+    $date = date('Y-m-d H:i:s');
+    $sql = "INSERT INTO `PlacedOrders`(`OrderID`, `ClientID` , `OrderDate` ) VALUES ( '$OrderID','".$_SESSION['UserEmail']."', '$date') ";
+    echo $sql;
     $rez = mysqli_query($conn,$sql);
 
     //inserting into the details table

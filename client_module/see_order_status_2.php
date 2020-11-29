@@ -1,9 +1,11 @@
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
+    $OrderIDIncoming = $_GET['order_id'];
 }
 
 
@@ -163,31 +165,24 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                           </th>
                                         </tr>
                                     </thead>
-                                    <tbody>  
+                                    <tbody>
+                                      <?php
+                                      $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '$OrderIDIncoming' and Started=1";
+                                      $rez = mysqli_query($conn,$innersql);
+                                      while($row = mysqli_fetch_assoc($rez)){
+                                      $output = '  
                                     <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">13412132412</td>
-                                            <td class="">5000</td>
+                                            <td tabindex="0" class="sorting_1">'.$OrderIDIncoming.'</td>
+                                            <td class="">'.$row['Barcode'].'</td>
+                                            <td class="">'.$row['Price']*$row['Quantity'].'</td>
                                             <td class="">Confirmed</td>
                                             
                                             <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
-                                            
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">1234134123423</td>
-                                          <td class="">500</td>
-                                          <td class="">Dispatched to Central Warehouse</td>
-                                          
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">12341234234</td>
-                                          <td class="">300</td>
-                                          <td class="">Order being processed</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
+                                        </tr>';
+                                        echo $output;
+                                      }
+                                        ?>
+                                        </tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>

@@ -1,16 +1,15 @@
 
-
-
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
+
+$conn = require '../connection.php';
+  
+$sql = "SELECT * FROM `PlacedOrders` WHERE ClientID =  '".$_SESSION["UserEmail"]."' ";
+$rez = mysqli_query($conn,$sql);
+
+
 }
-
-
-
 
 ?>
 
@@ -146,31 +145,55 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                     <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
                                         <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" aria-sort="ascending">Order ID</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">Order Date</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 338px;" aria-label="Status: activate to sort column ascending">Status</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">Order Amount</th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 148px;" aria-label="View Order: activate to sort column ascending">View Order</th></tr>
                                     </thead>
-                                    <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">27/11/2020</td>
-                                            <td class="">Pending Confirmation (All)</td>
-                                            <td class="">5000</td>
+                                    <tbody>
+                                    <?php
+                                    $sql = "SELECT * FROM `PlacedOrders` WHERE ClientID =  '".$_SESSION["UserEmail"]."' ";
+                                    $rez = mysqli_query($conn,$sql);
+                                    
+                                    while ($row = mysqli_fetch_assoc($rez)){
+
+                                      $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '".$row['OrderID']."' ";
+                                      $Amount = 0;
+                                      $Approvals = 0;
+                                      $TotalVendors = 0;
+                                      $show = 1;
+                                      $temp = mysqli_query($conn,$innersql);
+                                      while ($Innerrow = mysqli_fetch_assoc($temp)){
+                                        if ($Innerrow['Started']==1){
+                                          $show = 0;
+                                        }
+                                        $Amount = $Amount + ($Innerrow['Price']*$Innerrow['Quantity']);
+                                        $TotalVendors = $TotalVendors + 1;
+                                        if ($Innerrow['VendorApproved']==1){
+                                          $Approvals = $Approvals + 1;
+                                        }
+                                      }
+                                      $Status = "Pending Confirmation (All)";
+                                      if ($Approvals>0){
+                                        $Status = "Pending Confirmation (Partial)";
+                                      }
+                                      if ($Approvals==$TotalVendors){
+                                        $Status = "Approved";
+                                      }
+
+                                    
+                                      $output = '<tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">'.$row['OrderID'].'</td>
+                                            <td class="">'.$row['OrderDate'].'</td>
+                                            <td class="">'. $Status.'</td>
+                                            <td class="">'.$Amount.'</td>
                                             
                                             <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
+                                    </tr><tr role="row" class="even">';
+                                    if ($show==1){
+                                    echo $output;}
+
+                                  }
+
+                                    ?>
                                             
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">27/10/2020</td>
-                                          <td class="">Pending Confirmation (Partial)</td>
-                                          <td class="">500</td>
                                           
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">04/11/2020</td>
-                                          <td class="">Pending Confirmation (All)</td>
-                                          <td class="">300</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
+                                         </tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>

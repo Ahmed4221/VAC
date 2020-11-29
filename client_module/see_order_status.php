@@ -1,9 +1,10 @@
 <?php
 session_start();
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
 }
 
 
@@ -17,7 +18,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Client - Dashboard</title>
+    <title>See  Order Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./admin_dash_files/bootstrap.min.css">
@@ -161,27 +162,44 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                         </tr>
                                     </thead>
                                     <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">27/11/2020</td>
-                                            <td class="">5000</td>
+                                    <?php
+                                    $sql = "SELECT * FROM `PlacedOrders` WHERE ClientID =  '".$_SESSION["UserEmail"]."' ";
+                                    $rez = mysqli_query($conn,$sql);
+                                    
+                                    while ($row = mysqli_fetch_assoc($rez)){
+
+                                      $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '".$row['OrderID']."' ";
+                                      $Amount = 0;
+                                      $Approvals = 0;
+                                      $TotalVendors = 0;
+                                      $show = 0;
+                                      $temp = mysqli_query($conn,$innersql);
+                                      while ($Innerrow = mysqli_fetch_assoc($temp)){
+                                        if ($Innerrow['Started']==1){
+                                          $show = 1;
+                                        }
+                                        $Amount = $Amount + ($Innerrow['Price']*$Innerrow['Quantity']);
+                                        $TotalVendors = $TotalVendors + 1;
+                                        if ($Innerrow['VendorApproved']==1){
+                                          $Approvals = $Approvals + 1;
+                                        }
+                                      }
+
+
+                                    
+                                      $output = '<tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">'.$row['OrderID'].'</td>
+                                            <td class="">'.$row['OrderDate'].'</td>
+                                            <td class="">'.$Amount.'</td>
                                             
                                             <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
-                                            
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">27/10/2020</td>
-                                          <td class="">500</td>
-                                          
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">04/11/2020</td>
-                                          <td class="">300</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
+                                    </tr><tr role="row" class="even">';
+                                    if ($show==1){
+                                    echo $output;}
+
+                                  }
+
+                                    ?></tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>
@@ -211,7 +229,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
     view_details =  function(elem){
       order_id = $(elem).parent().parent().children().eq(0).text();
       console.log("order id clicked = ", order_id);
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?" + order_id;
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?order_id=" + order_id;
   
     }
   })
