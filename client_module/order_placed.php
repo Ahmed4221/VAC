@@ -90,7 +90,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
           width: 70px;
           ">Orders</a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item waves-effect waves-light" href="order_in_progress.php">Order (In Progress)</a>
+            <a class="dropdown-item waves-effect waves-light" href="order_placed.php">Order (In Progress)</a>
             <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php">Order Sent For Confirmation</a>
             <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a>
             <a class="dropdown-item waves-effect waves-light" href="see_order_status.php">Placed Order Status</a>
@@ -222,7 +222,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
         <div class="container"> 
           <div class="row">
             
-            <button class="btn-grad" onclick="place_order_clicked(this)"> Place Order </button>
+            <button class="btn-grad" ><a href = "PlaceOrder.php"> Place Order </a></button>
       
           </div>
           <button class="btn btn-danger" id="add_btn"  style="
