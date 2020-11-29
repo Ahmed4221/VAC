@@ -1,25 +1,84 @@
+<?php
+session_start();
+$productsToShow = array();
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
 
-<!-- saved from url=(0083)file:///Users/rafayabbas/Documents/Personal/VAC/vendor_module/start_sale_page_1.htm -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>alert('$message');";
+      #making connection with datavase
+      $conn = require '../connection.php';
+      
+      $sql = "SELECT * FROM `Product` WHERE ";
+      $cat = $_GET['category'];
+      if (strpos($cat, "ALL") == false){
+        $sql = $sql . " Product_Category = '".$cat."' ";
+      }
+
+      $Subcat = $_GET['sub_category'];
+      if (strpos($cat, "ALL") == false){
+        $sql = $sql . " AND productSubCategory = '".$Subcat."' ";
+      }
+
+
+
+      $innerSql = "SELECT * FROM `Vendors_Products` WHERE ";
+      $Region = $_GET['suggested_region'];
+      if ($Region!='All'){
+        $innerSql = $innerSql . "  product_region = '$Region' ";
+      }
+
+      $UAE_ALL = $_GET['export_authorization'];
+      if ($UAE_ALL!='UAE'){
+        if (strpos($innerSql, "AND") !== false){
+        $innerSql = $innerSql . " AND UAE_ALL = '$UAE_ALL' ";
+        }
+        else{
+          $innerSql = $innerSql . " UAE_ALL = '$UAE_ALL' ";
+        }
+      }
+
+
+
+      if ($_GET['barcode']==''){
+        // #getting products first
+        // echo "Query 1 running";
+        $sql = $sql." AND Approved = 1 ";
+        // echo $sql;
+        }
+      else{
+        // echo "Query 2 running";
+        // #getting products first
+        $sql = "SELECT * FROM  `Product` WHERE Barcode = '".$_GET['barcode']."' AND Approved = 1 ";
+        // echo $sql;
+        }
+
+
+
+
+
+
+      $res = mysqli_query($conn,$sql);
+      while ($row = mysqli_fetch_array($res)){
+        // echo "In here";
+          $innerSql = $innerSql. " AND Barcode = '".$row['Barcode']."' ";
+          // echo $innerSql;
+          $innerResults = mysqli_query($conn,$innerSql);
+          if (mysqli_num_rows($innerResults)>0){
+            $productsToShow[] = $row['Barcode'];
+
+          }
+
+      }
+    
+
+
 }
 
 
-  $user = $_SESSION["UserEmail"];
-  $conn = require '../connection.php';
-  $getting_vendor_products_sql = "SELECT * FROM `Vendors_Products` where Vendor_id='".$user."' and Approved=1 ";
-  $barcodes = [];
-  $getting_vendor_products = mysqli_query($conn,$getting_vendor_products_sql);
-  while($row = mysqli_fetch_assoc($getting_vendor_products))
-  {
-    $barcodes[] = $row['Barcode'];
-  }
-  
-  }
-  else{
-      //redirect to the login page
-      header('Location: ../index.php'); }
 
-?&gt;
+
+?>
+
+<!-- saved from url=(0083)file:///Users/rafayabbas/Documents/Personal/VAC/vendor_module/start_sale_page_1.htm -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 
 <!-- saved from url=(0069)file:///Users/rafayabbas/Documents/Personal/VAC/start_sale_page_1.htm -->
 
@@ -101,7 +160,7 @@
    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
    background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
    ">
- <a class="navbar-brand" href="admin_dash.php">VAC</a>
+ <a class="navbar-brand" href="client_dash.php">VAC</a>
  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="true" aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span>
  </button>
@@ -110,7 +169,7 @@
  <li class="nav-item active" style="
      width: 70px;
  ">
- <a class="nav-link waves-effect waves-light" href="admin_dash.htm">Home
+ <a class="nav-link waves-effect waves-light" href="client_dash.php">Home
  <span class="sr-only">(current)</span>
  </a>
  </li>
@@ -138,10 +197,7 @@
  
  
    
- 
- <li class="nav-item">
- <a class="nav-link waves-effect waves-light" href="settings.htm">Sale</a>
- </li></ul>
+</ul>
  
  <a href="../logout.php" class="btn btn-info btn-lg" style="
      float: right;
@@ -239,17 +295,30 @@
     background: white;
     padding: 4rem;">
     <div class="row justify-content-center">
-       
-      <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+
+    <?php
+       $counter = 0;
+       while($counter<sizeof($productsToShow)){
+         $barcodes = $productsToShow[$counter];
+         $showingInfo = "SELECT * FROM `Product` WHERE Barcode = '$barcodes'";
+         $results = mysqli_query($conn,$showingInfo);
+         $followingdata = $results->fetch_assoc();
+
+         #getting the minimum priced Vendor
+         $getminimumVendor = "SELECT * From `Vendors_Products` WHERE Barcode = '$barcodes'  
+                                                               and price_per_ctn = (SELECT min(price_per_ctn) FROM `Vendors_Products` WHERE Barcode = '$barcodes' ) ";
+         $rez = mysqli_query($conn,$getminimumVendor);
+         $Vendorfollowingdata = $rez->fetch_assoc();
+
+
+     $output =' <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
         <div class="flip-box" style=" border: 0;">
             <div class="flip-box-inner">
-              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_1.jpg');background-size: cover;border-radius: 17px;">
-                <!-- Insert The product Name here-->
-                <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-              <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_1.jpg') ; background-size: cover;border-radius: 17px;">
+              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url(./images/dash_product_1.jpg);background-size: cover;border-radius: 17px;"><h2 style="margin-top: 28%;color: antiquewhite;">'.$followingdata['Product_Name'].'</h2>
+              <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">'.$Vendorfollowingdata['price_per_ctn'].'</h2></div>
+              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url(./images/dash_product_1.jpg) ; background-size: cover;border-radius: 17px;">
                 <!-- Insert barcode after  sign in the href -->
-                <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
+                <a href="add_product_to_order.php?barcode='.$barcodes.'&price_per_ctn='.$Vendorfollowingdata['price_per_ctn'].'&per_ctn_qty='.$Vendorfollowingdata['per_ctn_quantity'].'&vendorid='.$Vendorfollowingdata['Vendor_id'].' "> 
                     <button type="button" class="btn btn-success start-sale-button" style="
                     margin-top: 27%;
                     background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
@@ -262,132 +331,14 @@
               </div>
             </div>
           </div>
-    </div>
+    </div>';
+    echo $output;
+    $counter=$counter+1;}
+    
+    
 
-    <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
-      <div class="flip-box" style=" border: 0;">
-          <div class="flip-box-inner">
-            <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_2.jpg');background-size: cover;border-radius: 17px;">
-              <!-- Insert The product Name here-->
-              <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-            <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-            <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_2.jpg') ; background-size: cover;border-radius: 17px;">
-              <!-- Insert barcode after  sign in the href -->
-              <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
-                  <button type="button" class="btn btn-success start-sale-button" style="
-                  margin-top: 27%;
-                  background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
-                  border: 0;
-                  background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
-                  color: whitesmoke;
-                  border-radius: 25px;
-              ">View Product</button>
-              </a>
-            </div>
-          </div>
-        </div>
-  </div>
-
-
-  <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
-    <div class="flip-box" style=" border: 0;">
-        <div class="flip-box-inner">
-          <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_3.jpg');background-size: cover;border-radius: 17px;">
-            <!-- Insert The product Name here-->
-            <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-          <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-          <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_3.jpg') ; background-size: cover;border-radius: 17px;">
-            <!-- Insert barcode after  sign in the href -->
-            <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
-                <button type="button" class="btn btn-success start-sale-button" style="
-                margin-top: 27%;
-                background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
-                border: 0;
-                background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
-                color: whitesmoke;
-                border-radius: 25px;
-            ">View Product</button>
-            </a>
-          </div>
-        </div>
-      </div>
-</div>
-
-
-<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
-  <div class="flip-box" style=" border: 0;">
-      <div class="flip-box-inner">
-        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_4.jpg');background-size: cover;border-radius: 17px;">
-          <!-- Insert The product Name here-->
-          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_4.jpg') ; background-size: cover;border-radius: 17px;">
-          <!-- Insert barcode after  sign in the href -->
-          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
-              <button type="button" class="btn btn-success start-sale-button" style="
-              margin-top: 27%;
-              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
-              border: 0;
-              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
-              color: whitesmoke;
-              border-radius: 25px;
-          ">View Product</button>
-          </a>
-        </div>
-      </div>
-    </div>
-</div>
-
-
-
-<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
-  <div class="flip-box" style=" border: 0;">
-      <div class="flip-box-inner">
-        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_5.jpg');background-size: cover;border-radius: 17px;">
-          <!-- Insert The product Name here-->
-          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_5.jpg') ; background-size: cover;border-radius: 17px;">
-          <!-- Insert barcode after  sign in the href -->
-          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
-              <button type="button" class="btn btn-success start-sale-button" style="
-              margin-top: 27%;
-              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
-              border: 0;
-              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
-              color: whitesmoke;
-              border-radius: 25px;
-          ">View Product</button>
-          </a>
-        </div>
-      </div>
-    </div>
-</div>
-
-<div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
-  <div class="flip-box" style=" border: 0;">
-      <div class="flip-box-inner">
-        <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url('./images/dash_product_1.jpg');background-size: cover;border-radius: 17px;">
-          <!-- Insert The product Name here-->
-          <h2 style="margin-top: 28%;color: antiquewhite;">Name</h2>
-        <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">Price (php)</h2></div>
-        <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url('./images/dash_product_1.jpg') ; background-size: cover;border-radius: 17px;">
-          <!-- Insert barcode after  sign in the href -->
-          <a href="file:///Users/rafayabbas/Documents/Personal/VAC/client_module/add_product_to_order.php?barcode='.$barcodes.'"> 
-              <button type="button" class="btn btn-success start-sale-button" style="
-              margin-top: 27%;
-              background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
-              border: 0;
-              background: linear-gradient(to right, #52A0FD 0%, #00e2fa 80%, #00e2fa 100%);
-              color: whitesmoke;
-              border-radius: 25px;
-          ">View Product</button>
-          </a>
-        </div>
-      </div>
-    </div>
-</div>
    
+   ?>
        
     </div>
     

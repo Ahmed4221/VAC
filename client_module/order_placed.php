@@ -3,11 +3,14 @@
 
 <?php
 session_start();
+$conn = require '../connection.php';
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
-}
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $sql = "SELECT * FROM OrderInProgressItems WHERE ClientID =  '". $_SESSION["UserEmail"]."'  ";
+    $bucketResults = mysqli_query($conn,$sql); 
+  }
 
 
 
@@ -118,194 +121,141 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <div class="my_custom_card">
 
-  <div class="container" style="
-    border-bottom: solid;
-    padding-bottom: 36px;
-    padding-top: 36px;
-    border-bottom-color: #ffffff;
-    border-bottom-width: 2px;
-    border-bottom-style: groove;
-">
-   
-    <div class="col-md-5">
-      <img class="selected_image_container" src="./images/product_1.jpg">
-    </div>
-    <div class="col-md-7">
-      <div class="single-product-details">
-        <!-- Insert the product id as name (php)-->
-        <h2 class="product_name"> Cocal Cola <label style="
-          font-size: large;
-      " class="product_brand"> Brand </label></h2>
-        <p> <span class="product_price">300</span> $</p>
-        <h6 style="display: inline-block;">Barcode : </h6>
-          <label class="product_barcode">121312121</label>
-          <h5> <span class="product_quantity_per_ctn">5</span> units per CTN </h5>
-          <div class="number" style="
-      margin-top: 19px;
-  ">
-  <h6 style="display: inline-block;">Quantity : </h6>
-  <label class="product_quantity">8</label>
-             </div>
-         
+  <div class="page-container sbar_collapsed">
+       
+    <!-- main content area start -->
+    <div class="main-content" style="min-height: 589px;">
+        <!-- header area start -->
         
-          <button class="btn-grad" id="add_btn" onclick="edit_product(this)" style="margin-top:40px;
-         margin: 10px;
-      padding: 15px 45px;
-      text-align: center;
-      text-transform: uppercase;
-      transition: 0.5s;
-      background-size: 200% auto;
-      color: white;
-      box-shadow: 0 0 20px #eee;
-      border-radius: 31px;
-      display: block;
-      height: 3rem;
-      margin-left: auto;
-      margin-right: auto;
-      border-color: #77A1D3;
-      border-style: solid;
-      padding-top: 4px;
-      margin-left: 0;
-      margin-right: 0;
-      margin: 0;
-      margin-top: 2rem;"> Edit Product </button>
-          
-          
-  
+        <!-- header area end -->
+        <!-- page title area start -->
         
-        
-        
-        
-        
-      </div>
-    </div>
-  </div>
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="row"><!-- Dark table start -->
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="data-tables datatable-dark">
+                                <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                <div class="row"><div class="col-sm-12">
+                                                    <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row"><div class="col-sm-12">
+                                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
+                                    <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
+                                      <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 181px;text-align: center;" aria-label="
+                                        Product Name
+                                      : activate to sort column descending" aria-sort="ascending">
+                                        Product Name
+                                      </th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 163px;text-align: center;" aria-label="
+                                        Barcode
+                                      : activate to sort column ascending">
+                                        Barcode
+                                      </th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 305px;text-align: center;" aria-label="
+                                        Amount
+                                      : activate to sort column ascending">
+                                        Amount
+                                      </th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 183px;text-align: center;" aria-label="
+                                        Quantity
+                                      : activate to sort column ascending">
+                                        Quantity
+                                      </th><th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 219px;text-align: center;" aria-label="
+                                        Remove from Order
+                                      : activate to sort column ascending">
+                                        Remove from Order
+                                      </th></tr>
+                                    </thead>
+                                    <tbody>  
+                                      <?php
+   while ($row = mysqli_fetch_assoc($bucketResults)){
 
-  <div class="container" style="
-    border-bottom: solid;
-    padding-bottom: 36px;
-    padding-top: 36px;
-    border-bottom-color: #ffffff;
-    border-bottom-width: 2px;
-    border-bottom-style: groove;
-">
-   
-    <div class="col-md-5">
-      <img class="selected_image_container" src="./images/product_1.jpg">
-    </div>
-    <div class="col-md-7">
-      <div class="single-product-details">
-        <!-- Insert the product id as name (php)-->
-        <h2 class="product_name"> Cocal Cola <label style="
-          font-size: large;
-      " class="product_brand"> Brand </label></h2>
-        <p> <span class="product_price">300</span> $</p>
-        <h6 style="display: inline-block;">Barcode : </h6>
-          <label class="product_barcode">121312121</label>
-          <h5> <span class="product_quantity_per_ctn">5</span> units per CTN </h5>
-          <div class="number" style="
-      margin-top: 19px;
-  ">
-  <h6 style="display: inline-block;">Quantity : </h6>
-  <label class="product_quantity">8</label>
-             </div>
-         
-        
-          <button class="btn-grad" id="add_btn" onclick="edit_product(this)" style="margin-top:40px;
-         margin: 10px;
-      padding: 15px 45px;
-      text-align: center;
-      text-transform: uppercase;
-      transition: 0.5s;
-      background-size: 200% auto;
-      color: white;
-      box-shadow: 0 0 20px #eee;
-      border-radius: 31px;
-      display: block;
-      height: 3rem;
-      margin-left: auto;
-      margin-right: auto;
-      border-color: #77A1D3;
-      border-style: solid;
-      padding-top: 4px;
-      margin-left: 0;
-      margin-right: 0;
-      margin: 0;
-      margin-top: 2rem;"> Edit Product </button>
-          
-          
-  
-        
-        
-        
-        
-        
-      </div>
-    </div>
-  </div>
+    $nameQuery = "SELECT * FROM `Product`  where Barcode = '".$row['Barcode']."' ";
+    $nameOfProduct = mysqli_query($conn,$nameQuery);
+    $followingdataProduct = $nameOfProduct->fetch_assoc();
 
-  <div class="container" style="
-    border-bottom: solid;
-    padding-bottom: 36px;
-    padding-top: 36px;
-    border-bottom-color: #ffffff;
-    border-bottom-width: 2px;
-    border-bottom-style: groove;
-">
-   
-    <div class="col-md-5">
-      <img class="selected_image_container" src="./images/product_1.jpg">
+   $output='   
+                                    <tr role="row" class="odd">
+                                            <td class="">'.$followingdataProduct['Product_Name'].'</td>
+                                            <td class="">'.$row['Barcode'].'</td>
+                                            <td class=""><span class="product_price">'.$row['Price'].'</span> $</td>
+                                            <td class="">'.$row['Quantity'].'</td>
+                                            <td class=""> <button class="btn btn-danger" id="add_btn" onclick="remove_product(this)" style="
+                                              margin-top:40px;
+                                              margin: 10px;
+                                              padding: 15px 45px;
+                                              text-align: center;
+                                              text-transform: uppercase;
+                                              transition: 0.5s;
+                                              background-size: 200% auto;
+                                              color: white;
+                                              box-shadow: 0 0 20px #eee;
+                                              border-radius: 31px;
+                                              display: block;
+                                              height: 3rem;
+                                              margin-left: auto;
+                                              margin-right: auto;
+                                              border-style: solid;
+                                              padding-top: 4px;
+                                              margin-left: 0;
+                                              margin-right: 0;
+                                              margin: 0;
+                                              margin-top: 0rem;
+                                              ">Remove from Order</button></td>
+                                        </tr>';
+                                        echo $output;
+                                      }
+                                      ?>
+                                      </tbody>
+                                </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dark table end -->
+            </div>
+        </div>
+
+        <div class="container"> 
+          <div class="row">
+            
+            <button class="btn-grad" onclick="place_order_clicked(this)"> Place Order </button>
+      
+          </div>
+          <button class="btn btn-danger" id="add_btn"  style="
+                                              margin-top:40px;
+                                              margin: 10px;
+                                              padding: 15px 45px;
+                                              text-align: center;
+                                              text-transform: uppercase;
+                                              transition: 0.5s;
+                                              background-size: 200% auto;
+                                              color: white;
+                                              box-shadow: 0 0 20px #eee;
+                                              border-radius: 31px;
+                                              display: block;
+                                              height: 3rem;
+                                              margin-left: auto;
+                                              margin-right: auto;
+                                              border-style: solid;
+                                              padding-top: 4px;
+                                              "><a href="RemoveBucket.php" style="
+    color: white;
+">Empty Cart</a></button>
+        </div>
     </div>
-    <div class="col-md-7">
-      <div class="single-product-details">
-        <!-- Insert the product id as name (php)-->
-        <h2 class="product_name"> Cocal Cola <label style="
-          font-size: large;
-      " class="product_brand"> Brand </label></h2>
-        <p> <span class="product_price">300</span> $</p>
-        <h6 style="display: inline-block;">Barcode : </h6>
-          <label class="product_barcode">121312121</label>
-          <h5> <span class="product_quantity_per_ctn">5</span> units per CTN </h5>
-          <div class="number" style="
-      margin-top: 19px;
-  ">
-  <h6 style="display: inline-block;">Quantity : </h6>
-  <label class="product_quantity">8</label>
-             </div>
-         
-        
-          <button class="btn-grad" id="add_btn" onclick="edit_product(this)" style="margin-top:40px;
-         margin: 10px;
-      padding: 15px 45px;
-      text-align: center;
-      text-transform: uppercase;
-      transition: 0.5s;
-      background-size: 200% auto;
-      color: white;
-      box-shadow: 0 0 20px #eee;
-      border-radius: 31px;
-      display: block;
-      height: 3rem;
-      margin-left: auto;
-      margin-right: auto;
-      border-color: #77A1D3;
-      border-style: solid;
-      padding-top: 4px;
-      margin-left: 0;
-      margin-right: 0;
-      margin: 0;
-      margin-top: 2rem;"> Edit Product </button>
-          
-          
+    <!-- main content area end -->
+    <!-- footer area start-->
+    
+    <!-- footer area end-->
+</div>
   
-        
-        
-        
-        
-        
-      </div>
-    </div>
-  </div>
+</div>
+
+  
   
 </div>
 </div>
@@ -319,44 +269,31 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
 
-<!-- Place order Button -->
-<div class= "my_custom_card">
-  <div class = "container"> 
-    <div class="row">
-      
-      <button class = "btn-grad" onclick = "place_order_clicked(this)"> Place Order </button>
-
-    </div>
-  </div>
-</div> 
-
-
-  <!-- Place Order Button End -->
-
 
 
 <script>
   $( document ).ready(function() {
-    edit_product = function(product) {
-      var all_attributes = $(product).parent().children();
-      var product_barcode = $(all_attributes).eq(3).text();
-      var product_quantity = $(all_attributes).eq(5).children().eq(1).text();
-      //console.clear();
+    remove_product = function(product) {
+      var all_attributes = $(product).parent().parent().children();
+      var product_barcode = $(all_attributes).eq(1).text();
+      var product_quantity = $(all_attributes).eq(3).text();
+
+      console.clear();
       console.log(all_attributes);
       console.log("product barcode : " , product_barcode);
       console.log("product quantity : " , product_quantity);
+      var len = 12;  //PHP
+      var wid = 2;  //PHP
+      var hei = 5;  //PHP
+      current_cbm = 90;  //PHP
+      current_cbm = current_cbm - (product_quantity * (len*wid*hei));
 
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
-        + "edit_product.php?" 
-        + "&allowed_cbm=" + cbm
-        + "&individual_cbm=" + individual_cbm
-        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
-        + "&container_selected=" + container_selected
-        + "&quantity=" + quantity
-        + "&product_id=" + product_id;
+        + "RemoveProductFromBucket.php?" 
+        + "&product_id=" + product_barcode
+        + "&product_quantity=" + product_quantity;
       }
-
-    }
+    
   })
 </script>
 

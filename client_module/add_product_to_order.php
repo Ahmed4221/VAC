@@ -3,10 +3,17 @@
 
 <?php
 session_start();
+$followingdata='';
+$temp="Ahmed";
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
+  $conn = require '../connection.php';
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $vendorsProducts = "SELECT * FROM `Vendors_Products` WHERE Barcode='".$_GET['barcode']."' AND Vendor_id = '".$_GET['vendorid']."' ";
+    $results = mysqli_query($conn,$vendorsProducts);
+    $followingdataVendorProducts = $results->fetch_assoc();
+    
 }
 
 
@@ -155,37 +162,38 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 <!-- Products Start -->
 
-
+<?php
+      // $barcode = $_GET['barcode'];
+      $query = "SELECT * FROM `Product` WHERE Barcode = '".$_GET['barcode']."'   ";
+      $result = mysqli_query($conn,$query);
+      $followingdata = $result->fetch_assoc();
+    
+    ?>
 <div class= "my_custom_card">
 
   <div class = "container">
 <div class="row mt-20">
   <div class="col-md-5">
-    <img class = "selected_image_container" src="./images/product_1.jpg" >
+    <img class = "selected_image_container" src=<?php 
+    $ImagePath = $followingdata['ImagePath'];
+    $ImagePath = str_replace("/opt/lampp/htdocs/Freelance","..",$ImagePath);
+    
+    
+    echo $ImagePath;?> >
   </div>
   <div class="col-md-7">
+
+
+
     <div class="single-product-details">
       <!-- Insert the product id as name (php)-->
-      <h2 name="product id"> Cocal Cola <label style="
+      <h2 name="product id"> <?php echo $followingdata['Product_Name'];?> <label style="
         font-size: large;
-    "> Brand </label></h2>
-      <p> 300 $</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Phasellus imperdiet, nulla et dictum interdum, nisi lorem 
-        egestas vitae scel<span id="dots">...</span><span id="more">er
-          enim ligula venenatis dolor. Maecenas nisl est, ultrices n
-          ec congue eget, auctor vitae massa. Fusce luctus vestibu
-          lum augue ut aliquet. Nunc sagittis dictum nisi, sed ulla
-          mcorper ipsum dignissim ac. In at libero sed nunc venena
-          tis imperdiet sed ornare turpis. Donec vitae dui eget te
-          llus gravida venenatis. Integer fringilla congue eros n
-          on fermentum. Sed dapibus pulvinar 
-          nibh tempor 
-          porta.</span> <span id = "seeMoreBtn" onclick = "seeMoreFunction()" style = " color: #33daa3;
-          cursor: pointer;
-          font-weight: bolder;"> See more </span></p>
+    "> <?php echo $followingdata['Brand_Name'];?> </label></h2>
+      <p> <?php echo $_GET['price_per_ctn'];?> $</p>
+      <p><?php echo $followingdata['Description'];?></p>
 
-        <h5> <span id="quantityPerCtn">5</span> units per CTN </h5>
+        <h5> <span id="quantityPerCtn"><?php echo $_GET['per_ctn_qty'];?></span> units per CTN </h5>
         <div class="number" style="
     margin-top: 19px;
 ">
@@ -278,21 +286,22 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
         + "add_product_to_order_2.php?" 
         + "&allowed_cbm=" + cbm
         + "&individual_cbm=" + individual_cbm
-        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
+        + "&current_cbm=" + (current_cbm )
         + "&container_selected=" + container_selected
         + "&quantity=" + quantity
-        + "&product_id=" + product_id;
-      
+        + "&product_id=" + "<?php echo $followingdataVendorProducts['Barcode'] ?>"
+        + "&vendor_id=" + "<?php echo $followingdataVendorProducts['Vendor_id'] ?>";
     }
     else{
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1))
         + "order_placed.php?" 
         + "&allowed_cbm=" + cbm
         + "&individual_cbm=" + individual_cbm
-        + "&current_cbm=" + (current_cbm + individual_cbm*quantity)
+        + "&current_cbm=" + (current_cbm )
         + "&container_selected=" + container_selected
         + "&quantity=" + quantity
-        + "&product_id=" + product_id;
+        + "&product_id=" + "<?php echo $followingdataVendorProducts['Barcode'] ?>"
+        + "&vendor_id=" + "<?php echo $followingdataVendorProducts['Vendor_id'] ?>";
     }
     
     
@@ -320,21 +329,28 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 ////////// Initializing Global Variables ///////////
 containers = {100:"20ft" , 150:"40ft" , 200:"40ftHC"};
 cbm = GetURLParameter("cbm_allowed"); 
-// Insert the length,width and height below from php, key is the product id which is defined in the name attribute of <h2> tag for name of the product 
-  length = 3; 
-  width = 5;
-  height = 2;
+// Insert the length,width and height below from php, key is the product id which is defined in the name attribute of <h2> tag for name of the product
+
+var l = "<?php echo $followingdataVendorProducts['length'] ?>";
+var w = "<?php echo $followingdataVendorProducts['width'] ?>";
+var h = "<?php echo $followingdataVendorProducts['height'] ?>";
+var stock = "<?php echo $followingdataVendorProducts['Quantity'] ?>"
+
+  length = parseInt(l); 
+  width = parseInt(w);
+  height = parseInt(h);
   individual_cbm = length*width*height;
-  vendor_stock = 4; // Add stock available through php
+  console.log("here",individual_cbm);
+  vendor_stock = parseInt(stock); // Add stock available through php
 first_product = false;
 if(cbm == null) {
   first_product = true;
-  cbm = 100;
+  cbm = -1;
   current_cbm = 0;
   console.log("yo bro");
   quantity = 1;
-  container_selected = "20ft"
-  //$("#"+containers[cbm]).trigger("click");
+  container_selected = "None"
+  $("#"+containers[100]).trigger("click");
 }
 else{
   cbm = parseInt(cbm);
