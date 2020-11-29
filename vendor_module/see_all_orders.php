@@ -1,10 +1,22 @@
+<?php
+session_start();
+
+if($_SESSION['loggedIn']){
+$user = $_SESSION["UserEmail"];
+$conn = require '../connection.php';
+
+}
+else{
+    //redirect to the login page
+    header('Location: ../index.php'); }
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0098)file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/mydatatable.php -->
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style="">
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Datatable - srtdash</title>
+    <title>Incoming - Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./mydatatable_files/bootstrap.min.css">
@@ -120,38 +132,34 @@ background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #
                                         <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
                                             <tr role="row">
                                                 <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 167px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Order ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 143px;" aria-label="Office: activate to sort column ascending">Order Date</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">Item</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">Quantity</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 86px;" aria-label="Age: activate to sort column ascending">Status</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 162px;" aria-label="Start Date: activate to sort column ascending">Order Amount</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">Client ID</th>
-                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">View Order</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">Approve</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 122px;" aria-label="salary: activate to sort column ascending">Reject</th>
                                             </tr>
                                         </thead>
-                                        <tbody>  
-                                        <tr role="row" class="odd">
-                                                <td tabindex="0" class="sorting_1">1</td>
-                                                <td class="">27/11/2020</td>
+                                        <tbody>
+                                            <?php
+            $getting_vendor_products_sql = "SELECT * FROM `OrdersPlacedDetails` where VendorID='".$user."' and VendorApproved=0 and `Started`=0 ";
+            $rez = mysqli_query($conn,$getting_vendor_products_sql);
+            while($row = mysqli_fetch_assoc($rez)){
+                                        $output = '<tr role="row" class="odd">
+                                                <td tabindex="0" class="sorting_1">'.$row['OrderID'].'</td>
+                                                <td tabindex="0" class="sorting_1">'.$row['Barcode'].'</td>
+                                                <td tabindex="0" class="sorting_1">'.$row['Quantity'].'</td>
+                                                
                                                 <td class="">Pending Approval(Vendor)</td>
-                                                <td class="">5000</td>
-                                                <td class="">123213</td>
-                                                <td class=""> <a href="#">View Details</a></td>
-                                            </tr><tr role="row" class="even">
-                                                
-                                              <td tabindex="0" class="sorting_1">2</td>
-                                              <td class="">27/10/2020</td>
-                                              <td class="">Pending Approval(Client)</td>
-                                              <td class="">500</td>
-                                              <td class="">127213</td>
-                                              <td class=""> <a href="#">View Details</a></td>
-                                            </tr><tr role="row" class="odd">
-                                                
-                                              <td tabindex="0" class="sorting_1">3</td>
-                                              <td class="">04/11/2020</td>
-                                              <td class="">Shipped</td>
-                                              <td class="">300</td>
-                                              <td class="">198213</td>
-                                              <td class=""> <a href="#">View Details</a></td>
-                                            </tr></tbody>
+                                                <td class="">'.$row['Price']*$row['Quantity'].'</td>
+                                                <td class="">'.$row['ClientID'].'</td>
+                                                <td class=""> <a href="ApproveOrder.php?rowID='.$row['RowNumber'].'">Approve</a></td>
+                                                <td class=""> <a href="RejectOrder.php?rowID='.$row['RowNumber'].'">Reject</a></td>
+                                            </tr>';
+                                            echo $output;
+                                        }    
+                                            ?></tbody>
                                     </table></div></div></div></div></div></div></div></div></div>
                                 </div>
                             </div>
