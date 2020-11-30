@@ -5,6 +5,11 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserT
     // echo $_SESSION["UserEmail"], "    has logged in \n";
     // echo "<br>";
     // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
+    $sql = "SELECT * FROM `OrderTracking` WHERE OrderID = '".$_GET['orderID']."'";
+    $rez = mysqli_query($conn,$sql);
+    $followingdata = $rez->fetch_assoc();
+    $CurrentStatus = $followingdata['Status'];
 }
 else{
     //redirect to the login page
@@ -19,7 +24,7 @@ else{
 <html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Datatable - srtdash</title>
+    <title>UPDATE - TRACKING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="file:///Users/rafayabbas/Documents/Personal/srtdash-admin-dashboard-master/srtdash/assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="./vendor_dash_files/bootstrap.min.css">
@@ -41,7 +46,15 @@ else{
     <link rel="stylesheet" href="./vendor_dash_files/styles.css">
     <link rel="stylesheet" href="./vendor_dash_files/responsive.css">
 
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+    <link rel="stylesheet" href="./custom_css_vendor/shipment_status.css">
     <!-- modernizr css -->
     <script src="./vendor_dash_files/modernizr-2.8.3.min.js"></script>
 
@@ -107,161 +120,94 @@ else{
 
 <!-- nav end -->
 
-<div class="row row-cols-1 row-cols-md-2" style="
-  width: 70%;
-  margin: auto;
-  margin-top: 6rem;
+<div class="container" style="
+    margin-left: 0;
+    margin-right: 0;
 ">
-<div class="col col-md-6 mb-4">
-  <!-- Card -->
-  <div class="card " style="
-  width: 65%;
-  margin: auto;
+  <article class="card" style="
+    width: 147%;
+    margin-left: 2vh;
 ">
-
-    <!--Card image-->
-    <div class="view overlay" style="
-  border-radius: 12px;
-">
-      <img class="card-img-top" src="./images/add_product_homepage.png" alt="Card image cap" style="
-  border-radius: 15px;
-  height: 15vw;
-  width: auto;
-  margin-left: 15%;
-">
-      <a href="add_product_page.php">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Add a Product</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-        card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="add_product_page.php"><button type="button" class="btn btn-light-blue btn-md">Add Product</button></a>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-</div>
-<div class="col col-md-6 mb-4">
-  <!-- Card -->
-  <div class="card" style="
-  width: 65%;
-  margin: auto;
-">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="./images/see_orders_homepage.jpeg" alt="Card image cap" style="
-  border-radius: 15px;
-  height: 15vw;
-  width: auto;
-  margin-left: 15%;
-">
-      <a href="see_all_orders.php">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">See all Orders</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-        card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="see_all_orders.php"><button type="button" class="btn btn-light-blue btn-md">See Orders</button></a>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-</div>
-<div class="col col-md-6 mb-4">
-  <!-- Card -->
-  <div class="card" style="
-  width: 65%;
-  margin: auto;
-">
-
-    <!--Card image-->
-    <div class="view overlay">
-      <img class="card-img-top" src="./images/update_stock_homepage.png" alt="Card image cap" style="
-  border-radius: 15px;
-  height: 15vw;
-  width: auto;
-  margin-left: 15%;
-">
-      <a href="update_product_quantity.php">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Update your Stock</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-        card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="update_product_quantity.php"><button type="button" class="btn btn-light-blue btn-md">Update</button></a>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-</div>
-<div class="col col-md-6 mb-4">
-  <!-- Card -->
-  <div class="card" style="
-  width: 65%;
-  margin: auto;
-">
-
-    <!--Card image-->
-    <div class="view overlay" style="
-">
-      <img class="card-img-top" src="./images/shipment_homepage.svg" alt="Card image cap" style="
-  border-radius: 15px;
-  height: 15vw;
-  width: auto;
-  margin-left: 15%;
-">
-      <a href="add_shipment_detail.php">
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Card content-->
-    <div class="card-body">
-
-      <!--Title-->
-      <h4 class="card-title">Shipment Details</h4>
-      <!--Text-->
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-        card's content.</p>
-      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-      <a href="see_order_status.php"><button type="button" class="btn btn-light-blue btn-md">See Details</button></a>
-
-    </div>
-
-  </div>
-  <!-- Card -->
-</div>
+      <header class="card-header"> My Orders / Tracking </header>
+      <div class="card-body">
+          <h6>Order ID: <span id="order_id">123123123</span></h6>
+          
+          <div class="track">
+              <div class="step active">
+                <span class="icon">
+                    <i class="fa fa-check" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Order confirmed</span> 
+              </div>
+              <div class="step" style="
+"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Order being processed</span>
+                <span class="icon" style="
+    top: -32px;
+"> 
+                  <i class="fa fa-user" style="margin-top: 28%;"></i> 
+                </span>
+              </div>
+              <div class="step"> 
+                <span class="icon" style=""> 
+                  <i class="fa fa-truck" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Dispatched to Central Warehouse</span> 
+              </div>
+              <div class="step"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Received at Warehouse</span> 
+                <span class="icon" style="
+    top: -32px;
+    position: relative;
+"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span>
+              </div>
+              <div class="step"> 
+                <span class="icon"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span> 
+                <span class="text">Shipped From Warehouse</span> 
+              </div>
+              <div class="step"> 
+                <span class="text" style="
+    top: -32px;
+    position: relative;
+">Received</span> 
+                <span class="icon" style="
+    top: -32px;
+    position: relative;
+"> 
+                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
+                </span> 
+                
+              </div>
+          </div>
+          <hr>
+          
+          
+          <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+    <label style="
+    margin-left: 26%;
+"> Update Status </label>
+<select id="change_shipment_status">
+<option value="1">Order Confirmed</option>
+  <option value="2">Order Being Processed</option>
+  <option value="3">Dispatched To Central Warehouse</option>
+</select>
+    <button class="btn btn-success" href="#" style="
+    float: right;
+" onclick="update_status()">Update</button>
+      </div>
+  </article>
 </div>
 <!--/.Navbar -->
-
 
   <!-- page container area start -->
   
@@ -294,24 +240,32 @@ else{
       $( document ).ready(function() {
   console.log( "ready!" );
 
-      console.log(document.getElementById("order_status").innerText);
-      var status = document.getElementById("order_status").innerText;
-      var status_container = document.getElementById("order_status_container").innerHTML;
-      if(status == "Pending Vendor Approval")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;"><button type="submit" value ="approve" name="approve_btn" class="btn btn-outline-success waves-effect" style="margin-left: 30px;margin-right: 30px;">Approve</button>';
-          status_container += '<button type="submit" value = "disapprove" name="disapprove_btn" class="btn btn-outline-danger waves-effect">Disapprove</button> </form>';
-          
+      shipment_status = "<?php echo $CurrentStatus ?>";
+      order_id = "<?php echo $_GET['orderID'] ?>";
+      $('select option[value="'+shipment_status+'"]').attr("selected",true);
+      $("#order_id").text( order_id );
+      adjust_shipment_status = function(status_index) {
+        $(".track").children().removeClass("active");
+        let my_classes = $(".track").children();
+        for (let i = 0; i < status_index; i++) {
+          my_classes.eq(i).addClass("active");
+        }
       }
-      else if(status == "Pending Client Confirmation")
-      {
-          
+
+      adjust_shipment_status(shipment_status);
+
+      $("#change_shipment_status").change(function() {
+        shipment_status = parseInt( $(this).children("option:selected").val());
+        adjust_shipment_status(shipment_status);
+
+
+        
+      })
+      barcode = "<?php echo $_GET['barcode'] ?>";
+      update_status = function() {
+        window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "UpdateShipmentStatus.php?orderId=" + order_id + "&shipment_status=" + shipment_status+ "&barcode="+ barcode;
+   
       }
-      else if(status == "Pending Shipment Update")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;" ><button type="submit" value="add_shipment" name="add_shipment_btn" class="btn btn-outline-primary waves-effect" style="margin-left: 30px;margin-right: 30px;" >Add Shipment Details</button> </form>';
-      }
-      document.getElementById("order_status_container").innerHTML = status_container;
   });
   </script>
 

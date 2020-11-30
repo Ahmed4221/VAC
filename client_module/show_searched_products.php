@@ -309,14 +309,17 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                                                and price_per_ctn = (SELECT min(price_per_ctn) FROM `Vendors_Products` WHERE Barcode = '$barcodes' ) ";
          $rez = mysqli_query($conn,$getminimumVendor);
          $Vendorfollowingdata = $rez->fetch_assoc();
+          
+          $followingdata['ImagePath'] = str_replace("/opt/lampp/htdocs/Freelance","..",$followingdata['ImagePath']);
+          
+     $output =' 
 
-
-     $output =' <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
+      <div class="col-md-3 col-sm-6 col-10 mt-3 mb-3 ml-3 mr-3 d-flex justify-content-center" style="/* text-align: center; */align-items: center;align-content: center;/* background-image: url(&quot;./images/start_sale_product_dummy.jpg&quot;); *//* background-size: contain; */margin-top: 4rem !important;">
         <div class="flip-box" style=" border: 0;">
             <div class="flip-box-inner">
-              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url(./images/dash_product_1.jpg);background-size: cover;border-radius: 17px;"><h2 style="margin-top: 28%;color: antiquewhite;">'.$followingdata['Product_Name'].'</h2>
+              <div class="flip-box-front" style="background-image: linear-gradient(0deg, rgba(37,167,173,0.6292892156862745) 0%, rgba(21,26,33,0.654499299719888) 50%, rgba(0,7,255,0.3603816526610645) 100%) , url(.'.$followingdata['ImagePath'].');background-size: cover;border-radius: 17px;"><h2 style="margin-top: 28%;color: antiquewhite;">'.$followingdata['Product_Name'].'</h2>
               <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">'.$Vendorfollowingdata['price_per_ctn'].'</h2></div>
-              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url(./images/dash_product_1.jpg) ; background-size: cover;border-radius: 17px;">
+              <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url(.'.$followingdata['ImagePath'].') ; background-size: cover;border-radius: 17px;">
                 <!-- Insert barcode after  sign in the href -->
                 <a href="add_product_to_order.php?barcode='.$barcodes.'&price_per_ctn='.$Vendorfollowingdata['price_per_ctn'].'&per_ctn_qty='.$Vendorfollowingdata['per_ctn_quantity'].'&vendorid='.$Vendorfollowingdata['Vendor_id'].' "> 
                     <button type="button" class="btn btn-success start-sale-button" style="

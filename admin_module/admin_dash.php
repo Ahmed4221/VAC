@@ -128,12 +128,25 @@ else{
  
 </div>
 </li>
+<a class="nav-link waves-effect waves-light" href="see_order_status.php">Shipment
+  </a>
+  </li>
+
+</ul>
+<ul class="navbar-nav ml-auto nav-flex-icons">
+
+
+</div>
+</li>
 <a class="nav-link waves-effect waves-light" href="settings.php">Settings
   </a>
   </li>
 
 </ul>
 <ul class="navbar-nav ml-auto nav-flex-icons">
+
+
+
 
 
 
