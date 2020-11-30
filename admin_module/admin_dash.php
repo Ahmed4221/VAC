@@ -162,11 +162,158 @@ else{
 <!-- nav end -->
 
 <div class="row row-cols-1 row-cols-md-2" style="
-  width: 100%;
-  height: 200px;
+  width: 70%;
+  margin: auto;
+  margin-top: 6rem;
 ">
-</div>
+<div class="col col-md-6 mb-4">
+  <!-- Card -->
+  <div class="card " style="
+  width: 65%;
+  margin: auto;
+">
 
+    <!--Card image-->
+    <div class="view overlay" style="
+  border-radius: 12px;
+">
+      <img class="card-img-top" src="./images/add_product_homepage.png" alt="Card image cap" style="
+  border-radius: 15px;
+  height: 15vw;
+  width: auto;
+  margin-left: 15%;
+">
+      <a href="add_product_page.php">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">Product Approvals</h4>
+      <!--Text-->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+        card's content.</p>
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <a href="view_vendor_product_requests.php"><button type="button" class="btn btn-light-blue btn-md">Approve</button></a>
+
+    </div>
+
+  </div>
+  <!-- Card -->
+</div>
+<div class="col col-md-6 mb-4">
+  <!-- Card -->
+  <div class="card" style="
+  width: 65%;
+  margin: auto;
+">
+
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="./images/see_orders_homepage.jpeg" alt="Card image cap" style="
+  border-radius: 15px;
+  height: 15vw;
+  width: auto;
+  margin-left: 15%;
+">
+      <a href="see_all_orders.php">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">Client Approvals</h4>
+      <!--Text-->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+        card's content.</p>
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <a href="view_client_requests.php"><button type="button" class="btn btn-light-blue btn-md">Approve</button></a>
+
+    </div>
+
+  </div>
+  <!-- Card -->
+</div>
+<div class="col col-md-6 mb-4">
+  <!-- Card -->
+  <div class="card" style="
+  width: 65%;
+  margin: auto;
+">
+
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="./images/update_stock_homepage.png" alt="Card image cap" style="
+  border-radius: 15px;
+  height: 15vw;
+  width: auto;
+  margin-left: 15%;
+">
+      <a href="update_product_quantity.php">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">Vendor Approvals</h4>
+      <!--Text-->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+        card's content.</p>
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <a href="view_vendor_requests.php"><button type="button" class="btn btn-light-blue btn-md">Approve</button></a>
+
+    </div>
+
+  </div>
+  <!-- Card -->
+</div>
+<div class="col col-md-6 mb-4">
+  <!-- Card -->
+  <div class="card" style="
+  width: 65%;
+  margin: auto;
+">
+
+    <!--Card image-->
+    <div class="view overlay" style="
+">
+      <img class="card-img-top" src="./images/shipment_homepage.svg" alt="Card image cap" style="
+  border-radius: 15px;
+  height: 15vw;
+  width: auto;
+  margin-left: 15%;
+">
+      <a href="see_order_status.php">
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+
+      <!--Title-->
+      <h4 class="card-title">Shipment Details</h4>
+      <!--Text-->
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+        card's content.</p>
+      <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      <a href="see_order_status.php"><button type="button" class="btn btn-light-blue btn-md">See Details</button></a>
+
+    </div>
+
+  </div>
+  <!-- Card -->
+</div>
+</div>
 
 
 <!--/.Navbar -->
