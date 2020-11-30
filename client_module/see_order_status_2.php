@@ -169,13 +169,37 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
                                       <?php
                                       $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '$OrderIDIncoming' and Started=1";
                                       $rez = mysqli_query($conn,$innersql);
+
+                                      $statusQuery = "SELECT * FROM `OrderTracking` WHERE OrderID =  '".$_GET['order_id']."' ";
+                                      $statusRez = mysqli_query($conn,$statusQuery);
+                                      $followingdata = $statusRez->fetch_assoc();
+                                      $status = $followingdata['Status'];
+                                      if ($status == 1){
+                                        $status = "Confirmed";
+                                      }
+                                      if ($status == 2){
+                                        $status = "Order Being Processed";
+                                      }
+                                      if ($status == 3){
+                                        $status = "Dispatched To Warehouse";
+                                      }
+                                      if ($status == 4){
+                                        $status = "Recieved At Warehouse";
+                                      }
+                                      if ($status == 5){
+                                        $status = "Shipped To Client";
+                                      }
+                                      if ($status == 6){
+                                        $status = "Recieved";
+                                      }
+
                                       while($row = mysqli_fetch_assoc($rez)){
                                       $output = '  
                                     <tr role="row" class="odd">
                                             <td tabindex="0" class="sorting_1">'.$OrderIDIncoming.'</td>
                                             <td class="">'.$row['Barcode'].'</td>
                                             <td class="">'.$row['Price']*$row['Quantity'].'</td>
-                                            <td class="">Confirmed</td>
+                                            <td class="">'.$status.'</td>
                                             
                                             <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
                                         </tr>';

@@ -1,11 +1,19 @@
 <?php
 session_start();
-if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["UserType"]=="admin")) {
-    echo $_SESSION["UserEmail"], "    has logged in \n";
-    echo "<br>";
-    echo "Usertype is   : ",$_SESSION["UserType"];
-}
 
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserType"]=="Client")) {
+    // echo $_SESSION["UserEmail"], "    has logged in \n";
+    // echo "<br>";
+    // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
+    $sql = "SELECT * FROM `OrderTracking` WHERE OrderID = '".$_GET['orderID']."'";
+    $rez = mysqli_query($conn,$sql);
+    $followingdata = $rez->fetch_assoc();
+    $CurrentStatus = $followingdata['Status'];
+}
+else{
+    //redirect to the login page
+    header('Location: ../index.php'); }
 
 
 
@@ -199,7 +207,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
     margin-left: 26%;
 "> Update Status </label>
     <select id="change_shipment_status">
-        <option value="5" >Shipped From Warehouse</option>
+    <option value="6" > </option>
         <option value="6" >Received</option>
     </select>
     <button class="btn btn-success" href="#" style="
@@ -221,8 +229,10 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
   $( document ).ready(function() {
 console.log( "ready!" );
 
-  shipment_status = 1  // PHP
-  order_id = 123123123  //PHP
+  // shipment_status = 1  // PHP
+  // order_id = 123123123  //PHP
+  shipment_status = "<?php echo $CurrentStatus ?>";
+      order_id = "<?php echo $_GET['orderID'] ?>";
   $('select option[value="'+shipment_status+'"]').attr("selected",true);
   $("#order_id").text( order_id );
   adjust_shipment_status = function(status_index) {
