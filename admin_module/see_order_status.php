@@ -2,9 +2,7 @@
 session_start();
 
 if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin")) {
-    // echo $_SESSION["UserEmail"], "    has logged in \n";
-    // echo "<br>";
-    // echo "Usertype is   : ",$_SESSION["UserType"];
+  $conn = require '../connection.php';
 }
 else{
     //redirect to the login page
@@ -194,6 +192,7 @@ else{
                                             rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
                                             Order Date
                                           </th>
+
                                           
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
                                             style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">
@@ -205,28 +204,38 @@ else{
                                           </th>
                                         </tr>
                                     </thead>
-                                    <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">27/11/2020</td>
-                                            <td class="">5000</td>
-                                            
-                                            <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
-                                            
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">27/10/2020</td>
-                                          <td class="">500</td>
-                                          
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">04/11/2020</td>
-                                          <td class="">300</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
+                                    <tbody>
+                                    <?php  
+
+                                    $sql = "SELECT * FROM `PlacedOrders` ";
+                                    $rez = mysqli_query($conn,$sql);
+                                    while($row = mysqli_fetch_assoc($rez)){
+                                      $order_id = $row['OrderID'];
+                                      $order_date = $row['OrderDate'];
+                                      $Amount = 0;
+                                      $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '$order_id'  ";
+                                      $innner_rez = mysqli_query($conn,$innersql);
+                                      while($row = mysqli_fetch_assoc($innner_rez)){
+                                              $Amount = $Amount + ($row['Price']*$row['Quantity']);
+
+                                        }
+
+                                        $output = '<tr role="row" class="odd">
+                                        <td tabindex="0" class="sorting_1">'.$order_id.'</td>
+                                        <td class="">'.$order_date.'</td>
+                                        <td class="">'.$Amount.'</td>
+                                        
+                                        <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                    </tr>';
+                                    echo $output;
+
+
+
+
+
+                                      }  
+                                        ?>
+                                        </tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>
@@ -255,7 +264,7 @@ else{
     view_details =  function(elem){
       order_id = $(elem).parent().parent().children().eq(0).text();
       console.log("order id clicked = ", order_id);
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?" + order_id;
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?order_id=" + order_id;
   
     }
   })

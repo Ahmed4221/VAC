@@ -5,6 +5,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin")) {
     // echo $_SESSION["UserEmail"], "    has logged in \n";
     // echo "<br>";
     // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
 }
 else{
     //redirect to the login page
@@ -193,6 +194,10 @@ else{
                                           </th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" 
                                             rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
+                                            VendorID
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" 
+                                            rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
                                             Barcode
                                           </th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" 
@@ -210,30 +215,78 @@ else{
                                         </tr>
                                     </thead>
                                     <tbody>  
-                                    <tr role="row" class="odd">
-                                            <td tabindex="0" class="sorting_1">1</td>
-                                            <td class="">13412132412</td>
-                                            <td class="">5000</td>
-                                            <td class="">Confirmed</td>
-                                            
-                                            <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="even">
-                                            
-                                          <td tabindex="0" class="sorting_1">2</td>
-                                          <td class="">1234134123423</td>
-                                          <td class="">500</td>
-                                          <td class="">Dispatched to Central Warehouse</td>
-                                          
-                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr><tr role="row" class="odd">
-                                            
-                                          <td tabindex="0" class="sorting_1">3</td>
-                                          <td class="">12341234234</td>
-                                          <td class="">300</td>
-                                          <td class="">Order being processed</td>
-                                          
-                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
-                                        </tr></tbody>
+                                      <?php  
+
+                                              $sql = "SELECT * FROM `PlacedOrders` ";
+                                              $rez = mysqli_query($conn,$sql);
+                                              while($row = mysqli_fetch_assoc($rez)){
+                                                $order_id = $row['OrderID'];
+                                                $order_date = $row['OrderDate'];
+                                                $Amount = 0;
+                                                $innersql = "SELECT * FROM `OrdersPlacedDetails` WHERE OrderID = '$order_id'  ";
+                                                $innner_rez = mysqli_query($conn,$innersql);
+                                                while($row = mysqli_fetch_assoc($innner_rez)){
+                                                        $status = "";
+                                                        if ($row['Started']==-1){
+                                                          $status = "Denied";
+                                                          $output = '<tr role="row" class="odd">
+                                                          <td tabindex="0" class="sorting_1">'.$order_id.'</td>
+                                                          <td tabindex="0" class="sorting_1">'.$row['VendorID'].'</td>
+                                                          <td class="">'.$row['Barcode'].'</td>
+                                                          <td class="">'.$row['Price']*$row['Quantity'].'</td>
+                                                          <td class="">'.$status.'</td>
+                                                          <td class=""> <a href = "#" ">View Details</a></td>
+                                                      </tr>';
+                                                      echo $output;
+                                                        }
+                                                        else{
+                                                          $statusQuery = "SELECT * FROM `OrderTracking` WHERE OrderID =  '".$_GET['order_id']."' ";
+                                                          $statusRez = mysqli_query($conn,$statusQuery);
+                                                          $followingdata = $statusRez->fetch_assoc();
+                                                          $status = $followingdata['Status'];
+                                                          if ($status == 1){
+                                                            $status = "Confirmed";
+                                                          }
+                                                          if ($status == 2){
+                                                            $status = "Order Being Processed";
+                                                          }
+                                                          if ($status == 3){
+                                                            $status = "Dispatched To Warehouse";
+                                                          }
+                                                          if ($status == 4){
+                                                            $status = "Recieved At Warehouse";
+                                                          }
+                                                          if ($status == 5){
+                                                            $status = "Shipped To Client";
+                                                          }
+                                                          if ($status == 6){
+                                                            $status = "Recieved";
+                                                          }
+                                                          $output = '<tr role="row" class="odd">
+                                                          <td tabindex="0" class="sorting_1">'.$order_id.'</td>
+                                                          <td tabindex="0" class="sorting_1">'.$row['VendorID'].'</td>
+                                                          <td class="">'.$row['Barcode'].'</td>
+                                                          <td class="">'.$row['Price']*$row['Quantity'].'</td>
+                                                          <td class="">'.$status.'</td>
+                                                          
+                                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                                      </tr>';
+                                                      echo $output;
+                                                        }
+
+
+
+
+                                                  }
+
+
+
+
+
+
+
+                                                }  
+                                                  ?></tbody>
                                 </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
                             </div>
                         </div>
@@ -260,7 +313,7 @@ else{
   $( document ).ready(function() {
     view_details =  function(elem){
       order_id = $(elem).parent().parent().children().eq(0).text();
-      barcode = $(elem).parent().parent().children().eq(1).text();
+      barcode = $(elem).parent().parent().children().eq(2).text();
       console.log("order id clicked = ", order_id);
       console.log("barcode : " , barcode);
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "add_shipment_details.php?orderID=" + order_id +"&barcode=" + barcode;

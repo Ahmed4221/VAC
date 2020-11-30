@@ -1,10 +1,15 @@
 <?php
 session_start();
 
-if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin")) {
+if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserType"]=="vendor")) {
     // echo $_SESSION["UserEmail"], "    has logged in \n";
     // echo "<br>";
     // echo "Usertype is   : ",$_SESSION["UserType"];
+    $conn = require '../connection.php';
+    $sql = "SELECT * FROM `OrderTracking` WHERE OrderID = '".$_GET['orderID']."'";
+    $rez = mysqli_query($conn,$sql);
+    $followingdata = $rez->fetch_assoc();
+    $CurrentStatus = $followingdata['Status'];
 }
 else{
     //redirect to the login page
@@ -235,7 +240,6 @@ else{
     <select id="change_shipment_status">
         <option value="4" selected="selected">Received At Warehouse</option>
         <option value="5">Shipped From Warehouse</option>
-        <option value="6">Received</option>
     </select>
     <button class="btn btn-success" href="#" style="
     float: right;
@@ -340,8 +344,10 @@ else{
     $( document ).ready(function() {
 console.log( "ready!" );
 
-    shipment_status = 1
-    order_id = 123123123
+    // shipment_status = 1
+    // order_id = 123123123
+    shipment_status = "<?php echo $CurrentStatus ?>";
+      order_id = "<?php echo $_GET['orderID'] ?>";
     $('select option[value="'+shipment_status+'"]').attr("selected",true);
     $("#order_id").text( order_id );
     adjust_shipment_status = function(status_index) {
