@@ -123,6 +123,14 @@ else{
  
 
 
+</div>
+</li><li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+<div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+<a class="dropdown-item waves-effect waves-light" href="settings.php">Add Value Metric</a>
+
+
+
 
 
  
@@ -132,18 +140,12 @@ else{
   </a>
   </li>
 
-</ul>
-<ul class="navbar-nav ml-auto nav-flex-icons">
-
-
-</div>
-</li>
-<a class="nav-link waves-effect waves-light" href="settings.php">Settings
-  </a>
-  </li>
 
 </ul>
 <ul class="navbar-nav ml-auto nav-flex-icons">
+
+
+
 
 
 

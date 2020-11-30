@@ -40,7 +40,7 @@ else{
     <link rel="stylesheet" href="./admin_dash_files/default-css.css">
     <link rel="stylesheet" href="./admin_dash_files/styles.css">
     <link rel="stylesheet" href="./admin_dash_files/responsive.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- My Custom Css -->
     <link rel="stylesheet" href="./Common_files/custom_css_all.css">
     
@@ -156,92 +156,92 @@ else{
 <!-- nav end -->
 
 
-<div class="container" style="
-    margin-left: 0;
-    margin-right: 0;
-">
-  <article class="card" style="
-    width: 147%;
-    margin-left: 2vh;
-">
-      <header class="card-header"> My Orders / Tracking </header>
-      <div class="card-body">
-          <h6>Order ID: <span id="order_id">123123123</span></h6>
-          
-          <div class="track">
-              <div class="step active">
-                <span class="icon">
-                    <i class="fa fa-check" style="margin-top: 28%;"></i> 
-                </span> 
-                <span class="text">Order confirmed</span> 
-              </div>
-              <div class="step" style="
-"> 
-                <span class="text" style="
-    top: -32px;
-    position: relative;
-">Order being processed</span>
-                <span class="icon" style="
-    top: -32px;
-"> 
-                  <i class="fa fa-user" style="margin-top: 28%;"></i> 
-                </span>
-              </div>
-              <div class="step"> 
-                <span class="icon" style=""> 
-                  <i class="fa fa-truck" style="margin-top: 28%;"></i> 
-                </span> 
-                <span class="text">Dispatched to Central Warehouse</span> 
-              </div>
-              <div class="step"> 
-                <span class="text" style="
-    top: -32px;
-    position: relative;
-">Received at Warehouse</span> 
-                <span class="icon" style="
-    top: -32px;
-    position: relative;
-"> 
-                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
-                </span>
-              </div>
-              <div class="step"> 
-                <span class="icon"> 
-                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
-                </span> 
-                <span class="text">Shipped From Warehouse</span> 
-              </div>
-              <div class="step"> 
-                <span class="text" style="
-    top: -32px;
-    position: relative;
-">Received</span> 
-                <span class="icon" style="
-    top: -32px;
-    position: relative;
-"> 
-                  <i class="fa fa-box" style="margin-top: 28%;"></i> 
-                </span> 
-                
-              </div>
-          </div>
-          <hr>
-          
-          
-          <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
-    <label style="
-    margin-left: 26%;
-"> Update Status </label>
-    <select id="change_shipment_status">
-        <option value="4" selected="selected">Received At Warehouse</option>
-        <option value="5">Shipped From Warehouse</option>
-        <option value="6">Received</option>
-    </select>
-    <button class="btn btn-success" href="#" style="
-    float: right;
-" onclick="update_status()">Update</button>
-      </div>
-  </article>
+<div class="my_custom_card">
+
+  <div class="page-container sbar_collapsed">
+       
+    <!-- main content area start -->
+    <div class="main-content" style="min-height: 589px;">
+        <!-- header area start -->
+        
+        <!-- header area end -->
+        <!-- page title area start -->
+        
+        <!-- page title area end -->
+        <div class="main-content-inner">
+            <div class="row"><!-- Dark table start -->
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="data-tables datatable-dark">
+                                <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                <div class="row"><div class="col-sm-12">
+                                                    <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row"><div class="col-sm-12">
+                                                            <div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><div id="dataTable3_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="row"><div class="col-sm-12"><table id="dataTable3" class="text-center dataTable no-footer dtr-inline" role="grid" aria-describedby="dataTable3_info" style="width: 1291px;">
+                                    <thead class="text-capitalize" style="background: linear-gradient(90deg, rgba(4,2,11,1) 0%, rgba(27,0,255,1) 54%, rgba(6,1,6,1) 97%);">
+                                        <tr role="row">
+                                          <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" 
+                                            colspan="1" style="width: 199px;" aria-label="Order ID: activate to sort column descending" 
+                                            aria-sort="ascending">
+                                            Order ID
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" 
+                                            rowspan="1" colspan="1" style="width: 172px;" aria-label="Order Date: activate to sort column ascending">
+                                            Order Date
+                                          </th>
+                                          
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 194px;" aria-label="Order Amount: activate to sort column ascending">
+                                            Order Amount
+                                          </th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" 
+                                            style="width: 148px;" aria-label="View Order: activate to sort column ascending">
+                                            View Order
+                                          </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                    <tr role="row" class="odd">
+                                            <td tabindex="0" class="sorting_1">1</td>
+                                            <td class="">27/11/2020</td>
+                                            <td class="">5000</td>
+                                            
+                                            <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr><tr role="row" class="even">
+                                            
+                                          <td tabindex="0" class="sorting_1">2</td>
+                                          <td class="">27/10/2020</td>
+                                          <td class="">500</td>
+                                          
+                                          <td class=""> <a  href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr><tr role="row" class="odd">
+                                            
+                                          <td tabindex="0" class="sorting_1">3</td>
+                                          <td class="">04/11/2020</td>
+                                          <td class="">300</td>
+                                          
+                                          <td class=""> <a href = "#" onclick="view_details(this)">View Details</a></td>
+                                        </tr></tbody>
+                                </table></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dark table end -->
+            </div>
+        </div>
+    </div>
+    <!-- main content area end -->
+    <!-- footer area start-->
+    
+    <!-- footer area end-->
+</div>
+  
 </div>
 
 
@@ -249,6 +249,17 @@ else{
 
 
  
+
+<script>
+  $( document ).ready(function() {
+    view_details =  function(elem){
+      order_id = $(elem).parent().parent().children().eq(0).text();
+      console.log("order id clicked = ", order_id);
+      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "see_order_status_2.php?" + order_id;
+  
+    }
+  })
+</script>
 
 
 
@@ -336,38 +347,7 @@ else{
       document.getElementById("order_status_container").innerHTML = status_container;
   });
   </script> -->
-  <script>
-    $( document ).ready(function() {
-console.log( "ready!" );
-
-    shipment_status = 1
-    order_id = 123123123
-    $('select option[value="'+shipment_status+'"]').attr("selected",true);
-    $("#order_id").text( order_id );
-    adjust_shipment_status = function(status_index) {
-      $(".track").children().removeClass("active");
-      let my_classes = $(".track").children();
-      for (let i = 0; i < status_index; i++) {
-        my_classes.eq(i).addClass("active");
-      }
-    }
-
-    adjust_shipment_status(shipment_status);
-
-    $("#change_shipment_status").change(function() {
-      shipment_status = parseInt( $(this).children("option:selected").val());
-      adjust_shipment_status(shipment_status);
-
-
-      
-    })
-
-    update_status = function() {
-      window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "update_shipmentstatus.php?orderId=" + order_id + "&shipment_status=" + shipment_status;
- 
-    }
-});
-</script>
+  
 
 <!-- Footer  -->
 
