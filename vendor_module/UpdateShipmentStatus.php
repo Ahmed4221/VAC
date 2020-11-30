@@ -6,7 +6,6 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserT
     $conn = require '../connection.php';
     $newStatus = $_GET['shipment_status'];
     $barcode = $_GET['barcode'];
-    // echo $newStatus;
     $sql = "UPDATE `OrderTracking` SET Status = '$newStatus'   WHERE OrderID = '".$_GET['orderId']."'";
     $rez = mysqli_query($conn,$sql);
 
@@ -26,7 +25,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="admin" or $_SESSION["UserT
         mysqli_query($conn,$sql);
 
     }
-    header('Location: add_shipment_details.php');
+    header('Location: vendor_dash.php');
 
 
 
