@@ -242,10 +242,10 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
     text-align: center;
 ">
           <label> Product's sale authorization information </label>
-          <br><input type="radio" id="uae_export" name="uae_export" required="" value="UAE" style="
+          <br><input type="radio" id="uae_export" name="uae_export" checked="checked" required="" value="UAE" style="
             margin-right: 30px;
           "><label> Can Sell in UAE also </label> 
-          <input type="radio" id="uae_export" name="uae_export" checked="checked" required="" value="Export" style="
+          <input type="radio" id="uae_export" name="uae_export"  required="" value="Export" style="
             margin-right: 30px;
             margin-left: 30px;
           "><label> Only Export</label><br><br>
@@ -303,7 +303,7 @@ $( document ).ready(function() {
     suggested_region = $("#product_region").val();
     export_authorization = $("input[name='uae_export']:checked").val();
     barcode = $("#barcode").val();
-
+    
     console.clear();
     console.log("category : " , category);
     console.log("sub_category : " , sub_category);

@@ -56,10 +56,19 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
       $res = mysqli_query($conn,$sql);
-      while ($row = mysqli_fetch_array($res)){
+      $innerSqlBackup = $innerSql;
+      while ($row = mysqli_fetch_assoc($res)){
         // echo "In here";
-          $innerSql = $innerSql. " AND Barcode = '".$row['Barcode']."' ";
-          // echo $innerSql;
+        $innerSql = $innerSqlBackup;
+          if (strpos($innerSql, "AND") !== false){
+            $innerSql = $innerSql. " AND Barcode = '".$row['Barcode']."' ";
+            }
+            else{
+              $innerSql = $innerSql. " Barcode = '".$row['Barcode']."' ";
+            }
+
+
+          echo $innerSql;
           $innerResults = mysqli_query($conn,$innerSql);
           if (mysqli_num_rows($innerResults)>0){
             $productsToShow[] = $row['Barcode'];
