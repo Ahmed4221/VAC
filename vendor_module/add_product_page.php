@@ -80,6 +80,9 @@
                       $message = $message."  . The product has been added for you and sent for approval";
                       //if product is added now update the picture
                       move_uploaded_file($_FILES['product_pic']['tmp_name'], $product_image_target_path);
+                      // $output = passthru("python imageremoval.py ".$product_image_target_path." ");
+                      // echo $output;
+                      // die();
                     }
                     else{
                       echo mysqli_error($conn);

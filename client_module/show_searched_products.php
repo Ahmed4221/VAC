@@ -68,7 +68,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
             }
 
 
-          echo $innerSql;
+          // echo $innerSql;
           $innerResults = mysqli_query($conn,$innerSql);
           if (mysqli_num_rows($innerResults)>0){
             $productsToShow[] = $row['Barcode'];
