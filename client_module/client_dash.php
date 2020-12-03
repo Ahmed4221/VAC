@@ -76,22 +76,79 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
           <span class="sr-only">(current)</span>
         </a>
       </li>
-
+      
       <li class="nav-item dropdown" style="
-      width: 83px;
-      ">
+      margin-right: 10px;
+      height: 5rem;
+  ">
           <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
           width: 70px;
+          display: inline-block;
           ">Orders</a>
-          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item waves-effect waves-light" href="order_placed.php">Order (In Progress)</a>
-            <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php">Order Sent For Confirmation</a>
-            <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php">Order Pending Confirmation</a>
-            <a class="dropdown-item waves-effect waves-light" href="see_order_status.php">Placed Order Status</a>
+        <span class="badge badge-danger" style="
+            margin-left: -5px;
+            position: relative;
+            margin-right: 5px;
+            color: white;
+            background-color: red;
+          ">New
+        </span>
+          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333" style="width: 28rem;">
+            <span class="dropdown-item waves-effect waves-light" style=""> 
+              <a class="dropdown-item waves-effect waves-light" href="order_placed.php" style="display: inline-block;">
+                Order (In Progress)
+              </a> 
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+                New
+              </span>
+            </span>
+            <span class="dropdown-item waves-effect waves-light" style=""> 
+              <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php" style="display: inline-block;">
+                Order Sent For Confirmation
+              </a> 
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+                New
+              </span>
+            </span>
+            <span class="dropdown-item waves-effect waves-light" style=""> 
+              <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php" style="display: inline-block;">
+                Order Pending Confirmation
+              </a> 
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+                New
+              </span>
+            </span>
+            <span class="dropdown-item waves-effect waves-light" style=""> 
+              <a class="dropdown-item waves-effect waves-light" href="see_order_status.php" style="display: inline-block;">
+                Placed Order Status
+              </a> 
+              <span class="badge badge-danger" style="
+                    margin-left: -48px;
+                    position: relative;
+                    margin-right: 5px;
+                    display: inline-block;
+                    color: white;
+                    background-color: red;
+                ">
+                New
+              </span>
+            </span>
+          
           </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="see_sale.php">Sale</a>
+      <li class="nav-item" style="
+">
+        <a class="nav-link waves-effect waves-light" href="see_sale.php" style="
+    display: inline-block;
+">Sale</a>
+    <span class="badge badge-danger" style="
+            margin-left: -5px;
+            position: relative;
+            margin-right: 5px;
+            color: white;
+            background-color: red;
+          ">New
+        </span>
       </li>
     </ul>
 
@@ -444,6 +501,63 @@ $( document ).ready(function() {
       }
       document.getElementById("category").onchange();
     });
+  </script>
+
+
+
+  <script>
+    $(document).ready(function() {
+
+
+      order_in_progress_update = 1;
+      order_sent_for_confirmation_update = 0;
+      order_pending_confirmation_update= 1;
+      placed_order_status_update = 0;
+      sale_update = 1;
+
+      my_updates_arr = [order_in_progress_update,order_sent_for_confirmation_update,order_pending_confirmation_update,placed_order_status_update];
+
+      hide_new_badge = function(my_div){
+    console.log(my_div);
+    $(my_div).css('border', 'none');
+    $(my_div).children().eq(1).css('display', 'none');
+    
+
+  }
+
+  hide_new_badge_2 = function(my_div){
+    $(my_div).children().eq(1).css('display', 'none');
+  }
+
+    orders = $("#navbarSupportedContent-333 > ul > li.nav-item.dropdown");
+    order_in_progress = $("#navbarSupportedContent-333 > ul > li.nav-item.dropdown > div > span:nth-child(1)");
+    order_sent_for_confirmation = $("#navbarSupportedContent-333 > ul > li.nav-item.dropdown > div > span:nth-child(2)");
+    order_pending_confirmation = $("#navbarSupportedContent-333 > ul > li.nav-item.dropdown > div > span:nth-child(3)");
+    placed_order_status = $("#navbarSupportedContent-333 > ul > li.nav-item.dropdown > div > span:nth-child(4)");
+    sale = $("#navbarSupportedContent-333 > ul > li:nth-child(3)");
+    my_updates_arr_2 = [order_in_progress,order_sent_for_confirmation,order_pending_confirmation,placed_order_status];
+    is_new = 0;
+    for (var i = 0;i < 4;i++) {
+     
+    if(my_updates_arr[i] == 0)
+    {
+      hide_new_badge_2(my_updates_arr_2[i]);
+      
+    }
+    else{
+      is_new = 1;
+    }
+    
+  }
+  if (is_new != 1) {
+    hide_new_badge(orders);
+  }
+  if (sale_update == 0)
+  {
+    hide_new_badge(sale);
+  }
+
+    })
   </script>
 
 <!-- Footer  -->

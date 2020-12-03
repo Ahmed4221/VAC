@@ -46,7 +46,7 @@ else{
     
     <!-- modernizr css -->
     <script src="./admin_dash_files/modernizr-2.8.3.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <!-- Footer files -->
     
@@ -75,8 +75,21 @@ else{
 </a>
 </li>
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vendors</a>
+<li class="nav-item dropdown" style="
+    border-style: groove;
+    border-color: #315cd6;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+    display: inline-block;
+">Vendors</a>
+<span class="badge badge-danger" style="
+    margin-left: -5px;
+    position: relative;
+    margin-right: 5px;
+">New</span>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
 <a class="dropdown-item waves-effect waves-light" href="view_all_vendors.php">All Vendors</a>
 <a class="dropdown-item waves-effect waves-light" href="view_vendor_requests.php">Approval Requests</a>
@@ -91,8 +104,21 @@ else{
 
 
 
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clients</a>
+<li class="nav-item dropdown" style="
+    border-style: groove;
+    border-color: #315cd6;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+    display: inline-block;
+">Clients</a>
+<span class="badge badge-danger" style="
+    margin-left: -5px;
+    position: relative;
+    margin-right: 5px;
+">New</span>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
 <a class="dropdown-item waves-effect waves-light" href="view_all_clients.php">All Clients</a>
 <a class="dropdown-item waves-effect waves-light" href="view_client_requests.php">Client Approval Requests</a>
@@ -103,8 +129,21 @@ else{
 
  
 </div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+</li><li class="nav-item dropdown" style="
+    border-style: groove;
+    border-color: #315cd6;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+    display: inline-block;
+">Products</a>
+<span class="badge badge-danger" style="
+    margin-left: -5px;
+    position: relative;
+    margin-right: 5px;
+">New</span>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
 <a class="dropdown-item waves-effect waves-light" href="view_all_products.php">All Products</a>
 <a class="dropdown-item waves-effect waves-light" href="view_vendor_product_requests.php">Prodcut Approvals</a>
@@ -115,8 +154,21 @@ else{
 
  
 </div>
-</li><li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sale</a>
+</li><li class="nav-item dropdown" style="
+    border-style: groove;
+    border-color: #315cd6;
+    border-width: 1px;
+    border-radius: 10px;
+    margin-right: 10px;
+">
+<a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="
+    display: inline-block;
+">Sale</a>
+<span class="badge badge-danger" style="
+    margin-left: -5px;
+    position: relative;
+    margin-right: 5px;
+">New</span>
 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
 <a class="dropdown-item waves-effect waves-light" href="view_all_sales.php">Current Sales</a>
 <a class="dropdown-item waves-effect waves-light" href="view_sale_requests.php">Sale Approval Requests</a>
@@ -136,9 +188,19 @@ else{
  
 </div>
 </li>
-<a class="nav-link waves-effect waves-light" href="see_order_status.php">Shipment
+<span>
+<a class="nav-link waves-effect waves-light" href="see_order_status.php" style = "display:inline-block;">Shipment
   </a>
-  </li>
+  <span class="badge badge-danger" style="
+  margin-left: -1px;
+  position: relative;
+  margin-right: 5px;
+  height: 17px;
+  margin-top: 10px;
+">New</span>
+
+</span>
+
 
 
 </ul>
@@ -359,7 +421,44 @@ else{
      </div>
   </div>
   
+<!-- Script to Show RED MARKERS Around Latest Notifications -->
+<script>
 
+$( document ).ready(function(){
+  // Enter the following variables 1 or 0 through PHP: 1 if show red around nav against relevant tab, 0 if not
+  vendor_update = 0;
+  client_update = 0;
+  product_update = 1;
+  sale_update = 0;
+  shipment_update = 0;
+  my_updates_arr = [vendor_update,client_update,product_update,sale_update,shipment_update];
+
+  hide_new_badge = function(my_div){
+    console.log(my_div);
+    $(my_div).css('border', 'none');
+    $(my_div).children().eq(1).css('display', 'none');
+    
+
+  }
+  console.log("updates array : ", my_updates_arr);
+  vendor = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > li:nth-child(2)");
+  client = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > li:nth-child(3)");
+  product = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > li:nth-child(4)");
+  sale = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > li:nth-child(5)");
+  shipment = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > span");
+  my_updates_arr_2 = [vendor,client,product,sale,shipment];
+
+  for (var i = 0;i < 5;i++) {
+    if(my_updates_arr[i] == 0)
+    {
+      hide_new_badge(my_updates_arr_2[i]);
+    }
+  }
+
+ 
+})
+
+</script>
 
   <!-- Footer End -->
   <!-- jquery latest version -->

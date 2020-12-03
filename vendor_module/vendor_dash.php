@@ -314,5 +314,11 @@ else{
       document.getElementById("order_status_container").innerHTML = status_container;
   });
   </script>
+  
+  <script>
+    $(document).ready(function(){
+      
+    })
+  </script>
 
 </body></html>
