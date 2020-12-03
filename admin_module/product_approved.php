@@ -219,25 +219,27 @@ height: 50px;
 
 
  <!-- page container area start -->
- <div class="page-container sbar_collapsed">
-       <div class= "my_custom_card">
+ <div class="page-container sbar_collapsed" style="
+    height: auto;
+">
+       <div class="my_custom_card">
 
-        <div class = "container">
-          <div class = "card_heading">
+        <div class="container">
+          <div class="card_heading">
             <h3> Select Image </h3>
           </div>
-          <div class = "row">
-            <div class = "col-lg-1 col-md-2"></div>
-            <div class = "col-lg-5 col-md-10 ">
-              <div class = "img_container">
-                <img id = "default_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $defaultProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
+          <div class="row">
+            <div class="col-lg-1 col-md-2"></div>
+            <div class="col-lg-5 col-md-10 ">
+              <div class="img_container">
+                <img id="default_img_id" class="myImg pointer_cursor transform_on_hover" src="<?php" echo="" $defaultproductimagetoshow;="" ?=""> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;"&gt;
               </div>
             </div>
 
-            <div class = "col-lg-1 col-md-2"></div>
-            <div class = "col-lg-5 col-md-10 ">
-              <div class = "img_container">
-                <img id = "new_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $customProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
+            <div class="col-lg-1 col-md-2"></div>
+            <div class="col-lg-5 col-md-10 ">
+              <div class="img_container">
+                <img id="new_img_id" class="myImg pointer_cursor transform_on_hover" src="<?php" echo="" $customproductimagetoshow;="" ?=""> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;"&gt;
               </div>
             </div>
           </div>
@@ -247,7 +249,7 @@ height: 50px;
             <div class="col-lg-1 col-md-2"></div>
             <div class="col-lg-5 col-md-10 ">
               <div class="button_container">
-                <button  class="custom_radio_button" id="default_img">Select Default Image</button>
+                <button class="custom_radio_button" id="default_img">Select Default Image</button>
               </div>
             </div>
 
@@ -263,29 +265,29 @@ height: 50px;
   
 </div>
 
-<div class= "my_custom_card">
+<div class="my_custom_card">
 
-  <div class = "container">
-    <div class = "card_heading">
+  <div class="container">
+    <div class="card_heading">
       <h3> Select Description </h3>
     </div>
-    <div class = "row">
-      <div class = "col-lg-1 col-md-2"></div>
-      <div class = "col-lg-5 col-md-10 ">
-        <div class = "para_container">
-         <p class = "paragraph_tag" id = "desc_default">
+    <div class="row">
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="para_container">
+         <p class="paragraph_tag" id="desc_default">
 
-          <?php echo $defaultProductDescription;  ?>
+          <!--?php echo $defaultProductDescription;  ?-->
          </p>
 
         </div>
       </div>
 
-      <div class = "col-lg-1 col-md-2"></div>
-      <div class = "col-lg-5 col-md-10 ">
-        <div class = "para_container">
-          <p class = "paragraph_tag" id = "desc_new">
-          <?php echo $customProductDescription;  ?>
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="para_container">
+          <p class="paragraph_tag" id="desc_new">
+          <!--?php echo $customProductDescription;  ?-->
           </p>
  
          </div>
@@ -297,7 +299,7 @@ margin-top: 93px;
       <div class="col-lg-1 col-md-2"></div>
       <div class="col-lg-5 col-md-10 ">
         <div class="button_container">
-          <button  class="custom_radio_button" id="default_desc_btn">Select Default Description</button>
+          <button class="custom_radio_button" id="default_desc_btn">Select Default Description</button>
         </div>
       </div>
 
@@ -314,41 +316,82 @@ margin-top: 93px;
 </div>
 
 
-<div class= "my_custom_card">
+<div class="my_custom_card" id="category_selection_div">
 
-  <div class = "container">
-    <div class = "card_heading">
+  <div class="container">
+    <div class="card_heading">
       <h3> Select Categories </h3>
     </div>
-    <div class = "row">
-      <div class = "col-lg-1 col-md-2"></div>
-      <div class = "col-lg-5 col-md-10 ">
-        <div class = "category_container">
+    <div class="row">
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="category_container">
           <label> Product's Category </label>
-          <select  id="category" class="form-control mb-4" placeholder="Product Category" required="" name="category">
-          </select>
+          <select id="category" class="form-control mb-4" placeholder="Product Category" required="" name="category"><option value="Beverages">Beverages</option><option value="Dairy &amp; Eggs">Dairy &amp; Eggs</option><option value="Meats &amp; Seafood">Meats &amp; Seafood</option><option value="Fresh Vegetable &amp; Fruits">Fresh Vegetable &amp; Fruits</option><option value="Personal Care">Personal Care</option><option value="Home Care">Home Care</option><option value="Laundry">Laundry</option><option value="Baby">Baby</option><option value="Snacks">Snacks</option><option value="Bakery">Bakery</option><option value="Sauces &amp; Dressing">Sauces &amp; Dressing</option><option value="Soups &amp; Oil">Soups &amp; Oil</option><option value="Frozen Foods">Frozen Foods</option><option value="Packet &amp; Cereals">Packet &amp; Cereals</option><option value="Pasta &amp; Rice">Pasta &amp; Rice</option><option value="Condiments">Condiments</option><option value="Canned &amp; Jars">Canned &amp; Jars</option><option value="Deli">Deli</option><option value="Food to Go">Food to Go</option><option value="Pet Care">Pet Care</option><option value="Stationary &amp; Misc">Stationary &amp; Misc</option><option value="Tobbacco &amp; Accessories">Tobbacco &amp; Accessories</option><option value="Non Muslim">Non Muslim</option></select>
           
 
         </div>
       </div>
 
-      <div class = "col-lg-1 col-md-2"></div>
-      <div class = "col-lg-5 col-md-10 ">
-        <div class = "sub_category_container">
+      <div class="col-lg-1 col-md-2"></div>
+      <div class="col-lg-5 col-md-10 ">
+        <div class="sub_category_container">
           <label> Product's Sub Category </label>
-          <select  id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required="" name="sub_category">
-          </select>
+          <select id="sub_category" class="form-control mb-4" placeholder="Product Sub-Category" required="" name="sub_category"><option value="Water">Water</option><option value="Soft Drinks">Soft Drinks</option><option value="Juices">Juices</option><option value="Ice Tea &amp; Coffee">Ice Tea &amp; Coffee</option><option value="Energy Drink">Energy Drink</option><option value="Malt Beverages">Malt Beverages</option><option value="Sports Drink">Sports Drink</option><option value="Ice">Ice</option><option value="Sparkling">Sparkling</option><option value="Powdered Beverage">Powdered Beverage</option></select>
  
          </div>
       </div>
     </div>
+    
+ </div>
+
+
+</div>
+
+<div class="my_custom_card" >
+
+  <div class="container">
+    <div class="card_heading product_commission_setting">
+      <h3> Set Commision for client </h3>
+    </div>
+    <div class="row product_commission_setting">
+      <div class="col-lg-3 col-md-2"></div>
+      <div class="col-lg-6 col-md-10 " style="
+            margin-left: 4rem;
+        ">
+        <div class="add_metric_container" style="text-align: center;">
+          <span style="
+                display: block;
+            "> 
+    
+            <label style="
+                  display: block;
+                  margin-right: 5vw;
+              "> Product Commision (%)
+            </label>
+    
+    
+            <input type="number" id="commission_percentage" class="form-control mb-4" name="new_metric" style="
+                display: block;
+                width: 45%;
+                margin-left: 6rem;
+            ">
+          
+          </span></div>
+        </div>
+      
+    
+      </div>
+    </div>
     <div class="row" style="
-margin-top: 93px;
-">
+    margin-top: 93px;
+    ">
       <div class="col-lg-1 col-md-2"></div>
       <div class="col-lg-11 col-md-10 ">
         <div class="button_container">
-          <button  class="custom_radio_button" id="submit_all">Submit All</button>
+          <button class="custom_radio_button" id="submit_all" style="
+    margin-left: -5rem;
+">Submit All</button>
         </div>
       </div>
 
@@ -357,6 +400,9 @@ margin-top: 93px;
  </div>
 
 
+</div>
+
+    
 </div>
 <!-- page container area end -->
 
@@ -476,6 +522,15 @@ console.log( "ready!" );
 <!-- Script for modal -->
 <script>
   $(document).ready(function() {
+
+
+    // Category div deletion when product is coming for second time and product commision adding 
+
+    var isFirstTime = 0; //PHP
+    if(isFirstTime == 0) { 
+      $("#category_selection_div").hide();
+      $(".product_commission_setting").hide();
+    }
 // Get the modal
 var modal = document.getElementById("myModal");
 
@@ -699,6 +754,7 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
 
     category_selected = document.getElementById("category").value;
     sub_category_selected = document.getElementById("sub_category").value;
+    commission_value = document.getElementById("commission_percentage").value;
     console.log(category_selected);
     console.log(sub_category_selected);
     if(img_selected == "")
@@ -709,9 +765,11 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
       alert("Please select a description");
     }
     else{
+      
       // Add as many parameters as you want at the end in the same format as before.
-      vendor_email = '<?=$_GET['VendorEmail']; ?>' ;
-      barcode = '<?=$_GET['ProductBarcode']; ?>' ;
+      
+      // vendor_email = '<?=$_GET['VendorEmail']; ?>' ;
+      // barcode = '<?=$_GET['ProductBarcode']; ?>' ;
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) 
       + "product_approval_finalized.php?VendorEmail=" + vendor_email 
       + "&ProductBarcode=" + barcode
@@ -719,6 +777,7 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
       + "&SubCategorySelected="+ sub_category_selected
       + "&ImageSelected="+ img_selected
       + "&DescriptionSelected="+ desc_selected
+      + "&ProductCommission=" + commission_value
        ;
   
     }

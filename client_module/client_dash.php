@@ -252,21 +252,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
         </div>
       </div>
     </div>
-    <div class="row" style="
-    margin-top: 93px;
-    ">
     
-      <div class="col-lg-4 col-md-2"></div>
-      <div class="col-lg-6 col-md-10 ">
-        <div class="button_container">
-         <label> Search Product by Barcode </label>
-         <input type="number" id="barcode" class="form-control mb-4" placeholder="Enter Barcode" required="" name="barcode">
-
-        </div>
-      </div>
-
-
-      </div>
     
     <div class="row" style="
 margin-top: 93px;
@@ -275,7 +261,7 @@ margin-top: 93px;
       <div class="col-lg-1 col-md-2"></div>
       <div class="col-lg-11 col-md-10 ">
         <div class="button_container">
-          <button class="custom_radio_button" id="submit_all" onclick = "search()">Search</button>
+          <button class="custom_radio_button" id="submit_all" onclick = "search()">Start Order</button>
         </div>
       </div>
 

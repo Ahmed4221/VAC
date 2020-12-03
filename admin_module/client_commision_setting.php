@@ -50,6 +50,7 @@ else{
   <script src="./admin_dash_files/modernizr-2.8.3.min.js"></script>
 
   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Footer files -->
   
 
@@ -158,67 +159,52 @@ height: 200px;
 
 <!--/.Navbar -->
 
-<div class="my_custom_card">
+<div class="my_custom_card" style="
+    margin-top: 0;
+">
 
   <div class="container">
     <div class="card_heading">
-      <h3> Set Commision for new client </h3>
+      <h3> Set Commision for client </h3>
     </div>
     <div class="row">
-      <div class="col-lg-1 col-md-2"></div>
-      <div class="col-lg-5 col-md-10 ">
+      <div class="col-lg-3 col-md-2"></div>
+      <div class="col-lg-6 col-md-10 " style="
+            margin-left: 4rem;
+        ">
         <div class="add_metric_container" style="text-align: center;">
-  <span style="
-    display: block;
-"> 
-<center>       
-<label style="
-    display: inline-block;
-    margin-right: 5vw;
-"> Fixed Commision </label><label style="
-    display: inline-block;
-"> Hidden Commision </label>
-    </span>
+          <span style="
+                display: block;
+            "> 
     
-          <input type="text" id="metric_name" class="form-control mb-4" name="new_metric" style="
-    display: inline-block;
-    width: 45%;
-">
-          <input type="text" id="metric_symbol" class="form-control mb-4" name="new_metric" style="
-    display: inline-block;
-    width: 45%;
-">
+            <label style="
+                  display: block;
+                  margin-right: 5vw;
+              "> Fixed Commision (%)
+            </label>
+    
+    
+            <input type="number" id="commission_percentage" class="form-control mb-4" name="new_metric" style="
+                display: block;
+                width: 45%;
+                margin-left: -6rem;
+            ">
           
-          <button class="custom_button btn btn-success" id="default_img" onclick="metric_added()" style="
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-">Set Commision</button>
-        </div>
-      </div>
-      </center>
-      <!-- <div class="col-lg-1 col-md-2"></div>
-      <div class="col-lg-5 col-md-10 ">
-        <div class="delete_metric_container" style="text-align: center;">
-          <label> Delete existing Metric </label>
-          <select id="metric_list" class="form-control mb-4" placeholder="Metric" name="metric_list">
-          <?php
-        //   $conn = require '../connection.php';
-        //   $getMetrics = "SELECT * FROM `Value_Metrics` ";
-        //   $result = mysqli_query($conn,$getMetrics);
-        //   while ($row = mysqli_fetch_array($result)){
-        //   echo '<option value='.$row['Symbol'].'>'.$row['Symbol'].'</option>';
-        //   }
           
-          ?>
-          </select>
-          <button class="custom_button btn btn-danger" id="default_img" onclick="metric_deleted()">Delete Selected Metric</button> -->
-
+            <button class="custom_button btn btn-success" id="default_img" onclick="commission_added()" style="
+                  display: block;
+                  margin-left: -5rem;
+              ">Set Commision
+            </button>
+          </span></div>
         </div>
+      
+    
       </div>
     </div>
+  </div>
     
- </div>
+</div>
 
 
 </div>
@@ -263,14 +249,26 @@ height: 200px;
 </div>
 
 <script>
-  function metric_added()
-  {
-    var metric_to_add = document.querySelector("#metric_name").value;
-    var symbol_to_add = document.querySelector("#metric_symbol").value;
-    
-    var Clientemail = ('<?=$_GET['ClientEmail']?>') ;
-    window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "SetCommision.php?FixedCommision=" + metric_to_add + "&HiddenCommision=" + symbol_to_add + "&ClientEmail=" +  Clientemail;
-  }
+  $( document ).ready(function() {
+
+  commission_added = function() {
+  
+    var commission_value = document.querySelector("#commission_percentage").value;
+    if(commission_value == ""){
+      alert("Please enter commision. No value provided.");
+    }
+    else if (parseInt(commission_value) > 100 || parseInt(commission_value) < 0){
+      alert("Invalid commision value. It must be between 0 and 100.");
+    }
+    else{
+      console.log(commission_value);
+    //var Clientemail = ('<?=$_GET['ClientEmail']?>') ;
+    //window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "SetCommision.php?FixedCommision=" + metric_to_add + "&HiddenCommision=" + symbol_to_add + "&ClientEmail=" +  Clientemail;
+  
+    }
+    }
+  })
+  
 
 </script>
 

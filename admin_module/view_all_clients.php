@@ -48,6 +48,7 @@ else{
   
   <!-- modernizr css -->
   <script src="./admin_dash_files/modernizr-2.8.3.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   
   <!-- Footer files -->
@@ -193,7 +194,7 @@ height: 50px;
                                         <th class="sorting_asc" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Client Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Office: activate to sort column ascending">Email</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Age: activate to sort column ascending">Agreed Commission</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Start Date: activate to sort column ascending">Variable Commision</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable3" rowspan="1" colspan="1" style="width: 20%;" aria-label="Start Date: activate to sort column ascending">Change Commision</th>
                                     
                                     </tr>
                                   </thead>
@@ -210,7 +211,7 @@ height: 50px;
                                           <td tabindex="0" class="sorting_1">'.$followingdata['FirstName'].'</td>
                                           <td class="">'.$followingdata['Email'].'</td>
                                           <td class="">'.$followingdata['AgreedCommision'].'</td>
-                                          <td class="">'.$followingdata['HiddenCommision'].'</td>
+                                          <td class=""><button class="btn btn-success custom_button" style="margin-right: 5px;" onclick="change_commision(this)">Set Commision</button></td>
                                       </tr>';
                                           echo $output;}
       
@@ -234,7 +235,15 @@ height: 50px;
 </div>
 <!-- page container area end -->
 
-
+<script>
+    $(document).ready(function() {
+        change_commision = function(elem) {
+            var ClientEmail = $(elem).parent().parent().children().eq(1).text();
+            window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "client_commision_setting.php?ClientEmail=" + ClientEmail ;
+  
+        }
+    })
+    </script>
 
 <!-- Footer -->
 

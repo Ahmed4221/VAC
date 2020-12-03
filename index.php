@@ -87,124 +87,147 @@
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
 <body>
 
-  <!-- Start your project here-->  
-  <!--Navbar 
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
-    background-color: #33b5e5 !important;
-    margin-bottom: 70px !important;
-">
-  <a class="navbar-brand" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Navbar</a>
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
+  background-color: #33b5e5 !important;
+  margin-bottom: 70px !important;
+  height: 61px;
+  background: linear-gradient(90deg, rgba(34,185,167,1) 0%, rgba(0,32,60,1) 48%, rgba(35,35,195,1) 100%);
+  ">
+  <h1 class="navbar-brand" href="#" style="
+  font-family: initial;
+  font-size: xx-large;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 800;
+  color: white;
+  ">Welcome to Export House</h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Home
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
-        </a>
-        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Action</a>
-          <a class="dropdown-item waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Another action</a>
-          <a class="dropdown-item waves-effect waves-light" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      
-      
-      
-    </ul>
-  </div>
-</nav>
-.Navbar -->
+  
+  </nav>
 </br></br></br></br></br></br></br></br></br></br></br>
-<div class="row mx-md-4">
-    
-<div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-12 " style="
-    display: inline-block;
+<div class="row mx-md-4" style="
+margin-top: -12rem;
+">
+
+<div class="col-lg-4 offset-lg-1 col-md-8 offset-md-2 col-sm-10 offset-sm-1" style="
+display: inline-block;
 ">
 
 <!-- Default form login -->
 <div style="height: 392px;width: 100%;">
-    
-    <!-- Default form login -->
-<form action="index.php" method="post" class="text-center border border-light p-5">
-
-    <p class="h4 mb-4">Sign in</p>
-
-    <!-- Email -->
-    <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
-
-    <!-- Password -->
-    <input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
-
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-            </div>
-        </div>
-        
-    </div>
-
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4 waves-effect waves-light" name = "Submit" type="Submit">Sign in</button>
-
-
-
-    <!-- Register -->
-   
-</form>
-</div>
-    <!-- Terms of service -->
-    <p>Don't have an account 
-        <b>Signup</b> here 
-            <!-- Sign UP button -->
-    <a href="client_module/Client_Signup.php"> 
-    <button class="btn btn-info btn-block my-4 waves-effect waves-light" name = "Submit" type="Submit">Sign Up</button> 
-    </a>
-
-</p
-
-
-
-
-
 
 <!-- Default form login -->
+<form action="index.php" method="post" class="text-center border border-light p-5">
 
+<p class="h4 mb-4">Sign in</p>
 
+<!-- Email -->
+<input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
 
+<!-- Password -->
+<input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+<div class="d-flex justify-content-around">
+    <div>
+        <!-- Remember me -->
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+        </div>
     </div>
-  <!-- End your project here-->
+    
+</div>
 
-  <!-- jQuery -->
-  <script type="text/javascript" src="./signin_page_files/jquery.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="./signin_page_files/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="./signin_page_files/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="./signin_page_files/mdb.min.js"></script>
-  <!-- Your custom scripts (optional) -->
-  <script type="text/javascript"></script>
+<!-- Sign in button -->
+<button class="btn btn-info btn-block my-4 waves-effect waves-light" name="Submit" type="Submit">Sign in</button>
+
+
+
+<!-- Register -->
+
+</form>
+</div>
+<!-- Terms of service -->
+<p>Don't have an account 
+    <b>Signup</b> here 
+        <!-- Sign UP button -->
+<a href="client_module/Client_Signup.php"> 
+<button class="btn btn-info btn-block my-4 waves-effect waves-light" name="Submit" type="Submit">Sign Up</button> 
+</a>
+
+</p>
 
 
 
 </div>
+<!-- End your project here-->
+
+<!-- jQuery -->
+<script type="text/javascript" src="./signin_page_files/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="./signin_page_files/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="./signin_page_files/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="./signin_page_files/mdb.min.js"></script>
+<!-- Your custom scripts (optional) -->
+<script type="text/javascript"></script>
+
+
+
+<div class="col-lg-4 offset-lg-2 col-md-8 offset-md-2 col-sm-10 offset-sm-1" style="
+display: inline-block;
+">
+
+<!-- Default form login -->
+<div style="height: 392px;width: 100%;">
+
+<!-- Default form login -->
+<form action="index.php" method="post" class="text-center border border-light p-5">
+
+<p class="h4 mb-4">Vendor Sign In</p>
+
+<!-- Email -->
+<input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+<!-- Password -->
+<input type="password" name="defaultLoginFormPassword" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+<div class="d-flex justify-content-around">
+    <div>
+        <!-- Remember me -->
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Sign in button -->
+<button class="btn btn-info btn-block my-4 waves-effect waves-light" name="Submit" type="Submit">Sign in</button>
+
+
+
+<!-- Register -->
+
+</form>
+</div>
+<!-- Terms of service -->
+<p>Don't have an account 
+    <b>Signup</b> here 
+        <!-- Sign UP button -->
+<a href="client_module/Client_Signup.php"> 
+<button class="btn btn-info btn-block my-4 waves-effect waves-light" name="Submit" type="Submit">Sign Up</button> 
+</a>
+
+</p>
+
+
+
+</div></div>
     
   
 
