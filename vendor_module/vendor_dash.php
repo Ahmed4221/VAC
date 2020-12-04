@@ -51,58 +51,127 @@ else{
 <body>
 
   <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
-       background-color: #33b5e5 !important;
-       /* margin-bottom: 70px !important; */
-       background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-       background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
-       background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-       background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
-       background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
-       ">
-<a class="navbar-brand" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">VAC</a>
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-<ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-  <a class="nav-link waves-effect waves-light" href="vendor_dash.php">Home
-    <span class="sr-only">(current)</span>
-  </a>
-</li>
-
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Products
-  </a>
-  <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-    <a class="dropdown-item waves-effect waves-light" href="see_all_products.php">See All Products</a>
-    <a class="dropdown-item waves-effect waves-light" href="add_product_page.php">Add a Product</a>
-      
-    <a class="dropdown-item waves-effect waves-light" href="add_products_bulk_page.php">Add Products in Bulk</a>
-    <a class="dropdown-item waves-effect waves-light" href="vendor_product_status.php">New Product Status</a>
-    <a class="dropdown-item waves-effect waves-light" href="update_product_quantity.php">Update Stock of Products</a>
-    <a class="dropdown-item waves-effect waves-light" href="start_sale_page_1.php">Start Sale</a>
-      
-  </div>
-</li>
-
-
-
-<li class="nav-item">
-  <a class="nav-link waves-effect waves-light" href="see_all_orders.php">Orders
-    
-  </a>
-</li></ul>
-<ul class="navbar-nav ml-auto nav-flex-icons">
-
-
-
-</ul>
-  <a href="../logout.php" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-log-out"></span> Log out
+  <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color" style="
+  background-color: #33b5e5 !important;
+  /* margin-bottom: 70px !important; */
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+  background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
+  ">
+      <a class="navbar-brand" href="file:///Users/rafayabbas/Documents/Personal/ecommerce%20daada%20project/MDB-Free_4.19.1/index.html#">
+        VAC
       </a>
-</div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect waves-light" href="vendor_dash.php">
+              Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown" id = "products_badge">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="display: inline-block;">
+              Products
+            </a>
+            <span class="badge badge-danger" style="
+                margin-left: -5px;
+                position: relative;
+                margin-right: 5px;
+                color: white;
+                background-color: red;
+              " >
+              New
+            </span>
+            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333" style="width: 18rem;">
+              <span class="dropdown-item waves-effect waves-light" style=""> 
+                <span style = "display:block;" id = "see_all_products">
+                  <a class="dropdown-item waves-effect waves-light" href="see_all_products.php" style="display:inline-block;">
+                    See All Products
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+                <span style = "display:block;" id = "add_a_product">
+                  <a class="dropdown-item waves-effect waves-light" href="add_product_page.php" style="display:inline-block;">
+                    Add a Product
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+                <span style = "display:block;" id = "add_products_in_bulk">
+                  <a class="dropdown-item waves-effect waves-light" href="add_products_bulk_page.php"  style="display:inline-block;">
+                    Add Products in Bulk
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+                <span style = "display:block;" id = "new_product_status">
+                  <a class="dropdown-item waves-effect waves-light" href="vendor_product_status.php" style="display:inline-block;">
+                    New Product Status
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+                <span style = "display:block;" id = "update_stock_of_products">
+                  <a class="dropdown-item waves-effect waves-light" href="update_product_quantity.php" style="display:inline-block;">
+                    Update Stock of Products
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+                <span style = "display:block;" id = "start_sale">
+                  <a class="dropdown-item waves-effect waves-light" href="start_sale_page_1.php" style="display:inline-block;">
+                    Start Sale
+                  </a>
+                  <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
+                    New
+                  </span>
+                </span>
+              </span>
+              
+            </div>
+          </li>
+
+
+
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light" href="see_all_orders.php" style="display: inline-block;">
+              Orders
+            </a>
+            <span class="badge badge-danger" style="
+                margin-left: -5px;
+                position: relative;
+                margin-right: 5px;
+                color: white;
+                background-color: red;
+              ">
+              New
+            </span>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+
+
+
+        </ul>
+        <a href="../logout.php" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out">
+
+          </span> 
+          Log out
+        </a>
+      </div>
 </nav>
 
 <!-- nav end -->
@@ -289,35 +358,54 @@ else{
   <script src="./vendor_dash_files/plugins.js"></script>
   <script src="./vendor_dash_files/scripts.js"></script>
 
-  <!-- Script for adding button and doing action on Status -->
-  <script>
-      $( document ).ready(function() {
-  console.log( "ready!" );
-
-      console.log(document.getElementById("order_status").innerText);
-      var status = document.getElementById("order_status").innerText;
-      var status_container = document.getElementById("order_status_container").innerHTML;
-      if(status == "Pending Vendor Approval")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;"><button type="submit" value ="approve" name="approve_btn" class="btn btn-outline-success waves-effect" style="margin-left: 30px;margin-right: 30px;">Approve</button>';
-          status_container += '<button type="submit" value = "disapprove" name="disapprove_btn" class="btn btn-outline-danger waves-effect">Disapprove</button> </form>';
-          
-      }
-      else if(status == "Pending Client Confirmation")
-      {
-          
-      }
-      else if(status == "Pending Shipment Update")
-      {
-          status_container += '<form action="#" method="post" style="DISPLAY: INLINE-BLOCK;" ><button type="submit" value="add_shipment" name="add_shipment_btn" class="btn btn-outline-primary waves-effect" style="margin-left: 30px;margin-right: 30px;" >Add Shipment Details</button> </form>';
-      }
-      document.getElementById("order_status_container").innerHTML = status_container;
-  });
-  </script>
+  
   
   <script>
     $(document).ready(function(){
-      
+
+      // Following variables are to be populated with PHP . 1 to show the new badge and 0 to hide it.
+      see_all_products_update = 0;
+      add_a_product_update = 0;
+      add_a_product_in_bulk_update = 1;
+      new_product_status_update = 0;
+      update_stock_of_products_update = 0;
+      start_sale_update = 1;
+
+      orders_update = 1;
+
+      updates_array = [see_all_products_update,add_a_product_update,add_a_product_in_bulk_update,new_product_status_update,update_stock_of_products_update,start_sale_update];
+
+      see_all_products = $("#see_all_products");
+       add_a_product = $("#add_a_product");
+      add_a_product_in_bulk = $("#add_products_in_bulk");
+      new_product_status = $("#new_product_status");
+      update_stock_of_products = $("#update_stock_of_products");
+      start_sale = $("#start_sale");
+
+      orders = $("#navbarSupportedContent-333 > ul.navbar-nav.mr-auto > li:nth-child(3) > span");
+
+      badges_array = [see_all_products,add_a_product,add_a_product_in_bulk,new_product_status,update_stock_of_products,start_sale];
+
+      products = $("#products_badge > span");
+      var is_new = 0;
+      for (var i = 0;i < 6;i++) {
+        if(updates_array[i] == 0)
+        {
+          $(badges_array[i]).children().eq(1).css('display', 'none');
+          console.log($(badges_array[i]).children());
+        }
+        else{
+          is_new = 1;
+        }
+      }
+      if (is_new != 1) {
+        $(products).hide();
+        alert("yo");
+      }
+      if(orders_update == 0) {
+        $(orders).hide();
+      }
+
     })
   </script>
 

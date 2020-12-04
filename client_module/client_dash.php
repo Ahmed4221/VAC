@@ -98,7 +98,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
               <a class="dropdown-item waves-effect waves-light" href="order_placed.php" style="display: inline-block;">
                 Order (In Progress)
               </a> 
-              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px;  color: white; background-color: red;">
                 New
               </span>
             </span>
@@ -106,7 +106,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
               <a class="dropdown-item waves-effect waves-light" href="order_sent_for_confirmation.php" style="display: inline-block;">
                 Order Sent For Confirmation
               </a> 
-              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; color: white; background-color: red;">
                 New
               </span>
             </span>
@@ -114,7 +114,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
               <a class="dropdown-item waves-effect waves-light" href="order_pending_confirmation.php" style="display: inline-block;">
                 Order Pending Confirmation
               </a> 
-              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; display: none; color: white; background-color: red;">
+              <span class="badge badge-danger" style="margin-left: -48px; position: relative; margin-right: 5px; color: white; background-color: red;">
                 New
               </span>
             </span>
@@ -510,9 +510,9 @@ $( document ).ready(function() {
 
 
       order_in_progress_update = 1;
-      order_sent_for_confirmation_update = 0;
+      order_sent_for_confirmation_update = 1;
       order_pending_confirmation_update= 1;
-      placed_order_status_update = 0;
+      placed_order_status_update = 1;
       sale_update = 1;
 
       my_updates_arr = [order_in_progress_update,order_sent_for_confirmation_update,order_pending_confirmation_update,placed_order_status_update];
