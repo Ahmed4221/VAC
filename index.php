@@ -121,7 +121,7 @@ display: inline-block;
 <!-- Default form login -->
 <form action="index.php" method="post" class="text-center border border-light p-5">
 
-<p class="h4 mb-4">Sign in</p>
+<p class="h4 mb-4">Client Sign in</p>
 
 <!-- Email -->
 <input type="email" name="defaultLoginFormEmail" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
@@ -219,7 +219,7 @@ display: inline-block;
 <p>Don't have an account 
     <b>Signup</b> here 
         <!-- Sign UP button -->
-<a href="client_module/Client_Signup.php"> 
+<a href="vendor_module/vendor_signup.php"> 
 <button class="btn btn-info btn-block my-4 waves-effect waves-light" name="Submit" type="Submit">Sign Up</button> 
 </a>
 

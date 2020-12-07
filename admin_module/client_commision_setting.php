@@ -262,8 +262,8 @@ height: 200px;
     }
     else{
       console.log(commission_value);
-    //var Clientemail = ('<?=$_GET['ClientEmail']?>') ;
-    //window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "SetCommision.php?FixedCommision=" + metric_to_add + "&HiddenCommision=" + symbol_to_add + "&ClientEmail=" +  Clientemail;
+    var Clientemail = ('<?=$_GET['ClientEmail']?>') ;
+    window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) + "SetCommision.php?FixedCommision=" + commission_value +  "&ClientEmail=" +  Clientemail;
   
     }
     }

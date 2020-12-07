@@ -168,10 +168,10 @@ Navbar -->
 
     <hr>
 
-    <!-- Terms of service -->
+    <!-- Terms of service 
     <p>Are you a 
         <b>Vendor</b> sign up 
-        <a href="../vendor_module/vendor_signup.php" >here</a>
+        <a href="../vendor_module/vendor_signup.php" >here</a> -->
 
 </p></form>
 <!-- Default form register -->
