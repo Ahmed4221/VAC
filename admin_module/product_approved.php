@@ -34,6 +34,13 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
         // echo $customProductDescription;
 
         
+        //select Category or not
+        $buttonOption = "SELECT * FROM `Product`  where Barcode = '".$_GET['ProductBarcode']."' AND Approved = 1 AND Product_Category = '-' ";
+        $res = mysqli_query($conn,$buttonOption);
+        $show = 0;
+        if (mysqli_num_rows($res)>0){
+          $show = 1;
+        }
 
 
 
@@ -232,14 +239,14 @@ height: 50px;
             <div class="col-lg-1 col-md-2"></div>
             <div class="col-lg-5 col-md-10 ">
               <div class="img_container">
-                <img id="default_img_id" class="myImg pointer_cursor transform_on_hover" src="<?php" echo="" $defaultproductimagetoshow;="" ?=""> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;"&gt;
+              <img id = "default_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $defaultProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
               </div>
             </div>
 
             <div class="col-lg-1 col-md-2"></div>
             <div class="col-lg-5 col-md-10 ">
               <div class="img_container">
-                <img id="new_img_id" class="myImg pointer_cursor transform_on_hover" src="<?php" echo="" $customproductimagetoshow;="" ?=""> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;"&gt;
+              <img id = "new_img_id" class="myImg pointer_cursor transform_on_hover" src=<?php echo $customProductImageToShow; ?> alt="Default Image" style="width:100%;height: 400px;border-radius: 20px;">
               </div>
             </div>
           </div>
@@ -277,7 +284,7 @@ height: 50px;
         <div class="para_container">
          <p class="paragraph_tag" id="desc_default">
 
-          <!--?php echo $defaultProductDescription;  ?-->
+          <?php echo $defaultProductDescription;  ?>
          </p>
 
         </div>
@@ -287,7 +294,7 @@ height: 50px;
       <div class="col-lg-5 col-md-10 ">
         <div class="para_container">
           <p class="paragraph_tag" id="desc_new">
-          <!--?php echo $customProductDescription;  ?-->
+          <?php echo $customProductDescription;  ?>
           </p>
  
          </div>
@@ -352,7 +359,7 @@ margin-top: 93px;
 
   <div class="container">
     <div class="card_heading product_commission_setting">
-      <h3> Set Commision for client </h3>
+      <h3> Set Commision for Product </h3>
     </div>
     <div class="row product_commission_setting">
       <div class="col-lg-3 col-md-2"></div>
@@ -526,7 +533,8 @@ console.log( "ready!" );
 
     // Category div deletion when product is coming for second time and product commision adding 
 
-    var isFirstTime = 0; //PHP
+    isFirstTime =  "<?php echo $show; ?>"; //PHP
+    isFirstTime = parseInt(isFirstTime);
     if(isFirstTime == 0) { 
       $("#category_selection_div").hide();
       $(".product_commission_setting").hide();
@@ -768,8 +776,8 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
       
       // Add as many parameters as you want at the end in the same format as before.
       
-      // vendor_email = '<?=$_GET['VendorEmail']; ?>' ;
-      // barcode = '<?=$_GET['ProductBarcode']; ?>' ;
+      vendor_email = '<?=$_GET['VendorEmail']; ?>' ;
+      barcode = '<?=$_GET['ProductBarcode']; ?>' ;
       window.location.href = (window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1)) 
       + "product_approval_finalized.php?VendorEmail=" + vendor_email 
       + "&ProductBarcode=" + barcode
@@ -778,6 +786,7 @@ category_text += '<option value="'+category[i]+'">'+category[i]+'</option>';
       + "&ImageSelected="+ img_selected
       + "&DescriptionSelected="+ desc_selected
       + "&ProductCommission=" + commission_value
+      + "&IsFirstTime=" + isFirstTime
        ;
   
     }

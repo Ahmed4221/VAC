@@ -37,7 +37,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
 
 
 
-      if ($_GET['barcode']==''){
+      if ($_GET['barcode']=='' or $_GET['barcode']=='undefined'){
         // #getting products first
         // echo "Query 1 running";
         $sql = $sql." AND Approved = 1 ";

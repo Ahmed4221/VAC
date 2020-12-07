@@ -47,7 +47,7 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
     
     
         $quantityAquired = 0;
-        $sql = "SELECT * FROM  `Vendors_Products` where Barcode =  '".$_GET['product_id']."' ORDER BY price_per_ctn ASC  ";
+        $sql = "SELECT * FROM  `Vendors_Products` where Barcode =  '".$_GET['product_id']."' AND Quantity <> 0 ORDER BY price_per_ctn ASC  ";
         $result = mysqli_query($conn,$sql);
         while($row = mysqli_fetch_assoc($result)){
           
