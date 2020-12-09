@@ -217,7 +217,7 @@ else{
                                     <tbody>  
                                       <?php  
 
-                                              $sql = "SELECT * FROM `PlacedOrders` ";
+                                              $sql = "SELECT * FROM `PlacedOrders` WHERE OrderID = '".$_GET['order_id']."' ";
                                               $rez = mysqli_query($conn,$sql);
                                               while($row = mysqli_fetch_assoc($rez)){
                                                 $order_id = $row['OrderID'];

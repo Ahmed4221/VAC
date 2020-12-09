@@ -151,4 +151,61 @@ function bulk_insertion($product_unit,
 }
 
 
+function RevertSalesProducts(){
+
+  $conn = require 'connection.php';
+  $outerSql = "SELECT * FROM `SaleOnProducts` ";
+
+
+  $temp = mysqli_query($conn,$outerSql);
+
+  while($row = mysqli_fetch_assoc($temp)){
+
+          $EndDate = $row['EndDate'];
+          $currentDate = date('Y/m/d');
+          // echo "HAHA";
+          if ($currentDate > $EndDate){
+            
+
+                  $price = $row['UpdatedAmount'];
+                  $discount = $row['DiscountPercentage'];
+                  $discount = $discount/100;
+                  $orignal_price = $price / (1 - $discount);
+                  
+
+                  $barcode = $row['Barcode'];
+                  $vendorid = $row['Vendor_id'];
+                  
+
+                  $checkQuery = "SELECT * FROM `Vendors_Products` WHERE  Barcode = '$barcode' and Vendor_id = '$vendorid' and price_per_ctn = '$price'";
+                  // echo $checkQuery;
+                  $res = mysqli_query($conn,$checkQuery);
+
+                  
+                  // echo "HAHA2";
+                  if (mysqli_num_rows($res)>0){
+
+                          $update = "UPDATE `Vendors_Products` SET price_per_ctn = ' $orignal_price ' WHERE 
+                                      Barcode = '$barcode' and Vendor_id = '$vendorid' and price_per_ctn = '$price'";
+                          mysqli_query($conn,$update);
+
+                  }
+
+
+          }
+
+
+
+
+
+  }
+
+
+return;
+
+
+
+}
+
+
 ?>

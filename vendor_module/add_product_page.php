@@ -44,13 +44,14 @@
             //means product does not exist
             if (mysqli_num_rows($product_exists)==0){
               //if does not exist now adding the product in our databaswe
-              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit`,`Approved` ) 
-                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."',0 )";
+              $sql = "INSERT INTO `Product`(`Barcode`, `ImagePath`, `Product_Category`,`productSubCategory`, `Product_Name` , `Brand_Name`,`Description`,`Unit`,`Approved`,`Commision` ) 
+                      VALUES ('".$barcode."','".$product_image_target_path."','".$product_category."','".$product_sub_category."' ,'".$product_name."' , '".$brand_name."' ,'".$product_description."' , '".$product_unit."',0,0 )";
               if (mysqli_query($conn,$sql)){
                 $message = "New Product added in Inventory";
 
 
               }
+              else die(mysqli_error($conn));
             }
             //adding option picture 
             $addInPicOption = "INSERT INTO `PictureOptions`(`Barcode`, `VendorName`, `Picture`) 

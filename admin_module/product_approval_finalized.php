@@ -4,6 +4,7 @@ session_start();
 if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
           //making connection
           $conn = require '../connection.php';
+          $Vendorid = $_GET['VendorEmail'];
           $barcode = $_GET['ProductBarcode'];
           // echo $barcode;
           $category = $_GET['CategorySelected'];
@@ -25,11 +26,26 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
                              WHERE Barcode = '".$barcode."' ";
 
          mysqli_query($conn,$updateProduct);
+
+        
+        //commision setting and updating price
+        $commisionQuery = "SELECT * FROM `Product` WHERE  Barcode = '$barcode' ";
+        $rez = mysqli_query($conn,$commisionQuery);
+        $followingdata = $rez->fetch_assoc();
+        $Commision = $followingdata['Commision'];
+        $updatedPriceWithCommision = "SELECT * FROM  `Vendors_Products` 
+        WHERE  Barcode = '$barcode' AND Vendor_id = '$Vendorid'  ";
+        $results = mysqli_query($conn,$updatedPriceWithCommision);
+        $followingdata = $results->fetch_assoc();
+        $previousPrice = $followingdata['price_per_ctn'];
+        $newPrice = $previousPrice + (($previousPrice/100)*$Commision);
+        $query = "UPDATE `Vendors_Products` SET  price_per_ctn = '$newPrice' WHERE  Barcode = '$barcode' AND Vendor_id = '$Vendorid' ";
+        mysqli_query($conn,$query);
+
+
          header('Location: view_vendor_product_requests.php');
       }
-      else{
-        echo $FirstTime;
-      }
+
       if ($FirstTime==1){
         $Commision = $_GET['ProductCommission'];
         $updateProduct = "UPDATE `Product` SET 
@@ -41,6 +57,18 @@ if($_SESSION['loggedIn'] and  ($_SESSION["UserType"]=="admin")){
                            WHERE Barcode = '".$barcode."' ";
 
        mysqli_query($conn,$updateProduct);
+
+       //commision setting and updating price
+       $updatedPriceWithCommision = "SELECT * FROM  `Vendors_Products` 
+                                      WHERE  Barcode = '$barcode' AND Vendor_id = '$Vendorid'  ";
+       $results = mysqli_query($conn,$updatedPriceWithCommision);
+       echo $updatedPriceWithCommision;
+       $followingdata = $results->fetch_assoc();
+       $previousPrice = $followingdata['price_per_ctn'];
+       $newPrice = $previousPrice + (($previousPrice/100)*$Commision);
+       $query = "UPDATE `Vendors_Products` SET  price_per_ctn = '$newPrice' WHERE  Barcode = '$barcode' AND Vendor_id = '$Vendorid' ";
+       mysqli_query($conn,$query);
+
        header('Location: view_vendor_product_requests.php');
     }
 

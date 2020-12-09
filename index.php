@@ -4,6 +4,8 @@
     //making connection
     $conn = require 'connection.php';
     // Check connection
+    require 'common_files/functions.php';
+    RevertSalesProducts();
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
