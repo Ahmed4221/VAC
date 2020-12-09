@@ -330,8 +330,9 @@ if($_SESSION['loggedIn'] and ($_SESSION["UserType"]=="Client" or $_SESSION["User
               <h2 style="/* margin-top: 28%; */color: #fcfdff;font-size: 16px;">'.$Vendorfollowingdata['price_per_ctn'].'</h2></div>
               <div class="flip-box-back" style="background-image: linear-gradient(0deg, rgba(125,125,125,0.7861519607843137) 0%, rgba(4,0,0,0.6460959383753502) 100%), url(.'.$followingdata['ImagePath'].') ; background-size: cover;border-radius: 17px;">
                 <!-- Insert barcode after  sign in the href -->
-                <a href="add_product_to_order.php?barcode='.$barcodes.'&price_per_ctn='.$Vendorfollowingdata['price_per_ctn'].'&per_ctn_qty='.$Vendorfollowingdata['per_ctn_quantity'].'&vendorid='.$Vendorfollowingdata['Vendor_id'].' "> 
-                    <button type="button" class="btn btn-success start-sale-button" style="
+                <!-- <a href="add_product_to_order.php?barcode='.$barcodes.'&price_per_ctn='.$Vendorfollowingdata['price_per_ctn'].'&per_ctn_qty='.$Vendorfollowingdata['per_ctn_quantity'].'&vendorid='.$Vendorfollowingdata['Vendor_id'].' "> -->
+                <a href="#" onClick= showDetails('.$barcodes.','.$Vendorfollowingdata['price_per_ctn'].','.$Vendorfollowingdata['per_ctn_quantity'].','.$Vendorfollowingdata['Vendor_id'].');></a>    
+                <button type="button" class="btn btn-success start-sale-button" style="
                     margin-top: 27%;
                     background: linear-gradient(90deg, rgba(27,215,228,1) 0%, rgba(6,0,159,1) 100%);
                     border: 0;
